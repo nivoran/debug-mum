@@ -1,0 +1,124 @@
+.labi {
+	background-image:url(../img/backg.jpg);
+	}
+.e3{
+    background:white;
+ }   
+.marge0{
+	margin-left:0;
+    float:left;
+	margin-top: 0;
+        }
+.end{
+    padding:0;
+    margin:0;
+    line-height:1px;
+    font-family:Agency FB; 
+    font-size: 30;
+    color:white;
+    }  
+.logo {
+        margin-left: 0.5cm;
+        margin-top:0.2cm;
+        /*position:absolute;*/
+	}
+#valid{
+     background: orange;   
+} 
+#login {
+	float:right;
+	padding-left: 3cm;
+    margin-top:0.5cm;
+        } 
+.cours{ 
+	line-height:1px;
+	font-family:Agency FB; 
+	color:white;
+        
+        }
+ .classep{
+    left: 2cm;
+    top: 1cm;
+    position: absolute;
+    
+    }     
+ .lesson{
+    left: 10cm;
+    top: 1cm;
+    position: absolute;
+    
+    }            
+ 
+       
+ h3{
+    font-size: 18px; 
+    font-family:Agency FB; 
+    font-weight:bold; 
+    color: grey;
+ }   
+
+
+.log {
+	padding:0;
+	margin:0;
+	line-height:1px;
+	font-family:Agency FB; 
+	color:white;
+	} 
+.loga {
+	padding:0;
+	margin:0;
+	line-height:1px;
+	font-family:Agency FB; 
+	color:orange;
+  	} 
+.demo {
+	padding:0;
+	margin:0;
+	line-height:1px;
+	font-family:Agency FB; 
+	color:red;
+	}
+.chap {
+    padding:0;
+    margin:0;
+    line-height:1px;
+    font-family:Agency FB; 
+    color:green;
+    }  
+
+.link {
+       color: orange;     
+        }
+
+#ext{
+	width:92.5%;
+	}
+
+titre{
+        font-family:Calibri; 
+         color: orange;
+       /* background: white;*/
+        font-size: 24px; 
+        left:2cm;
+        
+    }
+#fichupload{
+        font-family:Calibri; 
+        color: white;
+        /*background: white;*/
+       }    
+
+#preinscri{
+	width:680px;
+    top:100px;
+    left:50px;
+    position:absolute;
+        
+	}
+
+#container{
+        left: 10cm;
+        top: 0cm;
+        position: absolute;
+        }
