@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Guide MVC</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+}
+
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+
+header .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header img {
+    width: 60px;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+nav {
+    background: #34495e;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background: #1abc9c;
+}
+
+.container {
+    padding: 40px;
+}
+
+section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+pre {
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.highlight {
+    background: #ecf0f1;
+    padding: 10px;
+    border-left: 5px solid #3498db;
+}
+
+.active {display: block;}
+.exam-link {color: #f1c40f !important; font-weight: bold;}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+         <img src="images/logo_AIDEV.png" alt="Logo AI&Dev Academy" style="border-radius:50%;">
+        <h1>Guide MVC de l'AI&Dev Academy</h1>
+    </div>
+</header>
+
+<nav>
+    <a href="#" onclick="showSection('intro')">Introduction </a>
+    <a href="#" onclick="showSection('base')">Projet de base </a>
+    <a href="#" onclick="showSection('bdd')">Projet avec BDD </a>
+    <a href="#" onclick="showSection('routeur')">Projet avec routeur</a>
+    <a href="#" class="exam-link" onclick="showSection('exam')">Projet d'évaluation</a>
+    <a href="documents/PHP-05-MVC.pdf" target="_blank">📄 Ressources PDF</a>
+</nav>
+
+<!--div class="container"-->
+<main>
+
+<section id="intro" class="content" style="background:#f4f6f7; padding:20px;  border-radius:8px;">
+<h2>Introduction</h2>
+
+<p>Vous savez déjà coder en PHP, HTML et JavaScript. Le problème n’est plus <strong>comment coder</strong>, mais <strong>comment organiser votre code pour qu’il reste propre, maintenable et évolutif</strong>.</p>
+
+<div class="highlight">
+    Le MVC (Model - View - Controller) est un <strong>pattern d’architecture</strong> qui impose une séparation claire des responsabilités.
+</div>
+
+<h3>Le problème sans MVC</h3>
+<ul>
+    <li>Mélange PHP + HTML + SQL dans un même fichier</li>
+    <li>Code difficile à lire et à modifier</li>
+    <li>Effet domino : une petite modification casse tout</li>
+</ul>
+
+<h3>Le principe du MVC</h3>
+<img src="images/mvc.png" alt="Logo AI&Dev Academy" style="border-radius:20%; "max-width:300px; height:auto; ">
+<ul>
+    <li><strong>Model</strong> : gère les données (logique + base de données)</li>
+    <li><strong>View</strong> : gère l’affichage (HTML/CSS)</li>
+    <li><strong>Controller</strong> : reçoit les actions, coordonne Model et View</li>
+</ul>
+
+<h3>Cycle de vie d’une requête</h3>
+<pre>
+1. L'utilisateur envoie une requête (formulaire / URL)
+2. Le Controller reçoit la requête
+3. Le Controller appelle le Model
+4. Le Model traite les données
+5. Le Controller envoie les données à la View
+6. La View affiche le résultat
+</pre>
+
+<h3>Règles d’or</h3>
+<ul>
+    <li>Pas de HTML dans le Model</li>
+    <li>Pas de SQL dans la View</li>
+    <li>Le Controller ne doit pas devenir un "fourre-tout"</li>
+</ul>
+
+<div class="highlight">
+    Objectif du cours : <strong>comprendre en construisant</strong>, pas en apprenant par cœur.
+</div>
+
+
+<!--/div-->
+
+</section>
+
+<section id="base" class="content" style="background:#f4f6f7; padding:20px;  border-radius:8px;">
+<h2>Projet de base</h2>
+
+<p>Dans ce premier projet, l’objectif n’est pas de faire quelque chose de complexe, mais de <strong>comprendre concrètement le fonctionnement du MVC</strong>.</p>
+
+<p>Nous allons construire une mini application très simple : une <strong>gestion de tâches</strong>. L’utilisateur pourra ajouter une tâche et voir la liste des tâches affichées.</p>
+
+<div class="highlight">
+Ce projet est volontairement simple : pas de base de données, pas de complexité inutile. On se concentre uniquement sur la <strong>séparation des rôles</strong> entre Model, View et Controller.
+</div>
+
+<h3>Ce que vous allez apprendre</h3>
+<ul>
+    <li>Comment organiser un projet en dossiers MVC</li>
+    <li>Comment faire circuler les données entre Model, Controller et View</li>
+    <li>Pourquoi cette séparation rend le code plus propre et maintenable</li>
+</ul>
+
+<h3>Structure du projet</h3>
+
+<p>Avant d’écrire du code, on commence toujours par organiser les fichiers. Cette étape est essentielle : elle reflète déjà la logique MVC.</p>
+   
+<pre>
+project/
+│
+├── index.php
+│
+├── config/
+│   └── database.php
+│
+├── controllers/
+│   └── TaskController.php
+│
+├── models/
+│   └── Task.php
+│
+├── views/
+│   └── tasks.php
+</pre>
+<h3>Comprendre require en PHP</h3>
+
+<p>Jusqu’à présent, nous écrivions tout le code dans un seul fichier. Dans une architecture MVC, le code est réparti dans plusieurs fichiers.</p>
+
+<div class="highlight">
+PHP doit donc "aller chercher" d'autres fichiers pour pouvoir les utiliser. C’est le rôle de <strong>require</strong>.
+</div>
+
+---
+
+<h3>Pourquoi utiliser require ?</h3>
+
+<p>Imaginons que notre classe <strong>Task</strong> se trouve dans le fichier <em>models/Task.php</em>.</p>
+
+<p>Si nous voulons l'utiliser dans le Controller, PHP ne la connaît pas automatiquement.</p>
+
+<pre>
+require_once "models/Task.php";
+</pre>
+
+<p>Cette instruction permet de charger le fichier et de rendre la classe disponible.</p>
+
+---
+
+<h3>require vs require_once</h3>
+
+<ul>
+    <li><strong>require</strong> : inclut le fichier (peut être inclus plusieurs fois)</li>
+    <li><strong>require_once</strong> : inclut le fichier une seule fois (recommandé)</li>
+</ul>
+
+<div class="highlight">
+Toujours privilégier <strong>require_once</strong> pour éviter les erreurs de duplication.
+</div>
+
+---
+
+<h3>Exemple concret dans notre projet</h3>
+
+<p>Dans le Controller :</p>
+
+<pre>
+require_once "models/Task.php";
+</pre>
+
+<p>Dans le fichier principal (index.php) :</p>
+
+<pre>
+require_once "config/database.php";
+require_once "controllers/TaskController.php";
+</pre>
+
+---
+
+<h3>Ce qu’il faut retenir</h3>
+
+<div class="highlight">
+<ul>
+    <li>require permet de charger un fichier</li>
+    <li>Sans require, PHP ne connaît pas les classes externes</li>
+    <li>require_once évite les erreurs</li>
+</ul>
+</div>
+
+---
+
+<h3>Erreur fréquente</h3>
+
+<pre>
+Fatal error: Class 'Task' not found
+</pre>
+
+<p>👉 Cela signifie souvent que le fichier n’a pas été inclus avec require.</p>
+<h3>Étape 1 : Le Model</h3>
+
+<p>Le Model est responsable des données. Pour ce premier projet, nous n'utilisons pas de base de données. Nous allons simplement stocker les tâches dans un tableau.</p>
+
+<div class="highlight">
+Le Model ne doit JAMAIS contenir du HTML.
+</div>
+
+<pre>
+class Task {
+    private $tasks = [];
+
+    public function addTask($task) {
+        $this->tasks[] = $task;
+    }
+
+    public function getTasks() {
+        return $this->tasks;
+    }
+}
+</pre>
+
+<h3>Étape 2 : Le Controller</h3>
+
+<p>Le Controller est le chef d’orchestre. Il reçoit les données de l’utilisateur, appelle le Model, puis envoie les données à la View.</p>
+
+<div class="highlight">
+Le Controller fait le lien entre le Model et la View.
+</div>
+
+<pre>
+require_once "models/Task.php";
+
+class TaskController {
+
+    public function handleRequest() {
+        $model = new Task();
+
+        if (isset($_POST['task'])) {
+            $model->addTask($_POST['task']);
+        }
+
+        $tasks = $model->getTasks();
+
+        require "views/tasks.php";
+    }
+}
+</pre>
+
+<h3>Étape 3 : La View</h3>
+
+<p>La View est responsable de l'affichage. Elle affiche le formulaire et la liste des tâches.</p>
+
+<div class="highlight">
+La View ne doit contenir que très peu de logique.
+</div>
+
+<pre>
+<form method="POST">
+    <input type="text" name="task" placeholder="Nouvelle tâche">
+    <button>Ajouter</button>
+</form>
+
+<ul>
+<?php foreach ($tasks as $task): ?>
+    <li><?= $task ?></li>
+<?php endforeach; ?>
+</ul>
+</pre>
+
+<h3>Étape 4 : Le point d'entrée</h3>
+
+<p>Le fichier <strong>index.php</strong> est le point d'entrée de l'application. C’est lui qui lance le Controller.</p>
+
+<pre>
+require_once "controllers/TaskController.php";
+
+$controller = new TaskController();
+$controller->handleRequest();
+</pre>
+
+<h3>Test de compréhension</h3>
+
+<div class="highlight">
+<ul>
+    <li>Où se trouve la logique métier ?</li>
+    <li>Qui appelle le Model ?</li>
+    <li>Qui affiche les données ?</li>
+</ul>
+</div>
+
+</section>
+
+<section id="bdd" class="content" style="background:#f4f6f7; padding:20px;  border-radius:8px;">
+<h2>Projet avec BDD</h2>
+ <p>Objectif : stocker les tâches dans une base MySQL avec PDO.</p>
+
+<ul>
+    <li>Connexion PDO</li>
+    <li>INSERT / SELECT</li>
+    <li>Model connecté à la base</li>
+</ul>
+
+<h3>Transition depuis le projet de base</h3>
+
+<p>Dans le projet précédent, les tâches étaient stockées dans un simple tableau. Le problème ? Les données disparaissent à chaque rechargement de la page.</p>
+
+<div class="highlight">
+Pour rendre notre application réaliste, nous devons stocker les données de manière persistante : dans une base de données.
+</div>
+
+---
+
+<h3>Étape 1 : Création de la base de données</h3>
+
+<p>Nous allons créer une base de données simple avec une table <strong>tasks</strong>.</p>
+
+<pre>
+CREATE DATABASE mvc_tasks;
+
+USE mvc_tasks;
+
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL
+);
+</pre>
+
+---
+
+<h3>Étape 2 : Connexion à la base de données (PDO)</h3>
+
+<p>Nous allons créer une connexion à la base de données en utilisant PDO.</p>
+
+<div class="highlight">
+PDO permet de sécuriser les requêtes SQL et de travailler proprement avec la base de données.
+</div>
+
+<pre>
+$pdo = new PDO("mysql:host=localhost;dbname=mvc_tasks", "root", "");
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+</pre>
+
+---
+
+<h3>Étape 3 : Adapter le Model</h3>
+
+<p>Le Model ne va plus utiliser un tableau, mais la base de données.</p>
+
+<pre>
+class Task {
+
+    private $pdo;
+
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
+
+    public function addTask($task) {
+        $stmt = $this->pdo->prepare("INSERT INTO tasks (title) VALUES (?)");
+        $stmt->execute([$task]);
+    }
+
+    public function getTasks() {
+        $stmt = $this->pdo->query("SELECT * FROM tasks");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+</pre>
+
+---
+
+<h3>Étape 4 : Adapter le Controller</h3>
+
+<p>Le Controller doit maintenant transmettre la connexion PDO au Model.</p>
+
+<pre>
+require_once "models/Task.php";
+
+class TaskController {
+
+    public function handleRequest() {
+
+        $pdo = new PDO("mysql:host=localhost;dbname=mvc_tasks", "root", "");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $model = new Task($pdo);
+
+        if (isset($_POST['task'])) {
+            $model->addTask($_POST['task']);
+        }
+
+        $tasks = $model->getTasks();
+
+        require "views/tasks.php";
+    }
+}
+</pre>
+
+---
+
+<h3>Étape 5 : Adapter la View</h3>
+
+<p>La View change très peu. La seule différence est que nous recevons maintenant des données provenant de la base.</p>
+
+<pre>
+<ul>
+<?php foreach ($tasks as $task): ?>
+    <li><?= $task['title'] ?></li>
+<?php endforeach; ?>
+</ul>
+</pre>
+
+---
+
+<h3>Test de compréhension</h3>
+
+<div class="highlight">
+<ul>
+    <li>Pourquoi utilise-t-on PDO au lieu de mysqli ?</li>
+    <li>Pourquoi le Model reçoit-il la connexion en paramètre ?</li>
+    <li>Que se passe-t-il si la base de données est vide ?</li>
+</ul>
+</div>
+</section>
+
+<section id="routeur" class="content" style="background:#f4f6f7; padding:20px;  border-radius:8px;">
+ <h2>Projet avec routeur</h2>
+
+<h3>Transition depuis le projet avec BDD</h3>
+
+<p>Jusqu’à présent, notre application fonctionne avec un seul point d’entrée et un seul comportement. Mais dans une vraie application, nous avons plusieurs actions : afficher, ajouter, supprimer, etc.</p>
+
+<div class="highlight">
+Un routeur permet de diriger les requêtes vers le bon traitement en fonction de l’URL.
+</div>
+
+---
+
+<h3>Objectif</h3>
+
+<p>Créer un système simple qui permet de gérer différentes actions :</p>
+
+<pre>
+/index.php?action=list
+/index.php?action=add
+</pre>
+
+---
+
+<h3>Étape 1 : Comprendre le principe</h3>
+
+<p>Nous allons utiliser un paramètre <strong>action</strong> dans l’URL pour décider quoi faire.</p>
+
+<div class="highlight">
+Le routeur analyse la requête et appelle la bonne méthode du Controller.
+</div>
+
+---
+
+<h3>Étape 2 : Modifier le Controller</h3>
+
+<p>Le Controller va maintenant gérer plusieurs actions.</p>
+
+<pre>
+class TaskController {
+
+    private $model;
+
+    public function __construct($pdo) {
+        $this->model = new Task($pdo);
+    }
+
+    public function handleRequest() {
+
+        $action = $_GET['action'] ?? 'list';
+
+        switch ($action) {
+
+            case 'add':
+                if (isset($_POST['task'])) {
+                    $this->model->addTask($_POST['task']);
+                }
+                header("Location: index.php?action=list");
+                break;
+
+            case 'list':
+            default:
+                $tasks = $this->model->getTasks();
+                require "views/tasks.php";
+                break;
+        }
+    }
+}
+</pre>
+
+---
+
+<h3>Étape 3 : Adapter le point d’entrée (index.php)</h3>
+
+<p>Le fichier principal devient responsable du routage.</p>
+
+<pre>
+require_once "models/Task.php";
+require_once "controllers/TaskController.php";
+
+$pdo = new PDO("mysql:host=localhost;dbname=mvc_tasks", "root", "");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$controller = new TaskController($pdo);
+$controller->handleRequest();
+</pre>
+
+---
+
+<h3>Étape 4 : Adapter la View</h3>
+
+<p>Le formulaire doit maintenant envoyer vers l’action <strong>add</strong>.</p>
+
+<pre>
+<form method="POST" action="index.php?action=add">
+    <input type="text" name="task">
+    <button>Ajouter</button>
+</form>
+</pre>
+
+---
+
+<h3>Ce que vous devez comprendre</h3>
+
+<div class="highlight">
+<ul>
+    <li>Le routeur décide quelle action exécuter</li>
+    <li>Le Controller peut gérer plusieurs comportements</li>
+    <li>L’URL devient une interface de contrôle de l’application</li>
+</ul>
+</div>
+
+---
+
+<h3>Test de compréhension</h3>
+
+<div class="highlight">
+<ul>
+    <li>Que se passe-t-il si aucune action n’est fournie ?</li>
+    <li>Pourquoi redirige-t-on après un ajout ?</li>
+    <li>Où se trouve la logique de routage ?</li>
+</ul>
+</div>
+
+</section>
+
+<section id="exam" class="content" style="background:#f4f6f7; padding:20px;  border-radius:8px;">
+
+
+<h2>Examen MVC : Gestion de contacts</h2>
+
+<h3>Objectif</h3>
+<p>Réaliser une application web en <strong>PHP MVC</strong> permettant de gérer une liste de contacts.</p>
+
+<div class="highlight">
+Ce projet doit respecter l’architecture MVC étudiée en cours : séparation claire entre Model, View et Controller.
+</div>
+
+---
+
+<h3>Fonctionnalités demandées</h3>
+
+<ul>
+    <li><strong>Afficher les contacts</strong> (nom + email)</li>
+    <li><strong>Ajouter un contact</strong> via un formulaire</li>
+    <li><strong>Supprimer un contact</strong></li>
+</ul>
+
+---
+
+<h3>Base de données</h3>
+
+<pre>
+CREATE DATABASE mvc_contacts;
+
+USE mvc_contacts;
+
+CREATE TABLE contacts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100)
+);
+</pre>
+
+---
+
+<h3>Structure imposée</h3>
+
+<pre>
+project/
+├── index.php
+├── config/
+│   └── database.php
+├── controllers/
+│   └── ContactController.php
+├── models/
+│   └── Contact.php
+├── views/
+│   └── contacts.php
+</pre>
+
+---
+
+<h3>Contraintes importantes</h3>
+
+<ul>
+    <li>Respect du pattern MVC</li>
+    <li>Utilisation de PDO</li>
+    <li>Utilisation de require_once</li>
+    <li>Utilisation d’un routeur avec <strong>action</strong></li>
+</ul>
+
+---
+
+<h3>Indications techniques</h3>
+
+<p>Routeur attendu :</p>
+
+<pre>
+$action = $_GET['action'] ?? 'list';
+</pre>
+
+<p>Actions à gérer :</p>
+<ul>
+    <li>list</li>
+    <li>add</li>
+    <li>delete</li>
+</ul>
+
+---
+
+<h3>Travail à rendre</h3>
+
+<ul>
+    <li>Projet fonctionnel</li>
+    <li>Code organisé</li>
+    <li>Application testable</li>
+</ul>
+
+---
+
+<h3>Barème (sur 20)</h3>
+
+<ul>
+    <li>Structure MVC respectée : 4 pts</li>
+    <li>Connexion PDO : 3 pts</li>
+    <li>Affichage des contacts : 3 pts</li>
+    <li>Ajout de contact : 4 pts</li>
+    <li>Suppression de contact : 3 pts</li>
+    <li>Qualité du code : 3 pts</li>
+</ul>
+
+---
+
+<h3>Bonus (facultatif)</h3>
+
+<ul>
+    <li>Validation du formulaire</li>
+    <li>Amélioration du design</li>
+    <li>Message de confirmation</li>
+</ul>
+
+<p><em>+2 points</em></p>
+
+---
+
+<h3> Conseil</h3>
+
+<div class="highlight">
+Commencez par afficher quelque chose, puis ajoutez les fonctionnalités progressivement.
+</div>
+
+</section>
+
+
+</section>
+<!--/div-->
+<script>
+function showSection(id) {
+    // cacher toutes les sections
+    let sections = document.querySelectorAll(".content");
+    sections.forEach(sec => {
+        sec.style.display = "none";
+    });
+
+    // afficher la section choisie
+    document.getElementById(id).style.display = "block";
+}
+
+// afficher uniquement l'intro au chargement
+window.onload = function () {
+    showSection("intro");
+};
+</script>
+</main>
+</body>
+</html>
