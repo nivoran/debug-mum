@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Corrigé Annoté – SQL E-commerce</title>
+    <style>
+        body { font-family: Arial; margin: 40px; line-height: 1.6; }
+        h1, h2 { color: #2c3e50; }
+        .bloc { margin-bottom: 30px; padding: 15px; background: #f4f6f7; border-left: 5px solid #27ae60; }
+        pre { background: #272822; color: #f8f8f2; padding: 10px; }
+        .explication { background: #ecf0f1; padding: 10px; margin-top: 10px; }
+    </style>
+</head>
+
+<body>
+
+<h1>🛒 Corrigé Annoté – Examen SQL (E-commerce)</h1>
+
+<h2>🟢 Niveau 1</h2>
+
+<div class="bloc">
+<strong>1. Afficher tous les clients</strong>
+
+<pre>
+SELECT * FROM Client;
+</pre>
+
+<div class="explication">
+- SELECT * : récupère toutes les colonnes<br>
+- FROM Client : table utilisée<br>
+👉 Requête de base
+</div>
+</div>
+
+<div class="bloc">
+<strong>2. Clients de Antananarivo</strong>
+
+<pre>
+SELECT * FROM Client
+WHERE ville = 'Antananarivo';
+</pre>
+
+<div class="explication">
+- WHERE : filtre les lignes<br>
+👉 On sélectionne une ville spécifique
+</div>
+</div>
+
+<div class="bloc">
+<strong>3. Trier les produits par prix décroissant</strong>
+
+<pre>
+SELECT * FROM Produit
+ORDER BY prix DESC;
+</pre>
+
+<div class="explication">
+- ORDER BY : tri<br>
+- DESC : du plus grand au plus petit<br>
+👉 Important pour les classements
+</div>
+</div>
+
+<div class="bloc">
+<strong>4. Produits Informatique</strong>
+
+<pre>
+SELECT P.nom_produit
+FROM Produit P
+JOIN Categorie C ON P.id_categorie = C.id_categorie
+WHERE C.nom_categorie = 'Informatique';
+</pre>
+
+<div class="explication">
+- JOIN : relie Produit et Categorie<br>
+- ON : condition de jointure<br>
+👉 On récupère les produits d’une catégorie
+</div>
+</div>
+
+<h2>🟡 Niveau 2</h2>
+
+<div class="bloc">
+<strong>5. Commandes avec clients</strong>
+
+<pre>
+SELECT C.id_commande, Cl.nom
+FROM Commande C
+JOIN Client Cl ON C.id_client = Cl.id_client;
+</pre>
+
+<div class="explication">
+- Association commande ↔ client<br>
+👉 Lecture d’une relation clé étrangère
+</div>
+</div>
+
+<div class="bloc">
+<strong>6. Produits commandés avec quantité</strong>
+
+<pre>
+SELECT P.nom_produit, L.quantite
+FROM Ligne_Commande L
+JOIN Produit P ON L.id_produit = P.id_produit;
+</pre>
+
+<div class="explication">
+- Table intermédiaire Ligne_Commande<br>
+👉 Cas classique e-commerce
+</div>
+</div>
+
+<div class="bloc">
+<strong>7. Clients ayant commandé</strong>
+
+<pre>
+SELECT DISTINCT Cl.nom
+FROM Client Cl
+JOIN Commande C ON Cl.id_client = C.id_client;
+</pre>
+
+<div class="explication">
+- DISTINCT : supprime les doublons<br>
+👉 Important si plusieurs commandes
+</div>
+</div>
+
+<h2>🔴 Niveau 3</h2>
+
+<div class="bloc">
+<strong>8. Total de chaque commande</strong>
+
+<pre>
+SELECT C.id_commande,
+       SUM(P.prix * L.quantite) AS total
+FROM Commande C
+JOIN Ligne_Commande L ON C.id_commande = L.id_commande
+JOIN Produit P ON L.id_produit = P.id_produit
+GROUP BY C.id_commande;
+</pre>
+
+<div class="explication">
+- P.prix * L.quantite : calcul du montant<br>
+- SUM() : addition<br>
+- GROUP BY : par commande<br>
+👉 Requête très importante en pratique
+</div>
+</div>
+
+<div class="bloc">
+<strong>9. Commandes > 500</strong>
+
+<pre>
+SELECT C.id_commande,
+       SUM(P.prix * L.quantite) AS total
+FROM Commande C
+JOIN Ligne_Commande L ON C.id_commande = L.id_commande
+JOIN Produit P ON L.id_produit = P.id_produit
+GROUP BY C.id_commande
+HAVING SUM(P.prix * L.quantite) > 500;
+</pre>
+
+<div class="explication">
+- HAVING : filtre après agrégation<br>
+👉 Différence clé avec WHERE
+</div>
+</div>
+
+<div class="bloc">
+<strong>10. Client ayant le plus dépensé</strong>
+
+<pre>
+SELECT Cl.nom,
+       SUM(P.prix * L.quantite) AS total
+FROM Client Cl
+JOIN Commande C ON Cl.id_client = C.id_client
+JOIN Ligne_Commande L ON C.id_commande = L.id_commande
+JOIN Produit P ON L.id_produit = P.id_produit
+GROUP BY Cl.nom
+ORDER BY total DESC
+LIMIT 1;
+</pre>
+
+<div class="explication">
+- SUM : total dépensé<br>
+- ORDER BY DESC : classement<br>
+- LIMIT 1 : premier<br>
+👉 Technique pour trouver le maximum
+</div>
+</div>
+
+<div class="bloc">
+<strong>11. Nombre de produits par catégorie</strong>
+
+<pre>
+SELECT C.nom_categorie,
+       COUNT(P.id_produit) AS nb
+FROM Categorie C
+JOIN Produit P ON C.id_categorie = P.id_categorie
+GROUP BY C.nom_categorie;
+</pre>
+
+<div class="explication">
+- COUNT : nombre d’éléments<br>
+👉 Utilisé pour statistiques
+</div>
+</div>
+
+<div class="bloc">
+<strong>12. Clients sans commande</strong>
+
+<pre>
+SELECT Cl.nom
+FROM Client Cl
+LEFT JOIN Commande C ON Cl.id_client = C.id_client
+WHERE C.id_commande IS NULL;
+</pre>
+
+<div class="explication">
+- LEFT JOIN : garde tous les clients<br>
+- IS NULL : pas de correspondance<br>
+👉 Permet de détecter les clients inactifs
+</div>
+</div>
+
+</body>
+</html>

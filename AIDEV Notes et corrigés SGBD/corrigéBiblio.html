@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Corrigé Annoté – SQL Bibliothèque</title>
+    <style>
+        body { font-family: Arial; margin: 40px; line-height: 1.6; }
+        h1, h2 { color: #2c3e50; }
+        .bloc { margin-bottom: 30px; padding: 15px; background: #f4f6f7; border-left: 5px solid #3498db; }
+        pre { background: #272822; color: #f8f8f2; padding: 10px; }
+        .explication { background: #ecf0f1; padding: 10px; margin-top: 10px; }
+    </style>
+</head>
+
+<body>
+
+<h1>📚 Corrigé Annoté – Examen SQL (Bibliothèque)</h1>
+
+<h2>🟢 Niveau 1</h2>
+
+<div class="bloc">
+<strong>1. Afficher tous les adhérents</strong>
+
+<pre>
+SELECT * FROM Adherent;
+</pre>
+
+<div class="explication">
+- SELECT * : sélectionne toutes les colonnes<br>
+- FROM Adherent : indique la table utilisée<br>
+👉 Requête de base pour afficher toute une table
+</div>
+</div>
+
+<div class="bloc">
+<strong>2. Adhérents de Antananarivo</strong>
+
+<pre>
+SELECT * FROM Adherent
+WHERE ville = 'Antananarivo';
+</pre>
+
+<div class="explication">
+- WHERE : permet de filtrer les résultats<br>
+- ville = 'Antananarivo' : condition de sélection<br>
+👉 On récupère uniquement les adhérents de cette ville
+</div>
+</div>
+
+<div class="bloc">
+<strong>3. Trier les livres</strong>
+
+<pre>
+SELECT * FROM Livre
+ORDER BY titre ASC;
+</pre>
+
+<div class="explication">
+- ORDER BY : trie les résultats<br>
+- ASC : ordre croissant (A → Z)<br>
+👉 Important : DESC = ordre inverse
+</div>
+</div>
+
+<div class="bloc">
+<strong>4. Livres Informatique</strong>
+
+<pre>
+SELECT L.titre
+FROM Livre L
+JOIN Categorie C ON L.id_categorie = C.id_categorie
+WHERE C.nom_categorie = 'Informatique';
+</pre>
+
+<div class="explication">
+- L et C : alias pour simplifier<br>
+- JOIN : relie les tables Livre et Categorie<br>
+- ON : condition de jointure<br>
+- WHERE : filtre la catégorie<br>
+👉 On combine 2 tables pour obtenir l'information
+</div>
+</div>
+
+<h2>🟡 Niveau 2</h2>
+
+<div class="bloc">
+<strong>5. Emprunts + noms</strong>
+
+<pre>
+SELECT E.id_emprunt, A.nom
+FROM Emprunt E
+JOIN Adherent A ON E.id_adherent = A.id_adherent;
+</pre>
+
+<div class="explication">
+- Jointure entre Emprunt et Adherent<br>
+- Permet d'associer chaque emprunt à un nom<br>
+👉 Cas classique relation clé étrangère
+</div>
+</div>
+
+<div class="bloc">
+<strong>6. Livres empruntés</strong>
+
+<pre>
+SELECT L.titre, D.quantite
+FROM Detail_Emprunt D
+JOIN Livre L ON D.id_livre = L.id_livre;
+</pre>
+
+<div class="explication">
+- D = table de liaison<br>
+- On récupère le titre via jointure<br>
+👉 Montre l'utilisation des tables intermédiaires
+</div>
+</div>
+
+<div class="bloc">
+<strong>7. Adhérents ayant emprunté</strong>
+
+<pre>
+SELECT DISTINCT A.nom
+FROM Adherent A
+JOIN Emprunt E ON A.id_adherent = E.id_adherent;
+</pre>
+
+<div class="explication">
+- DISTINCT : évite les doublons<br>
+👉 Important quand un adhérent a plusieurs emprunts
+</div>
+</div>
+
+<h2>🔴 Niveau 3</h2>
+
+<div class="bloc">
+<strong>8. Total livres par emprunt</strong>
+
+<pre>
+SELECT E.id_emprunt, SUM(D.quantite) AS total
+FROM Emprunt E
+JOIN Detail_Emprunt D ON E.id_emprunt = D.id_emprunt
+GROUP BY E.id_emprunt;
+</pre>
+
+<div class="explication">
+- SUM() : fonction d’agrégation<br>
+- GROUP BY : regroupe par emprunt<br>
+👉 Indispensable pour les calculs
+</div>
+</div>
+
+<div class="bloc">
+<strong>9. Emprunts > 1 livre</strong>
+
+<pre>
+SELECT E.id_emprunt, SUM(D.quantite) AS total
+FROM Emprunt E
+JOIN Detail_Emprunt D ON E.id_emprunt = D.id_emprunt
+GROUP BY E.id_emprunt
+HAVING SUM(D.quantite) > 1;
+</pre>
+
+<div class="explication">
+- HAVING : filtre après GROUP BY<br>
+👉 Différence clé : WHERE (avant), HAVING (après)
+</div>
+</div>
+
+<div class="bloc">
+<strong>10. Plus gros emprunteur</strong>
+
+<pre>
+SELECT A.nom, SUM(D.quantite) AS total
+FROM Adherent A
+JOIN Emprunt E ON A.id_adherent = E.id_adherent
+JOIN Detail_Emprunt D ON E.id_emprunt = D.id_emprunt
+GROUP BY A.nom
+ORDER BY total DESC
+LIMIT 1;
+</pre>
+
+<div class="explication">
+- ORDER BY DESC : du plus grand au plus petit<br>
+- LIMIT 1 : prend le premier résultat<br>
+👉 Technique pour trouver un maximum
+</div>
+</div>
+
+<div class="bloc">
+<strong>11. Nombre de livres par catégorie</strong>
+
+<pre>
+SELECT C.nom_categorie, COUNT(L.id_livre) AS nb
+FROM Categorie C
+JOIN Livre L ON C.id_categorie = L.id_categorie
+GROUP BY C.nom_categorie;
+</pre>
+
+<div class="explication">
+- COUNT() : compte les éléments<br>
+👉 Très utilisé pour statistiques
+</div>
+</div>
+
+<div class="bloc">
+<strong>12. Adhérents sans emprunt</strong>
+
+<pre>
+SELECT A.nom
+FROM Adherent A
+LEFT JOIN Emprunt E ON A.id_adherent = E.id_adherent
+WHERE E.id_emprunt IS NULL;
+</pre>
+
+<div class="explication">
+- LEFT JOIN : garde tous les adhérents<br>
+- IS NULL : ceux sans correspondance<br>
+👉 Technique classique pour trouver “absence de données”
+</div>
+</div>
+
+</body>
+</html>
