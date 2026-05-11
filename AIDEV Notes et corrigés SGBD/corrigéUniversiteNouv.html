@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen SQL - Université</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            margin:0;
+            background:#f5f6fa;
+            line-height:1.6;
+        }
+
+        header{
+            background:#2c3e50;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        nav{
+            background:#34495e;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            padding:15px;
+        }
+
+        nav button{
+            padding:10px 20px;
+            border:none;
+            background:#e67e22;
+            color:white;
+            cursor:pointer;
+            border-radius:5px;
+            font-size:16px;
+        }
+
+        nav button:hover{
+            background:#d35400;
+        }
+
+        .container{
+            width:90%;
+            max-width:1100px;
+            margin:auto;
+            padding:20px;
+        }
+
+        .section{
+            display:none;
+        }
+
+        .active{
+            display:block;
+        }
+
+        h2{
+            color:#2c3e50;
+        }
+        h1{
+            color:white;
+        }
+        .bloc{
+            margin-bottom:30px;
+            padding:15px;
+            background:white;
+            border-left:5px solid #e67e22;
+            border-radius:5px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        pre{
+            background:#272822;
+            color:#f8f8f2;
+            padding:12px;
+            overflow-x:auto;
+            border-radius:5px;
+        }
+
+        .explication{
+            background:#ecf0f1;
+            padding:10px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+
+        .question{
+            background:white;
+            padding:15px;
+            margin-bottom:20px;
+            border-radius:5px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        textarea{
+            width:100%;
+            height:90px;
+            margin-top:10px;
+        }
+
+        footer{
+            text-align:center;
+            padding:20px;
+            background:#2c3e50;
+            color:white;
+            margin-top:40px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo_AIDEV.png" alt="AI&Dev Academy" style="max-width:120px;">
+    <h1>Examen SQL - BD Université</h1>
+</header>
+
+<nav>
+    <button onclick="showSection('sujet')">📄 Sujet</button>
+    <button onclick="showSection('corrige')">✅ Corrigé</button>
+</nav>
+
+<div class="container">
+
+    <!-- SECTION SUJET -->
+
+    <div id="sujet" class="section active">
+
+        <h2>📄 Sujet d'Examen</h2>
+
+        <div class="question">
+            <h3>🟢 Niveau 1</h3>
+
+            <p>1. Afficher tous les étudiants</p>
+            <textarea></textarea>
+
+            <p>2. Afficher les étudiants de Antananarivo</p>
+            <textarea></textarea>
+
+            <p>3. Trier les étudiants par nom</p>
+            <textarea></textarea>
+
+            <p>4. Afficher les cours de la formation Informatique</p>
+            <textarea></textarea>
+        </div>
+
+        <div class="question">
+            <h3>🟡 Niveau 2</h3>
+
+            <p>5. Afficher les étudiants avec leur formation</p>
+            <textarea></textarea>
+
+            <p>6. Afficher les notes avec étudiants et cours</p>
+            <textarea></textarea>
+
+            <p>7. Afficher les étudiants en Informatique</p>
+            <textarea></textarea>
+        </div>
+
+        <div class="question">
+            <h3>🔴 Niveau 3</h3>
+
+            <p>8. Calculer la moyenne par étudiant</p>
+            <textarea></textarea>
+
+            <p>9. Afficher les étudiants avec moyenne > 12</p>
+            <textarea></textarea>
+
+            <p>10. Trouver la meilleure moyenne</p>
+            <textarea></textarea>
+
+            <p>11. Afficher le nombre d’étudiants par cours</p>
+            <textarea></textarea>
+
+            <p>12. Afficher les étudiants sans note</p>
+            <textarea></textarea>
+        </div>
+
+    </div>
+
+    <!-- SECTION CORRIGÉ -->
+
+    <div id="corrige" class="section">
+
+        <h2>✅ Corrigé Annoté</h2>
+
+        <div class="bloc">
+            <strong>1. Afficher tous les étudiants</strong>
+
+<pre>
+SELECT * FROM Etudiant;
+</pre>
+
+            <div class="explication">
+                - SELECT * : récupère toutes les colonnes<br>
+                - FROM Etudiant : table utilisée<br>
+                👉 Requête de base
+            </div>
+        </div>
+
+        <div class="bloc">
+            <strong>2. Étudiants de Antananarivo</strong>
+
+<pre>
+SELECT * FROM Etudiant
+WHERE ville = 'Antananarivo';
+</pre>
+
+            <div class="explication">
+                - WHERE : filtre les lignes<br>
+                👉 Sélection d’une condition précise
+            </div>
+        </div>
+
+        <div class="bloc">
+            <strong>3. Trier les étudiants par nom</strong>
+
+<pre>
+SELECT * FROM Etudiant
+ORDER BY nom ASC;
+</pre>
+
+            <div class="explication">
+                - ORDER BY : tri des résultats<br>
+                - ASC : ordre alphabétique
+            </div>
+        </div>
+
+        <div class="bloc">
+            <strong>4. Cours Informatique</strong>
+
+<pre>
+SELECT C.nom_cours
+FROM Cours C
+JOIN Formation F ON C.id_formation = F.id_formation
+WHERE F.nom_formation = 'Informatique';
+</pre>
+
+            <div class="explication">
+                - JOIN : relie les tables<br>
+                - ON : condition de jointure
+            </div>
+        </div>
+
+        <div class="bloc">
+            <strong>8. Moyenne par étudiant</strong>
+
+<pre>
+SELECT E.nom, AVG(N.note) AS moyenne
+FROM Etudiant E
+JOIN Note N ON E.id_etudiant = N.id_etudiant
+GROUP BY E.nom;
+</pre>
+
+            <div class="explication">
+                - AVG() : calcule une moyenne<br>
+                - GROUP BY : regroupement
+            </div>
+        </div>
+
+        <div class="bloc">
+            <strong>12. Étudiants sans note</strong>
+
+<pre>
+SELECT E.nom
+FROM Etudiant E
+LEFT JOIN Note N ON E.id_etudiant = N.id_etudiant
+WHERE N.id_note IS NULL;
+</pre>
+
+            <div class="explication">
+                - LEFT JOIN : garde tous les étudiants<br>
+                - IS NULL : absence de correspondance
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    AI&Dev Academy — Examen SQL Université
+</footer>
+
+<script>
+
+function showSection(id){
+
+    let sections = document.querySelectorAll('.section');
+
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+}
+
+</script>
+
+</body>
+</html>

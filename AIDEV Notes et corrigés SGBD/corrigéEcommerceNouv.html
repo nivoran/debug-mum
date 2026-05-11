@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen SQL - E-commerce</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            margin:0;
+            background:#f5f6fa;
+            line-height:1.6;
+        }
+
+        header{
+            background:#2c3e50;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        header h1{
+            color:white;
+        }
+
+        nav{
+            background:#34495e;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            padding:15px;
+        }
+
+        nav button{
+            padding:10px 20px;
+            border:none;
+            background:#27ae60;
+            color:white;
+            cursor:pointer;
+            border-radius:5px;
+            font-size:16px;
+            transition:0.3s;
+        }
+
+        nav button:hover{
+            background:#1e8449;
+        }
+
+        .container{
+            width:90%;
+            max-width:1100px;
+            margin:auto;
+            padding:20px;
+        }
+
+        .section{
+            display:none;
+        }
+
+        .active{
+            display:block;
+        }
+
+        h2{
+            color:#2c3e50;
+        }
+
+        .bloc{
+            margin-bottom:30px;
+            padding:15px;
+            background:white;
+            border-left:5px solid #27ae60;
+            border-radius:5px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        pre{
+            background:#272822;
+            color:#f8f8f2;
+            padding:12px;
+            overflow-x:auto;
+            border-radius:5px;
+        }
+
+        .explication{
+            background:#ecf0f1;
+            padding:10px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+
+        .question{
+            background:white;
+            padding:15px;
+            margin-bottom:20px;
+            border-radius:5px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        textarea{
+            width:100%;
+            height:90px;
+            margin-top:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            padding:10px;
+        }
+
+        footer{
+            text-align:center;
+            padding:20px;
+            background:#2c3e50;
+            color:white;
+            margin-top:40px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo_AIDEV.png" alt="AI&Dev Academy" style="max-width:120px;">
+    <h1>Examen SQL - E-commerce</h1>
+  </header>
+
+<nav>
+    <button onclick="showSection('sujet')">📄 Sujet</button>
+    <button onclick="showSection('corrige')">✅ Corrigé</button>
+</nav>
+
+<div class="container">
+
+    <!-- SECTION SUJET -->
+
+    <div id="sujet" class="section active">
+
+        <h2>📄 Sujet d'Examen</h2>
+
+        <div class="question">
+
+            <h3>🟢 Niveau 1</h3>
+
+            <p>1. Afficher tous les clients</p>
+            <textarea></textarea>
+
+            <p>2. Afficher les clients de Antananarivo</p>
+            <textarea></textarea>
+
+            <p>3. Trier les produits par prix décroissant</p>
+            <textarea></textarea>
+
+            <p>4. Afficher les produits de la catégorie Informatique</p>
+            <textarea></textarea>
+
+        </div>
+
+        <div class="question">
+
+            <h3>🟡 Niveau 2</h3>
+
+            <p>5. Afficher les commandes avec les noms des clients</p>
+            <textarea></textarea>
+
+            <p>6. Afficher les produits commandés avec leur quantité</p>
+            <textarea></textarea>
+
+            <p>7. Afficher les clients ayant effectué une commande</p>
+            <textarea></textarea>
+
+        </div>
+
+        <div class="question">
+
+            <h3>🔴 Niveau 3</h3>
+
+            <p>8. Calculer le total de chaque commande</p>
+            <textarea></textarea>
+
+            <p>9. Afficher les commandes dont le total dépasse 500</p>
+            <textarea></textarea>
+
+            <p>10. Trouver le client ayant le plus dépensé</p>
+            <textarea></textarea>
+
+            <p>11. Afficher le nombre de produits par catégorie</p>
+            <textarea></textarea>
+
+            <p>12. Afficher les clients n’ayant jamais commandé</p>
+            <textarea></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- SECTION CORRIGÉ -->
+
+    <div id="corrige" class="section">
+
+        <h2>✅ Corrigé Annoté</h2>
+
+        <div class="bloc">
+
+            <strong>1. Afficher tous les clients</strong>
+
+<pre>
+SELECT * FROM Client;
+</pre>
+
+            <div class="explication">
+                - SELECT * : récupère toutes les colonnes<br>
+                - FROM Client : table utilisée<br>
+                👉 Requête de base
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>2. Clients de Antananarivo</strong>
+
+<pre>
+SELECT * FROM Client
+WHERE ville = 'Antananarivo';
+</pre>
+
+            <div class="explication">
+                - WHERE : filtre les lignes<br>
+                👉 Sélection d’une ville spécifique
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>3. Trier les produits par prix décroissant</strong>
+
+<pre>
+SELECT * FROM Produit
+ORDER BY prix DESC;
+</pre>
+
+            <div class="explication">
+                - ORDER BY : tri<br>
+                - DESC : ordre décroissant
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>4. Produits Informatique</strong>
+
+<pre>
+SELECT P.nom_produit
+FROM Produit P
+JOIN Categorie C ON P.id_categorie = C.id_categorie
+WHERE C.nom_categorie = 'Informatique';
+</pre>
+
+            <div class="explication">
+                - JOIN : relie les tables<br>
+                - WHERE : filtre la catégorie
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>8. Total de chaque commande</strong>
+
+<pre>
+SELECT C.id_commande,
+       SUM(P.prix * L.quantite) AS total
+FROM Commande C
+JOIN Ligne_Commande L ON C.id_commande = L.id_commande
+JOIN Produit P ON L.id_produit = P.id_produit
+GROUP BY C.id_commande;
+</pre>
+
+            <div class="explication">
+                - SUM() : addition des montants<br>
+                - GROUP BY : regroupement par commande
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>12. Clients sans commande</strong>
+
+<pre>
+SELECT Cl.nom
+FROM Client Cl
+LEFT JOIN Commande C ON Cl.id_client = C.id_client
+WHERE C.id_commande IS NULL;
+</pre>
+
+            <div class="explication">
+                - LEFT JOIN : garde tous les clients<br>
+                - IS NULL : aucune commande associée
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    AI&Dev Academy — Examen SQL E-commerce
+</footer>
+
+<script>
+
+function showSection(id){
+
+    let sections = document.querySelectorAll('.section');
+
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+}
+
+</script>
+
+</body>
+</html>

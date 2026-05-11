@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Examen SQL - Bibliothèque</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            margin:0;
+            background:#f5f6fa;
+            line-height:1.6;
+        }
+
+        header{
+            background:#2c3e50;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        header h1{
+            color:white;
+        }
+
+        nav{
+            background:#34495e;
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            padding:15px;
+        }
+
+        nav button{
+            padding:10px 20px;
+            border:none;
+            background:#3498db;
+            color:white;
+            cursor:pointer;
+            border-radius:5px;
+            font-size:16px;
+            transition:0.3s;
+        }
+
+        nav button:hover{
+            background:#2980b9;
+        }
+
+        .container{
+            width:90%;
+            max-width:1100px;
+            margin:auto;
+            padding:20px;
+        }
+
+        .section{
+            display:none;
+        }
+
+        .active{
+            display:block;
+        }
+
+        h2{
+            color:#2c3e50;
+        }
+
+        .bloc{
+            margin-bottom:30px;
+            padding:15px;
+            background:white;
+            border-left:5px solid #3498db;
+            border-radius:5px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        pre{
+            background:#272822;
+            color:#f8f8f2;
+            padding:12px;
+            overflow-x:auto;
+            border-radius:5px;
+        }
+
+        .explication{
+            background:#ecf0f1;
+            padding:10px;
+            margin-top:10px;
+            border-radius:5px;
+        }
+
+        .question{
+            background:white;
+            padding:15px;
+            margin-bottom:20px;
+            border-radius:5px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        textarea{
+            width:100%;
+            height:90px;
+            margin-top:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            padding:10px;
+        }
+
+        footer{
+            text-align:center;
+            padding:20px;
+            background:#2c3e50;
+            color:white;
+            margin-top:40px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo_AIDEV.png" alt="AI&Dev Academy" style="max-width:120px;">
+    <h1>Examen SQL - BD Bibliothèque</h1>
+    
+</header>
+
+<nav>
+    <button onclick="showSection('sujet')">📄 Sujet</button>
+    <button onclick="showSection('corrige')">✅ Corrigé</button>
+</nav>
+
+<div class="container">
+
+    <!-- SECTION SUJET -->
+
+    <div id="sujet" class="section active">
+
+        <h2>📄 Sujet d'Examen</h2>
+
+        <div class="question">
+
+            <h3>🟢 Niveau 1</h3>
+
+            <p>1. Afficher tous les adhérents</p>
+            <textarea></textarea>
+
+            <p>2. Afficher les adhérents de Antananarivo</p>
+            <textarea></textarea>
+
+            <p>3. Trier les livres par titre</p>
+            <textarea></textarea>
+
+            <p>4. Afficher les livres de la catégorie Informatique</p>
+            <textarea></textarea>
+
+        </div>
+
+        <div class="question">
+
+            <h3>🟡 Niveau 2</h3>
+
+            <p>5. Afficher les emprunts avec le nom des adhérents</p>
+            <textarea></textarea>
+
+            <p>6. Afficher les livres empruntés avec leur quantité</p>
+            <textarea></textarea>
+
+            <p>7. Afficher les adhérents ayant effectué un emprunt</p>
+            <textarea></textarea>
+
+        </div>
+
+        <div class="question">
+
+            <h3>🔴 Niveau 3</h3>
+
+            <p>8. Calculer le nombre total de livres empruntés par emprunt</p>
+            <textarea></textarea>
+
+            <p>9. Afficher les emprunts avec plus de 1 livre</p>
+            <textarea></textarea>
+
+            <p>10. Trouver l’adhérent ayant emprunté le plus de livres</p>
+            <textarea></textarea>
+
+            <p>11. Afficher le nombre de livres par catégorie</p>
+            <textarea></textarea>
+
+            <p>12. Afficher les adhérents n’ayant jamais emprunté</p>
+            <textarea></textarea>
+
+        </div>
+
+    </div>
+
+    <!-- SECTION CORRIGÉ -->
+
+    <div id="corrige" class="section">
+
+        <h2>✅ Corrigé Annoté</h2>
+
+        <div class="bloc">
+
+            <strong>1. Afficher tous les adhérents</strong>
+
+<pre>
+SELECT * FROM Adherent;
+</pre>
+
+            <div class="explication">
+                - SELECT * : sélectionne toutes les colonnes<br>
+                - FROM Adherent : indique la table utilisée<br>
+                👉 Requête de base
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>2. Adhérents de Antananarivo</strong>
+
+<pre>
+SELECT * FROM Adherent
+WHERE ville = 'Antananarivo';
+</pre>
+
+            <div class="explication">
+                - WHERE : filtre les résultats<br>
+                - ville = 'Antananarivo' : condition<br>
+                👉 Sélection ciblée
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>3. Trier les livres</strong>
+
+<pre>
+SELECT * FROM Livre
+ORDER BY titre ASC;
+</pre>
+
+            <div class="explication">
+                - ORDER BY : trie les résultats<br>
+                - ASC : ordre alphabétique
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>4. Livres Informatique</strong>
+
+<pre>
+SELECT L.titre
+FROM Livre L
+JOIN Categorie C ON L.id_categorie = C.id_categorie
+WHERE C.nom_categorie = 'Informatique';
+</pre>
+
+            <div class="explication">
+                - JOIN : relie les tables<br>
+                - WHERE : filtre la catégorie
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>8. Total livres par emprunt</strong>
+
+<pre>
+SELECT E.id_emprunt, SUM(D.quantite) AS total
+FROM Emprunt E
+JOIN Detail_Emprunt D ON E.id_emprunt = D.id_emprunt
+GROUP BY E.id_emprunt;
+</pre>
+
+            <div class="explication">
+                - SUM() : additionne les quantités<br>
+                - GROUP BY : regroupement
+            </div>
+
+        </div>
+
+        <div class="bloc">
+
+            <strong>12. Adhérents sans emprunt</strong>
+
+<pre>
+SELECT A.nom
+FROM Adherent A
+LEFT JOIN Emprunt E ON A.id_adherent = E.id_adherent
+WHERE E.id_emprunt IS NULL;
+</pre>
+
+            <div class="explication">
+                - LEFT JOIN : conserve tous les adhérents<br>
+                - IS NULL : absence de correspondance
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    AI&Dev Academy — Examen SQL Bibliothèque
+</footer>
+
+<script>
+
+function showSection(id){
+
+    let sections = document.querySelectorAll('.section');
+
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+}
+
+</script>
+
+</body>
+</html>
