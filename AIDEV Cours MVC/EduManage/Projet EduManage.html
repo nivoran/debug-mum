@@ -1,0 +1,289 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Projet PHP MVC Professionnel - EduManage</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            background: #f4f7fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container{
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px;
+            background: white;
+        }
+
+        h1{
+            color: #1e3a8a;
+            border-bottom: 4px solid #2563eb;
+            padding-bottom: 10px;
+        }
+
+        h2{
+            margin-top: 40px;
+            color: #2563eb;
+        }
+
+        h3{
+            color: #111827;
+        }
+
+        .bloc{
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 5px solid #2563eb;
+        }
+
+        ul{
+            padding-left: 25px;
+        }
+
+        code{
+            background: #111827;
+            color: #10b981;
+            padding: 3px 6px;
+            border-radius: 5px;
+        }
+
+        .objectif{
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .footer{
+            margin-top: 50px;
+            text-align: center;
+            color: gray;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Projet PHP MVC Professionnel – EduManage</h1>
+
+    <div class="objectif">
+        <h3>Objectif pédagogique</h3>
+
+        <p>
+            Ce projet a pour objectif de vous montrer comment développer
+            une véritable application professionnelle en PHP orienté objet avec
+            l’architecture MVC.
+        </p>
+
+        <p>
+            Vous maîtrisez déjà les mini projets simples en PHP.
+            Cette fois-ci, vous allez découvrir :
+        </p>
+
+        <ul>
+            <li>Une architecture MVC complète</li>
+            <li>Une application multi-formulaires</li>
+            <li>Une interface moderne de type SaaS</li>
+            <li>Une vraie organisation de projet</li>
+            <li>Les relations SQL</li>
+            <li>La sécurité de base</li>
+            <li>Le travail avec plusieurs modules</li>
+        </ul>
+    </div>
+
+    <h2>Présentation du projet</h2>
+
+    <div class="bloc">
+
+        <p>
+            <strong>EduManage</strong> est une mini plateforme de gestion académique.
+        </p>
+
+        <p>
+            L’application permettra de :
+        </p>
+
+        <ul>
+            <li>Gérer les étudiants</li>
+            <li>Gérer les cours</li>
+            <li>Gérer les inscriptions</li>
+            <li>Se connecter en tant qu’administrateur</li>
+            <li>Afficher un tableau de bord dynamique</li>
+        </ul>
+
+    </div>
+
+    <h2>Architecture technique</h2>
+
+    <div class="bloc">
+
+        <p>
+            Le projet sera développé avec :
+        </p>
+
+        <ul>
+            <li>PHP 8</li>
+            <li>MySQL</li>
+            <li>Architecture MVC</li>
+            <li>PDO</li>
+            <li>Bootstrap 5</li>
+            <li>HTML5 / CSS3</li>
+            <li>JavaScript</li>
+        </ul>
+
+    </div>
+
+    <h2>Fonctionnalités principales</h2>
+
+    <div class="bloc">
+
+        <h3>1. Authentification</h3>
+
+        <ul>
+            <li>Connexion administrateur</li>
+            <li>Déconnexion</li>
+            <li>Gestion des sessions</li>
+            <li>Protection des pages</li>
+        </ul>
+
+        <h3>2. Gestion des étudiants</h3>
+
+        <ul>
+            <li>Ajout d’étudiants</li>
+            <li>Modification</li>
+            <li>Suppression</li>
+            <li>Upload de photo</li>
+            <li>Recherche</li>
+        </ul>
+
+        <h3>3. Gestion des cours</h3>
+
+        <ul>
+            <li>Ajout de cours</li>
+            <li>Modification</li>
+            <li>Suppression</li>
+        </ul>
+
+        <h3>4. Gestion des inscriptions</h3>
+
+        <ul>
+            <li>Associer un étudiant à un cours</li>
+            <li>Afficher les historiques</li>
+            <li>Utiliser les jointures SQL</li>
+        </ul>
+
+    </div>
+
+    <h2>Structure MVC du projet</h2>
+
+    <div class="bloc">
+
+<pre>
+EduManage/
+│
+├── app/
+│   ├── controllers/
+│   ├── models/
+│   ├── views/
+│   └── core/
+│
+├── public/
+│   ├── assets/
+│   ├── uploads/
+│   └── index.php
+│
+├── config/
+│
+└── database/
+</pre>
+
+    </div>
+
+    <h2>Ce que vous allez apprendre</h2>
+
+    <div class="bloc">
+
+        <ul>
+            <li>Créer une architecture professionnelle</li>
+            <li>Séparer la logique métier et l’affichage</li>
+            <li>Utiliser PDO et les requêtes préparées</li>
+            <li>Créer plusieurs formulaires reliés</li>
+            <li>Manipuler les relations SQL</li>
+            <li>Créer une interface moderne responsive</li>
+            <li>Structurer un vrai projet maintenable</li>
+        </ul>
+
+    </div>
+
+    <h2>Interface graphique attendue</h2>
+
+    <div class="bloc">
+
+        <p>
+            L’interface devra être moderne et inspirée des dashboards SaaS actuels.
+        </p>
+
+        <ul>
+            <li>Sidebar moderne</li>
+            <li>Navbar supérieure</li>
+            <li>Cards statistiques</li>
+            <li>Tableaux responsive</li>
+            <li>Boutons modernes</li>
+            <li>Icônes Bootstrap Icons</li>
+            <li>Responsive design</li>
+        </ul>
+
+    </div>
+
+    <h2>Fonctionnalités bonus</h2>
+
+    <div class="bloc">
+
+        <ul>
+            <li>Recherche AJAX</li>
+            <li>Pagination</li>
+            <li>Notifications Toast</li>
+            <li>SweetAlert2</li>
+            <li>Export PDF</li>
+            <li>Export Excel</li>
+            <li>API JSON</li>
+        </ul>
+
+    </div>
+
+    <h2>Conclusion</h2>
+
+    <div class="bloc">
+
+        <p>
+            Ce projet constitue une transition idéale entre les petits exercices
+            académiques et les applications professionnelles modernes.
+        </p>
+
+        <p>
+            L’objectif n’est pas seulement de coder,
+            mais aussi d’apprendre à organiser un vrai projet informatique.
+        </p>
+
+    </div>
+
+    <div class="footer">
+        Projet pédagogique – PHP MVC Professionnel
+    </div>
+
+</div>
+
+</body>
+</html>
+```
