@@ -1,0 +1,3076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cours UML</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#f4f6f7;
+            display:flex;
+        }
+
+
+        main { padding: 20px; flex: 1; }
+        /* NAVIGATION GAUCHE */
+
+        nav{
+            position:fixed;
+            left:0;
+            top:0;
+            width:250px;
+            height:100vh;
+            background:#2c3e50;
+            padding:20px;
+            overflow-y:auto;
+        }
+
+        nav h2{
+            color:white;
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        nav a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:12px;
+            margin-bottom:10px;
+            border-radius:6px;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            background:#34495e;
+        }
+
+        /* CHAPITRES PRINCIPAUX */
+
+        nav .main-link{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:12px;
+            margin-bottom:10px;
+            border-radius:6px;
+            background:#2c3e50;
+            font-weight:bold;
+        }
+        /* Rubrique QCM dans la navigation */
+
+        
+    /* SOUS-SECTIONS */
+
+        nav .sub-link{
+        display:block;
+        color:#dfe6e9;
+        text-decoration:none;
+        padding:6px 12px 6px 28px; /* indentation gauche */
+        margin-bottom:3px; /* espace plus petit */
+        font-size:14px;
+        border-left:2px solid #7f8c8d;
+        }
+
+        nav .sub-link:hover{
+        background:#34495e;
+        }
+
+        /* CONTENU */
+
+        .content{
+            margin-left:270px;
+            padding:30px;
+            width:calc(100% - 270px);
+        }
+        
+        .section{
+            width:100%;
+            white-space: normal;
+            overflow-wrap: break-word;
+            background:white;
+            padding:25px;
+            margin-bottom:30px;
+            border-radius:10px;
+            box-shadow:0 2px 5px rgba(0,0,0,0.1);
+            display:none;
+            box-sizing:border-box;
+        }
+
+        h1,h2,h3{
+            color:#2c3e50;
+            margin-bottom:15px;
+        }
+        h3{
+            margin-top:30px;
+            margin-bottom:15px;
+        }
+        p, li{
+            line-height:1.7;
+        }
+
+        ul{
+            margin-left:20px;
+        }
+
+        pre{
+            background:#2d3436;
+            color:#ecf0f1;
+            padding:15px;
+            border-radius:8px;
+           /* overflow-x:auto;*/
+            margin-top:10px;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+         .submenu {  margin-left: 15px;}
+        .submenu a {color: #bdc3c7;font-size: 13px;display: block;margin: 6px 0;}
+        /* RESPONSIVE */
+
+        @media(max-width:768px){
+
+            body{
+                flex-direction:column;
+            }
+
+            nav{
+                position:relative;
+                width:100%;
+                height:auto;
+            }
+
+            .content{
+                margin-left:0;
+            }
+
+            .section{
+                background:white;
+                padding:20px;
+                margin-bottom:30px; /* espace entre les sections */
+                border-radius:10px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+
+        <h2>Menu UML</h2>
+        <!-- Chapitre principal -->
+        
+        <a  class="main-link" onclick="showSection('uml')" href="#"> 1. UML </a>
+
+        <!-- Sous-sections -->
+        <div class="submenu" style="margin-left:15px;"></div>
+        <a class="sub-link" onclick="showSection('origine')" href="#">1.1 Origine </a>
+        <a class="sub-link" onclick="showSection('poo')" href="#"> 1.2 UML et la POO  </a>
+        <a class="sub-link" onclick="showSection('particularites')" href="#">1.3 Particularités </a>
+        <a class="sub-link" onclick="showSection('importance')" href="#"> 1.4 Importance </a>
+        <a class="sub-link" onclick="showSection('exemple')" href="#">1.5 Exemple concret</a>
+        <a class="sub-link" onclick="showSection('up')" href="#">1.6 UML et UP </a>
+        <a class="sub-link" onclick="showSection('qcm')" href="#">1.7 Test QCM</a>
+        <a class="sub-link" onclick="showSection('corrige_qcm')" href="#">1.8 Corrigé du QCM</a>
+        </div>
+    
+    <!-- AUTRES CHAPITRES -->
+        <a class="main-link" href="#" onclick="showSection('diagrammes')" >2. Diagrammes</a>
+        <div class="submenu" style="margin-left:15px;"></div>
+        <a class="sub-link" onclick="showSection('dclasse')" href="#">2.1 Diagramme de classe </a>
+        <a class="sub-link" onclick="showSection('dobj')" href="#"> 2.2 Diagramme d'objet </a>
+        <a class="sub-link" onclick="showSection('dcomp')" href="#">2.3 Diagramme de composants </a>
+        <a class="sub-link" onclick="showSection('dcu')" href="#"> 2.4 Diagramme de cas d'utilisation </a>
+        <a class="sub-link" onclick="showSection('dseq')" href="#">2.5 Diagramme de séquence </a>
+        <a class="sub-link" onclick="showSection('dact')" href="#">2.6 Diagramme d'activités </a>
+        <a class="sub-link" onclick="showSection('TD')" href="#">2.7 TD</a>
+        </div>
+        <a class="main-link" onclick="showSection('outils')" href="#">3. Outils</a>
+        <a class="main-link" onclick="showSection('conclusion')" href="#">4. Conclusion</a>
+        <a class="main-link" href="documents/Cours de Modélisation UML.pdf" target="_blank">📄 Ressources PDF</a>
+               
+    </nav>
+
+    <!-- CONTENU -->
+
+   <main class="content">
+        <div style="text-align:center; margin-bottom:15px;">
+            <img src="images/logo_AIDEV.png" alt="AI&Dev Academy" style="max-width:120px;">
+            <h1>Introduction à UML</h1>
+        </div>
+              
+      
+        <section id="uml" class="section">
+            
+             <h2>1. Qu'est-ce que UML ?</h2>
+
+            <p>
+             UML signifie <strong>Unified Modeling Language</strong> (Langage de Modélisation Unifié). C’est un langage graphique utilisé pour représenter,
+            concevoir et documenter les systèmes informatiques.
+            </p>
+
+            <p>
+             UML n’est pas un langage de programmation comme PHP, Java ou Python. Il sert plutôt à préparer et organiser le développement d’une application avant d’écrire le code.
+            </p>
+
+            <h3>Pourquoi utiliser UML ?</h3>
+
+            <ul>
+                <li>Visualiser un système</li>
+                <li>Documenter un projet</li>
+                <li>Préparer le développement</li>
+                <li>Faciliter le travail en équipe</li>
+            </ul>
+
+        </section>
+               
+        <section id="origine" class="section">
+                <h3>1.1 Origine de UML</h3>
+
+                <p>UML est né dans les années 1990 suite à l’unification de plusieurs méthodes de modélisation orientée objet. Les principaux créateurs sont :
+                </p>
+
+                <ul>
+                    <li>Grady Booch</li>
+                    <li>James Rumbaugh</li>
+                    <li>Ivar Jacobson</li>
+                </ul>
+
+                <p>Leur objectif était de créer un langage standard compréhensible par tous les développeurs et analystes.
+                </p>
+        </section>
+
+        <section id="poo" class="section" >
+                <h3>1.2 Relation entre UML et la Programmation Orientée Objet (POO)</h3>
+
+                <p>UML est fortement lié à la Programmation Orientée Objet (POO). Les concepts utilisés dans UML proviennent directement des notions de la POO :
+                </p>
+
+                <ul>
+                    <li>Classe</li>
+                    <li>Objet</li>
+                    <li>Attribut</li>
+                    <li>Méthode</li>
+                    <li>Héritage</li>
+                    <li>Encapsulation</li>
+                </ul>
+
+                <p>Ainsi, lorsqu’un développeur crée un diagramme de classes UML, il prépare souvent les futures classes du programme.
+                </p>
+
+                <pre>
+                Classe Etudiant
+                -------------------------
+                - nom : string
+                - email : string
+                -------------------------
+                + seConnecter()
+                </pre>
+
+                <p>Cette représentation pourra ensuite être transformée facilement en code PHP, Java ou Python.
+                </p>
+        </section>
+
+        <section id="particularites" class="section">
+                <h3>1.3 Les particularités de UML</h3>
+
+                <ul>
+                    <li> <strong>Standard international :</strong>   UML est utilisé dans le monde entier.</li>
+                    <li> <strong>Graphique :</strong> il utilise des diagrammes et des symboles visuels.</li>
+                    <li> <strong>Indépendant du langage :</strong>  UML peut être utilisé avec PHP, Java, Python, C#, etc.</li>
+                    <li> <strong>Orienté objet :</strong> il est adapté aux applications modernes basées sur la POO. </li>
+                    <li> <strong>Facilite la communication :</strong> analystes, développeurs et clients peuvent mieux comprendre le projet.</li>
+                    <li> <strong>Documente le système :</strong> UML garde une trace claire de la structure et du fonctionnement du logiciel.  </li>
+                </ul>
+        </section>
+        <section id="importance" class="section">
+                 <h3>1.4 Pourquoi UML est important ?</h3>
+
+                    <p>Dans les grands projets, développer directement sans plan peut provoquer : </p>
+
+                    <ul>
+                        <li>des erreurs de conception ;</li>
+                        <li>des oublis de fonctionnalités ;</li>
+                        <li>des difficultés de maintenance ;</li>
+                        <li>une mauvaise communication dans l’équipe.</li>
+                    </ul>
+
+                    <p>UML agit donc comme un plan d’architecte avant la construction d’un bâtiment.</p>
+        </section>
+
+        <section id="exemple" class="section">
+                <h3>1.5 Exemple concret</h3>
+
+                    <p>Avant de développer une application de gestion d’école,  on peut utiliser UML pour :</p>
+
+                    <ul>
+                        <li>identifier les acteurs (étudiant, professeur, admin) ;</li>
+                        <li>définir les fonctionnalités ;</li>
+                        <li>concevoir les classes ;</li>
+                        <li>préparer la base de données ;</li>
+                        <li>visualiser les échanges entre objets.</li>
+                    </ul>
+        </section>
+
+        <section id="up" class="section">
+                 <h3>1.6 UML et le Processus Unifié (UP)</h3>
+
+                    <p>UML est souvent utilisé avec une méthode de développement appelée <strong>UP (Unified Process)</strong> ou <strong>Processus Unifié</strong>.</p>
+
+                    <p>Le Processus Unifié est une méthode d’organisation et de gestion des projets informatiques orientés objet. Il guide les développeurs depuis l’analyse des besoins jusqu’au déploiement de l’application.</p>
+
+                    <p>UML sert principalement d’outil de modélisation dans UP. Autrement dit :</p>
+
+                        <ul>
+                            <li><strong>UP organise le travail du projet</strong></li>
+                            <li><strong>UML permet de représenter graphiquement le système</strong></li>
+                        </ul>
+
+                    <h3>Les principales phases du Processus Unifié</h3>
+
+                    <ul>
+                        <li><strong>Inception :</strong> étude du projet et identification des besoins.</li>
+                        <li><strong>Élaboration :</strong>analyse détaillée et conception de l’architecture.</li>
+                        <li><strong>Construction :</strong> développement et programmation de l’application. </li>
+                        <li><strong>Transition :</strong> livraison et mise en production du système.</li>
+                    </ul>
+
+                    <p>Durant toutes ces phases, UML est utilisé pour créer différents diagrammes :</p>
+
+                    <ul>
+                        <li>diagrammes de cas d’utilisation ;</li>
+                        <li>diagrammes de classes ;</li>
+                        <li>diagrammes de séquence ;</li>
+                        <li>diagrammes d’activités ;</li>
+                        <li>etc.</li>
+                    </ul>
+
+                    <p>Ainsi, UML et UP sont souvent complémentaires dans les projets de développement logiciel modernes.</p>
+                </div>
+        </section>
+
+        <section id="qcm" class="section">
+           
+    <h2>QCM – Compréhension de UML</h2>
+
+    <p>Choisissez la bonne réponse pour chaque question.</p>
+
+    <hr>
+
+    <h3>1. Que signifie UML ?</h3>
+
+    <form>
+        <input type="radio" name="q1"> Universal Modeling Language<br>
+        <input type="radio" name="q1"> Unified Modeling Language<br>
+        <input type="radio" name="q1"> Unified Machine Language<br>
+        <input type="radio" name="q1"> User Modeling Language<br>
+    </form>
+
+    <hr>
+
+    <h3>2. UML est principalement utilisé pour :</h3>
+
+    <form>
+        <input type="radio" name="q2"> Programmer directement une application<br>
+        <input type="radio" name="q2"> Dessiner des interfaces graphiques uniquement<br>
+        <input type="radio" name="q2"> Modéliser et concevoir un système logiciel<br>
+        <input type="radio" name="q2"> Créer des bases de données uniquement<br>
+    </form>
+
+    <hr>
+
+    <h3>3. UML est fortement lié à :</h3>
+
+    <form>
+        <input type="radio" name="q3"> La programmation procédurale<br>
+        <input type="radio" name="q3"> La Programmation Orientée Objet (POO)<br>
+        <input type="radio" name="q3"> Le développement mobile uniquement<br>
+        <input type="radio" name="q3"> Les réseaux informatiques<br>
+    </form>
+
+    <hr>
+
+    <h3>4. Parmi les éléments suivants, lequel appartient à la POO ?</h3>
+
+    <form>
+        <input type="radio" name="q4"> Classe<br>
+        <input type="radio" name="q4"> Objet<br>
+        <input type="radio" name="q4"> Héritage<br>
+        <input type="radio" name="q4"> Toutes les réponses<br>
+    </form>
+
+    <hr>
+
+    <h3>5. UML est :</h3>
+
+    <form>
+        <input type="radio" name="q5"> Un langage de programmation<br>
+        <input type="radio" name="q5"> Un système d’exploitation<br>
+        <input type="radio" name="q5"> Un langage de modélisation graphique<br>
+        <input type="radio" name="q5"> Un compilateur<br>
+    </form>
+
+    <hr>
+
+    <h3>6. Avant de programmer, UML permet surtout de :</h3>
+
+    <form>
+        <input type="radio" name="q6"> Jouer à des jeux vidéo<br>
+        <input type="radio" name="q6"> Planifier et organiser le système<br>
+        <input type="radio" name="q6"> Réparer les ordinateurs<br>
+        <input type="radio" name="q6"> Installer Windows<br>
+    </form>
+
+    <hr>
+
+    <h3>7. En POO, un objet est :</h3>
+
+    <form>
+        <input type="radio" name="q7"> Une base de données<br>
+        <input type="radio" name="q7"> Une instance d’une classe<br>
+        <input type="radio" name="q7"> Un langage de programmation<br>
+        <input type="radio" name="q7"> Un système d’exploitation<br>
+    </form>
+
+    <hr>
+
+    <h3>8. Quel est le rôle principal du Processus Unifié (UP) ?</h3>
+
+    <form>
+        <input type="radio" name="q8"> Programmer automatiquement le logiciel<br>
+        <input type="radio" name="q8"> Organiser les étapes du projet logiciel<br>
+        <input type="radio" name="q8"> Créer les bases de données<br>
+        <input type="radio" name="q8"> Gérer uniquement les utilisateurs<br>
+    </form>
+
+    <hr>
+
+    <h3>9. UML peut être utilisé avec :</h3>
+
+    <form>
+        <input type="radio" name="q9"> PHP uniquement<br>
+        <input type="radio" name="q9"> Java uniquement<br>
+        <input type="radio" name="q9"> Python uniquement<br>
+        <input type="radio" name="q9"> Plusieurs langages de programmation<br>
+    </form>
+
+    <hr>
+
+    <h3>10. Pourquoi UML est-il important ?</h3>
+
+    <form>
+        <input type="radio" name="q10"> Pour mieux organiser et documenter le projet<br>
+        <input type="radio" name="q10"> Pour remplacer les développeurs<br>
+        <input type="radio" name="q10"> Pour accélérer Internet<br>
+        <input type="radio" name="q10"> Pour créer des virus<br>
+    </form>
+
+</section>
+
+
+
+<section id="corrige_qcm" class="section">
+
+    <h2>Corrigé du QCM – UML</h2>
+
+    <p>Voici les bonnes réponses du test.</p>
+
+    <hr>
+
+    <h3>1. Que signifie UML ?</h3>
+    <p><strong>Réponse :</strong> Unified Modeling Language</p>
+
+    <hr>
+
+    <h3>2. UML est principalement utilisé pour :</h3>
+    <p><strong>Réponse :</strong> Modéliser et concevoir un système logiciel</p>
+
+    <hr>
+
+    <h3>3. UML est fortement lié à :</h3>
+    <p><strong>Réponse :</strong> La Programmation Orientée Objet (POO)</p>
+
+    <hr>
+
+    <h3>4. Parmi les éléments suivants, lequel appartient à la POO ?</h3>
+    <p><strong>Réponse :</strong> Toutes les réponses</p>
+
+    <hr>
+
+    <h3>5. UML est :</h3>
+    <p><strong>Réponse :</strong> Un langage de modélisation graphique</p>
+
+    <hr>
+
+    <h3>6. Avant de programmer, UML permet surtout de :</h3>
+    <p><strong>Réponse correcte :</strong> Planifier et organiser le système</p>
+
+<hr>
+
+    <h3>7. En POO, un objet est :</h3>
+    <p><strong>Réponse correcte :</strong> Une instance d’une classe</p>
+
+    <hr>
+
+    <h3>8. Quel est le rôle principal du Processus Unifié (UP) ?</h3>
+    <p><strong>Réponse :</strong> Organiser les étapes du projet logiciel</p>
+
+    <hr>
+
+    <h3>9. UML peut être utilisé avec :</h3>
+    <p><strong>Réponse :</strong> Plusieurs langages de programmation</p>
+
+    <hr>
+
+    <h3>10. Pourquoi UML est-il important ?</h3>
+    <p><strong>Réponse :</strong> Pour mieux organiser et documenter le projet</p>
+
+</section>
+
+
+       
+     <section id="diagrammes" class="section">
+            <h2>2. Les diagrammes UML</h2>
+
+            <h3>Diagrammes structurels</h3>
+
+            <ul>
+                <li>Diagramme de classes</li>
+                <li>Diagramme d'objets</li>
+                <li>Diagramme de composants</li>
+            </ul>
+
+            <h3>Diagrammes comportementaux</h3>
+
+            <ul>
+                <li>Diagramme de cas d'utilisation</li>
+                <li>Diagramme de séquence</li>
+                <li>Diagramme d'activités</li>
+            </ul>
+
+        </section>
+
+    <section id="dclasse" class="section">
+
+    <h2>2.1 Diagramme de classes</h2>
+
+    <p>Le diagramme de classes est l’un des diagrammes les plus importants en UML.</p>
+    <p>Il permet de représenter la structure d’un système orienté objet.</p>
+    <p>Ce diagramme décrit :</p>
+    <ul>
+        <li>les classes du système ;</li>
+        <li>les attributs ;</li>
+        <li>les méthodes ;</li>
+        <li>les relations entre les classes.</li>
+    </ul>
+
+    <h3>2.1.1 Qu’est-ce qu’une classe ?</h3>
+    <p>Une classe est un modèle permettant de créer des objets.</p>
+    <p>Elle regroupe :</p>
+    <ul>
+        <li>des données → attributs ;</li>
+        <li>des actions → méthodes.</li>
+    </ul>
+
+    <p>Exemple :</p>
+    <pre>
+        Classe : Etudiant
+    </pre>
+
+    <p>Un étudiant réel créé à partir de cette classe sera un objet.</p>
+
+    <h3>2.1.2 Structure d’une classe UML</h3>
+    <p>Une classe UML est généralement divisée en trois parties :</p>
+
+<pre>
++----------------------+
+|      Etudiant        |
++----------------------+
+| - nom : string       |
+| - email : string     |
+| - age : int          |
++----------------------+
+| + seConnecter()      |
+| + afficherNotes()    |
++----------------------+
+</pre>
+
+    <h3>Explication</h3>
+
+    <ul>
+        <li>
+            <strong>Première partie :</strong>
+            nom de la classe.
+        </li>
+
+        <li>
+            <strong>Deuxième partie :</strong>
+            attributs.
+        </li>
+
+        <li>
+            <strong>Troisième partie :</strong>
+            méthodes.
+        </li>
+    </ul>
+
+    <h3>2.1.3 Les attributs</h3>
+
+    <p>
+        Les attributs représentent
+        les informations stockées dans l’objet.
+    </p>
+
+    <p>
+        Exemple :
+    </p>
+
+<pre>
+- nom : string
+- email : string
+</pre>
+
+    <p>
+        Ici :
+    </p>
+
+    <ul>
+        <li><strong>nom</strong> est le nom de l’attribut ;</li>
+        <li><strong>string</strong> est son type.</li>
+    </ul>
+
+    <h3>2.1.4 Les méthodes</h3>
+
+    <p>
+        Les méthodes représentent
+        les actions réalisées par l’objet.
+    </p>
+
+    <p>
+        Exemple :
+    </p>
+
+<pre>
++ seConnecter()
++ afficherNotes()
+</pre>
+
+    <p>
+        Ces méthodes indiquent
+        ce que l’objet peut faire.
+    </p>
+
+    <h3>2.1.5 Visibilité en UML</h3>
+
+    <p>
+        UML utilise des symboles
+        pour représenter la visibilité.
+    </p>
+
+    <ul>
+        <li><strong>+</strong> → public</li>
+        <li><strong>-</strong> → privé</li>
+        <li><strong>#</strong> → protégé</li>
+    </ul>
+
+    <p>
+        Exemple :
+    </p>
+
+<pre>
+- motDePasse : string
++ seConnecter()
+</pre>
+
+    <h3>2.1.6 Relations entre classes</h3>
+
+    <p>
+        Les classes peuvent être liées entre elles.
+    </p>
+
+ <h3>a) Association</h3>
+
+<p>
+    Une association représente une relation
+    entre deux classes.
+</p>
+
+<p>
+    Cela signifie qu’un objet peut être lié
+    à un autre objet.
+</p>
+
+<p>
+    Exemple :
+</p>
+
+<p>
+    Un étudiant appartient à une classe.
+</p>
+
+<pre>
+Etudiant -------- Classe
+</pre>
+
+<p>
+    Ici :
+</p>
+
+<ul>
+    <li>
+        la classe <strong>Etudiant</strong>
+        est liée à la classe
+        <strong>Classe</strong> ;
+    </li>
+
+    <li>
+        chaque étudiant appartient
+        à une classe ;
+    </li>
+
+    <li>
+        une classe peut contenir
+        plusieurs étudiants.
+    </li>
+</ul>
+
+<p>
+    L’association permet donc de montrer
+    qu’il existe une relation entre les deux classes.
+</p>
+
+    <h3>b) Héritage</h3>
+
+    <p>
+        Une classe peut hériter
+        d’une autre classe.
+    </p>
+
+<pre>
+Personne
+    ▲
+    |
+Etudiant
+</pre>
+
+    <p>
+        Ici,
+        <strong>Etudiant</strong>
+        hérite de
+        <strong>Personne</strong>.
+    </p>
+
+    <h3>c) Composition</h3>
+
+    <p>
+        Une classe contient fortement une autre classe.
+    </p>
+
+<pre>
+Voiture ◆-------- Moteur
+</pre>
+
+    <h3>2.1.7 Exemple concret</h3>
+
+    <p>
+        Exemple d’un système scolaire :
+    </p>
+
+<pre>
++----------------------+
+|      Etudiant        |
++----------------------+
+| - matricule : string |
+| - nom : string       |
++----------------------+
+| + afficherNotes()    |
++----------------------+
+
+            |
+
+            |
+
+            v
+
++----------------------+
+|       Classe         |
++----------------------+
+| - nomClasse : string |
++----------------------+
+</pre>
+
+    <h3>2.1.8 Avantages du diagramme de classes</h3>
+
+    <ul>
+        <li>préparer le développement ;</li>
+        <li>visualiser la structure du système ;</li>
+        <li>faciliter la programmation orientée objet ;</li>
+        <li>améliorer la maintenance du projet ;</li>
+        <li>servir de documentation technique.</li>
+    </ul>
+
+    <h3>2.1.9 Correspondance avec le code</h3>
+
+    <p>
+        Le diagramme de classes
+        peut facilement être transformé
+        en code source.
+    </p>
+
+    <p>
+        Exemple en PHP :
+    </p>
+
+<pre>
+class Etudiant {
+
+    private $nom;
+
+    public function afficherNotes(){
+
+    }
+}
+</pre>
+
+    <p>
+        On retrouve :
+    </p>
+
+    <ul>
+        <li>les attributs ;</li>
+        <li>les méthodes ;</li>
+        <li>la visibilité.</li>
+    </ul>
+
+</section>
+
+
+<section id="dobj" class="section">
+
+    <h2>2.2. Diagramme d’objets</h2>
+
+    <p>
+        Le diagramme d’objets est un diagramme UML
+        qui représente des objets réels
+        à un moment précis de l’exécution du système.
+    </p>
+
+    <p>
+        Il peut être considéré comme
+        une “photo instantanée”
+        des objets d’une application.
+    </p>
+
+    <h3>2.2.1 Différence entre classe et objet</h3>
+
+    <p>
+        Avant de comprendre le diagramme d’objets,
+        il faut distinguer :
+    </p>
+
+    <ul>
+        <li><strong>la classe ;</strong></li>
+        <li><strong>l’objet.</strong></li>
+    </ul>
+
+    <h3>a) La classe</h3>
+
+    <p>
+        Une classe est un modèle
+        ou un plan de construction.
+    </p>
+
+<pre>
+Classe : Etudiant
+</pre>
+
+    <h3>b) L’objet</h3>
+
+    <p>
+        Un objet est une instance réelle
+        créée à partir de la classe.
+    </p>
+
+<pre>
+etudiant1 : Etudiant
+</pre>
+
+    <p>
+        Ici :
+    </p>
+
+    <ul>
+        <li><strong>Etudiant</strong> = la classe ;</li>
+        <li><strong>etudiant1</strong> = l’objet.</li>
+    </ul>
+
+    <h3>2.2.2 Rôle du diagramme d’objets</h3>
+
+    <p>
+        Le diagramme d’objets permet de :
+    </p>
+
+    <ul>
+        <li>visualiser les objets existants ;</li>
+        <li>voir les valeurs des attributs ;</li>
+        <li>montrer les relations entre objets ;</li>
+        <li>mieux comprendre le fonctionnement du système.</li>
+    </ul>
+
+    <h3>2.2.3 Structure d’un objet UML</h3>
+
+    <p>
+        Un objet UML contient généralement :
+    </p>
+
+    <ul>
+        <li>le nom de l’objet ;</li>
+        <li>le nom de la classe ;</li>
+        <li>les valeurs des attributs.</li>
+    </ul>
+
+    <p>
+        Exemple :
+    </p>
+
+<pre>
++----------------------+
+| etudiant1 : Etudiant |
++----------------------+
+| nom = Rakoto         |
+| age = 20             |
++----------------------+
+</pre>
+
+    <h3>Explication</h3>
+
+    <ul>
+        <li>
+            <strong>etudiant1</strong>
+            est le nom de l’objet ;
+        </li>
+
+        <li>
+            <strong>Etudiant</strong>
+            est la classe ;
+        </li>
+
+        <li>
+            les attributs possèdent déjà
+            des valeurs réelles.
+        </li>
+    </ul>
+
+    <h3>2.2.4 Relation entre objets</h3>
+
+    <p>
+        Les objets peuvent être liés entre eux.
+    </p>
+
+    <p>
+        Exemple :
+    </p>
+
+<pre>
++----------------------+      +------------------------------+
+| etudiant1 : Etudiant |----->| classeA : ClasseScolaire    |
++----------------------+      +------------------------------+
+</pre>
+
+    <p>
+        Ici :
+    </p>
+
+    <ul>
+        <li>
+            l’objet <strong>etudiant1</strong>
+            appartient à
+            <strong>classeA</strong> ;
+        </li>
+
+        <li>
+            les deux objets sont liés.
+        </li>
+    </ul>
+
+    <h3>2.2.5 Différence entre diagramme de classes et diagramme d’objets</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:15px;">
+
+<tr style="background:#ecf0f1;">
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme de classes
+    </th>
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme d’objets
+    </th>
+</tr>
+
+<tr>
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Représente les modèles
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Représente les instances réelles
+    </td>
+</tr>
+
+<tr>
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Pas de valeurs réelles
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Contient des valeurs réelles
+    </td>
+</tr>
+
+<tr>
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Vue générale du système
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Vue instantanée du système
+    </td>
+</tr>
+
+</table>
+
+    <h3>2.2.6 Exemple concret</h3>
+
+    <p>
+        Considérons une application scolaire.
+    </p>
+
+    <p>
+        Classe UML :
+    </p>
+
+<pre>
+Classe : Etudiant
+- nom
+- age
+</pre>
+
+    <p>
+        Objets créés :
+    </p>
+
+<pre>
++----------------------+
+| etudiant1 : Etudiant |
++----------------------+
+| nom = Alice          |
+| age = 19             |
++----------------------+
+
++----------------------+
+| etudiant2 : Etudiant |
++----------------------+
+| nom = Jean           |
+| age = 21             |
++----------------------+
+</pre>
+
+    <h3>2.2.7 Avantages du diagramme d’objets</h3>
+
+    <ul>
+        <li>facile à comprendre ;</li>
+        <li>montre des exemples réels ;</li>
+        <li>utile pour les tests et l’analyse ;</li>
+        <li>permet de vérifier les relations entre objets.</li>
+    </ul>
+
+    <h3>2.2.8 Correspondance avec le code</h3>
+
+    <p>
+        Le diagramme d’objets correspond directement
+        aux objets créés dans le programme.
+    </p>
+
+    <p>
+        Exemple en PHP :
+    </p>
+
+<pre>
+$etudiant1 = new Etudiant();
+
+$etudiant1->nom = "Alice";
+$etudiant1->age = 19;
+</pre>
+
+    <p>
+        Ici :
+    </p>
+
+    <ul>
+        <li><strong>Etudiant</strong> = la classe ;</li>
+        <li><strong>$etudiant1</strong> = l’objet.</li>
+    </ul>
+
+</section>
+
+<section id="dcomp" class="section">
+
+    <h2>2.3 Diagramme de composants</h2>
+
+    <p>
+        Le diagramme de composants est un diagramme UML
+        utilisé pour représenter l’organisation physique
+        d’une application.
+    </p>
+
+    <p>
+        Il montre les différents composants du système
+        ainsi que leurs relations.
+    </p>
+
+    <p>
+        Ce diagramme est souvent utilisé
+        dans les projets logiciels importants
+        pour visualiser l’architecture globale.
+    </p>
+
+    <h3>2.3.1 Qu’est-ce qu’un composant ?</h3>
+
+    <p>
+        Un composant est une partie du système
+        qui possède un rôle précis.
+    </p>
+
+    <p>
+        Il peut s’agir :
+    </p>
+
+    <ul>
+        <li>d’un module ;</li>
+        <li>d’un service ;</li>
+        <li>d’une bibliothèque ;</li>
+        <li>d’un fichier ;</li>
+        <li>d’une API ;</li>
+        <li>d’une base de données.</li>
+    </ul>
+
+    <p>
+        Chaque composant réalise une tâche spécifique.
+    </p>
+
+    <h3>2.3.2 Objectif du diagramme de composants</h3>
+
+    <p>
+        Le diagramme de composants permet de :
+    </p>
+
+    <ul>
+        <li>visualiser l’architecture du logiciel ;</li>
+        <li>montrer la séparation des modules ;</li>
+        <li>comprendre les dépendances ;</li>
+        <li>faciliter la maintenance ;</li>
+        <li>préparer le déploiement de l’application.</li>
+    </ul>
+
+    <h3>2.3.3 Représentation d’un composant</h3>
+
+    <p>
+        En UML,
+        un composant est représenté
+        par un rectangle spécial.
+    </p>
+
+<pre>
++-------------------+
+|     Composant     |
+|  [ Service Auth ] |
++-------------------+
+</pre>
+
+    <h3>2.3.4 Exemple simple</h3>
+
+    <p>
+        Prenons l’exemple
+        d’une application de gestion scolaire.
+    </p>
+
+    <p>
+        L’application peut être divisée
+        en plusieurs composants :
+    </p>
+
+    <ul>
+        <li>gestion des étudiants ;</li>
+        <li>gestion des notes ;</li>
+        <li>authentification ;</li>
+        <li>base de données.</li>
+    </ul>
+
+<pre>
++-------------------+
+| Authentification  |
++-------------------+
+          |
+          |
+          v
++-------------------+
+| Gestion Etudiant  |
++-------------------+
+          |
+          |
+          v
++-------------------+
+| Base de Données   |
++-------------------+
+</pre>
+
+    <h3>Explication</h3>
+
+    <ul>
+        <li>
+            le composant
+            <strong>Authentification</strong>
+            gère les connexions ;
+        </li>
+
+        <li>
+            le composant
+            <strong>Gestion Etudiant</strong>
+            gère les étudiants ;
+        </li>
+
+        <li>
+            ces composants utilisent
+            la base de données.
+        </li>
+    </ul>
+
+    <h3>2.3.5 Dépendance entre composants</h3>
+
+    <p>
+        Les composants peuvent dépendre
+        les uns des autres.
+    </p>
+
+    <p>
+        Cela signifie qu’un composant
+        utilise les services d’un autre composant.
+    </p>
+
+<pre>
+[Interface Web] -----> [API]
+</pre>
+
+    <p>
+        Ici :
+    </p>
+
+    <ul>
+        <li>
+            l’interface web dépend de l’API ;
+        </li>
+
+        <li>
+            l’API fournit les données nécessaires.
+        </li>
+    </ul>
+
+    <h3>2.3.6 Diagramme de composants et architecture MVC</h3>
+
+    <p>
+        Le diagramme de composants est très utile
+        pour représenter l’architecture MVC.
+    </p>
+
+<pre>
++-------------+
+|   Vue       |
++-------------+
+       |
+       v
++-------------+
+| Contrôleur  |
++-------------+
+       |
+       v
++-------------+
+|   Modèle    |
++-------------+
+</pre>
+
+    <p>
+        Ici :
+    </p>
+
+    <ul>
+        <li>
+            la Vue affiche les données ;
+        </li>
+
+        <li>
+            le Contrôleur gère les actions ;
+        </li>
+
+        <li>
+            le Modèle communique avec la base de données.
+        </li>
+    </ul>
+
+    <h3>2.3.7 Exemple concret avec un site web</h3>
+
+    <p>
+        Un site e-commerce peut contenir
+        les composants suivants :
+    </p>
+
+<pre>
++-------------------+
+| Interface Client  |
++-------------------+
+
++-------------------+
+| Gestion Produits  |
++-------------------+
+
++-------------------+
+| Paiement          |
++-------------------+
+
++-------------------+
+| Base de Données   |
++-------------------+
+</pre>
+
+    <h3>2.3.8 Avantages du diagramme de composants</h3>
+
+    <ul>
+        <li>facilite la compréhension du système ;</li>
+        <li>montre l’architecture globale ;</li>
+        <li>améliore l’organisation du projet ;</li>
+        <li>simplifie la maintenance ;</li>
+        <li>utile pour le travail en équipe.</li>
+    </ul>
+
+    <h3>2.3.9 Différence entre diagramme de classes et diagramme de composants</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:15px;">
+
+<tr style="background:#ecf0f1;">
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme de classes
+    </th>
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme de composants
+    </th>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Représente les classes
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Représente les modules du système
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Niveau détaillé
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Niveau architecture
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Structure interne
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Organisation globale
+    </td>
+
+</tr>
+
+</table>
+
+    <h3>2.3.10 Correspondance avec le développement réel</h3>
+
+    <p>
+        Dans un vrai projet,
+        les composants peuvent correspondre à :
+    </p>
+
+    <ul>
+        <li>des dossiers ;</li>
+        <li>des microservices ;</li>
+        <li>des APIs ;</li>
+        <li>des bibliothèques ;</li>
+        <li>des modules Laravel ou Symfony.</li>
+    </ul>
+
+</section>
+
+<section id="dcu" class="section">
+
+            <h2>2.4. Diagramme de cas d’utilisation</h2>
+
+            <p>Le diagramme de cas d’utilisation (Use Case Diagram) est l’un des diagrammes UML les plus utilisés.</p>
+            <p>Il permet de représenter les interactions entre les utilisateurs et le système.</p>
+            <p>Ce diagramme sert principalement à :</p>
+                <ul>
+                    <li>identifier les fonctionnalités du système ;</li>
+                    <li>comprendre les besoins des utilisateurs ;</li>
+                    <li>définir les services proposés par l’application ;</li>
+                    <li>faciliter la communication avec le client.</li>
+                </ul>
+
+            <h3>2.4.1 Les éléments principaux</h3>
+
+                <h3>a) L’acteur</h3>
+                <p>Un acteur représente une personne ou un élément externe qui interagit avec le système.</p>
+                <p>L’acteur peut être :</p>
+                    <ul>
+                        <li>un utilisateur ;</li>
+                        <li>un administrateur ;</li>
+                        <li>un autre système ;</li>
+                        <li>une base de données externe.</li>
+                </ul>
+
+<pre>
+    Acteur
+      |
+      |
+</pre>
+
+                <h3>b) Le cas d’utilisation</h3>
+                <p>Le cas d’utilisation représente une fonctionnalité offerte par le système.</p>
+                <p>Il est généralement représenté sous forme d’ellipse.</p>
+
+<pre>
+( Se connecter )
+</pre>
+
+                <h3>c) La relation</h3>
+                <p>Une ligne relie l’acteur au cas d’utilisation pour montrer l’interaction.</p>
+
+<pre>
+Utilisateur ---------> (Connexion)
+</pre>
+
+            <h3>2.4.2 Exemple simple</h3>
+            <p>Prenons l’exemple d’une application de gestion scolaire. </p>
+            <p>L’étudiant peut :</p>
+            <ul>
+                <li>se connecter ;</li>
+                <li>consulter ses notes ;</li>
+                <li>voir son emploi du temps.</li>
+            </ul>
+
+<pre>
+                +----------------------+
+                |  Système scolaire    |
+                |                      |
+Etudiant -----> | (Se connecter)       |
+Etudiant -----> | (Consulter notes)    |
+Etudiant -----> | (Voir emploi temps)  |
+                +----------------------+
+</pre>
+
+    <h3>2.4.3 Les avantages du diagramme de cas d’utilisation</h3>
+
+    <ul>
+        <li>simple à comprendre ;</li>
+        <li>utile pour discuter avec le client ;</li>
+        <li>permet d’identifier les besoins fonctionnels ;</li>
+        <li>sert de base pour les autres diagrammes UML.</li>
+    </ul>
+
+    <h3>2.4.4 Différence entre acteur et utilisateur</h3>
+    <p>Un acteur n’est pas toujours une personne.</p>
+    <p>Par exemple :</p>
+    <ul>
+        <li>un système de paiement ;</li>
+        <li>une API externe ;</li>
+        <li>un serveur de messagerie.</li>
+    </ul>
+
+    <p>Tous peuvent être considérés comme des acteurs dans UML.</p>
+
+    <h3>2.4.5 Bonnes pratiques</h3>
+
+    <ul>
+        <li>utiliser des noms clairs ;</li>
+        <li>décrire les fonctionnalités importantes ;</li>
+        <li>éviter les diagrammes trop chargés ;</li>
+        <li>bien identifier les acteurs.</li>
+    </ul>
+    </section>
+        
+    
+
+<section id="dseq" class="section">
+
+    <h2>2.5. Diagramme de séquence</h2>
+
+    <p>
+        Le diagramme de séquence est un diagramme UML
+        qui permet de représenter les échanges
+        entre les objets ou les acteurs d’un système.
+    </p>
+
+    <p>
+        Il montre :
+    </p>
+
+    <ul>
+        <li>qui communique avec qui ;</li>
+        <li>dans quel ordre ;</li>
+        <li>à quel moment les actions se produisent.</li>
+    </ul>
+
+    <p>
+        Le diagramme de séquence est très utilisé
+        pour comprendre le fonctionnement dynamique
+        d’une application.
+    </p>
+
+    <h3>2.5.1 Objectif du diagramme de séquence</h3>
+
+    <p>
+        Ce diagramme permet de :
+    </p>
+
+    <ul>
+        <li>visualiser le déroulement d’un scénario ;</li>
+        <li>comprendre les interactions du système ;</li>
+        <li>préparer le développement ;</li>
+        <li>identifier les responsabilités des objets.</li>
+    </ul>
+
+    <h3>2.5.2 Les éléments principaux</h3>
+
+    <h3>a) L’acteur</h3>
+
+    <p>
+        L’acteur représente l’utilisateur
+        ou un système externe.
+    </p>
+
+<pre>
+Utilisateur
+</pre>
+
+    <h3>b) L’objet</h3>
+
+    <p>
+        Les objets participent aux échanges.
+    </p>
+
+<pre>
+:Authentification
+:BaseDeDonnees
+</pre>
+
+    <h3>c) La ligne de vie</h3>
+
+    <p>
+        Chaque acteur ou objet possède
+        une ligne verticale appelée
+        ligne de vie.
+    </p>
+
+    <p>
+        Elle représente l’existence de l’objet
+        pendant le scénario.
+    </p>
+
+<pre>
+Utilisateur        :Systeme
+
+     |                 |
+     |                 |
+     |                 |
+</pre>
+
+    <h3>d) Les messages</h3>
+
+    <p>
+        Les messages représentent
+        les échanges entre objets.
+    </p>
+
+<pre>
+Utilisateur -----> Systeme : login()
+</pre>
+
+    <p>
+        Ici,
+        l’utilisateur envoie la commande
+        <strong>login()</strong>
+        au système.
+    </p>
+
+    <h3>2.5.3 Fonctionnement du temps</h3>
+
+    <p>
+        Dans un diagramme de séquence,
+        le temps s’écoule de haut en bas.
+    </p>
+
+    <p>
+        Les premières actions apparaissent en haut,
+        puis les suivantes plus bas.
+    </p>
+
+<pre>
+Action 1
+   |
+Action 2
+   |
+Action 3
+</pre>
+
+    <h3>2.5.4 Exemple simple de connexion</h3>
+
+    <p>
+        Exemple :
+        un utilisateur se connecte à une application.
+    </p>
+
+<pre>
+Utilisateur      Systeme      BaseDeDonnees
+
+     |               |               |
+     |---- login() ->|               |
+     |               |               |
+     |               |-- verifier()->|
+     |               |               |
+     |               |<- resultat ---|
+     |               |               |
+     |<- succes -----|               |
+</pre>
+
+    <h3>Explication</h3>
+
+    <ul>
+        <li>
+            l’utilisateur envoie une demande
+            de connexion ;
+        </li>
+
+        <li>
+            le système vérifie les informations ;
+        </li>
+
+        <li>
+            la base de données répond ;
+        </li>
+
+        <li>
+            le système renvoie le résultat.
+        </li>
+    </ul>
+
+    <h3>2.5.5 Messages synchrones et asynchrones</h3>
+
+    <h3>a) Message synchrone</h3>
+
+    <p>
+        L’expéditeur attend une réponse.
+    </p>
+
+<pre>
+Client -----> Serveur
+</pre>
+
+    <h3>b) Message asynchrone</h3>
+
+    <p>
+        L’expéditeur continue sans attendre.
+    </p>
+
+<pre>
+Client ----->> Service
+</pre>
+
+    <h3>2.5.6 Activation d’un objet</h3>
+
+<p>
+    Dans un diagramme de séquence,
+    un objet peut exécuter une opération
+    pendant un certain temps.
+</p>
+
+<p>
+    Cette période d’exécution est appelée
+    <strong>zone d’activation</strong>.
+</p>
+
+<p>
+    La zone d’activation montre que l’objet
+    est en train de travailler
+    ou de traiter une demande.
+</p>
+
+<h3>Exemple simple</h3>
+
+<p>
+    Lorsqu’un utilisateur demande une connexion :
+</p>
+
+<pre>
+Utilisateur        Systeme
+
+     |                |
+     |-- login() ---->|
+     |                |
+     |                |==== vérifier utilisateur ====
+     |                |
+     |<--- succès ----|
+</pre>
+
+<h3>Explication</h3>
+
+<ul>
+    <li>
+        l’utilisateur envoie la commande
+        <strong>login()</strong> ;
+    </li>
+
+    <li>
+        le système commence alors
+        un traitement ;
+    </li>
+
+    <li>
+        pendant ce traitement,
+        l’objet est actif ;
+    </li>
+
+    <li>
+        la partie
+        <strong>==== vérifier utilisateur ====</strong>
+        représente donc la zone d’activation.
+    </li>
+</ul>
+
+<p>
+    Dans les vrais diagrammes UML,
+    cette activation est souvent représentée
+    par un petit rectangle vertical
+    sur la ligne de vie de l’objet.
+</p>
+
+    <h3>2.5.7 Exemple dans une application scolaire</h3>
+
+    <p>
+        Un étudiant consulte ses notes.
+    </p>
+
+<pre>
+Etudiant        Systeme        BaseDeDonnees
+
+    |               |                 |
+    |-- consulter()->|                |
+    |               |                 |
+    |               |-- rechercher()->|
+    |               |                 |
+    |               |<- notes --------|
+    |               |                 |
+    |<- afficher ---|                 |
+</pre>
+
+    <h3>2.5.8 Avantages du diagramme de séquence</h3>
+
+    <ul>
+        <li>facile à comprendre ;</li>
+        <li>montre l’ordre des actions ;</li>
+        <li>utile pour l’analyse fonctionnelle ;</li>
+        <li>prépare la programmation ;</li>
+        <li>facilite la détection des erreurs logiques.</li>
+    </ul>
+
+    <h3>2.5.9 Différence avec le diagramme de classes</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:15px;">
+
+<tr style="background:#ecf0f1;">
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme de classes
+    </th>
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme de séquence
+    </th>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Structure du système
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Fonctionnement du système
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Vue statique
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Vue dynamique
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Relations entre classes
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Échanges entre objets
+    </td>
+
+</tr>
+
+</table>
+
+    <h3>2.5.10 Correspondance avec le code</h3>
+
+    <p>
+        Le diagramme de séquence correspond
+        aux appels de méthodes dans le programme.
+    </p>
+
+    <p>
+        Exemple en PHP :
+    </p>
+
+<pre>
+$systeme->login();
+
+$bdd->verifierUtilisateur();
+</pre>
+
+    <p>
+        Chaque appel de méthode
+        peut être représenté
+        dans un diagramme de séquence.
+    </p>
+
+</section>
+
+<section id="dact" class="section">
+
+    <h2>2.6 Diagramme d’activités</h2>
+
+    <p>
+        Le diagramme d’activités est un diagramme UML
+        utilisé pour représenter le déroulement
+        des actions d’un processus.
+    </p>
+
+    <p>
+        Il permet de montrer :
+    </p>
+
+    <ul>
+        <li>les différentes étapes d’un traitement ;</li>
+        <li>l’ordre des actions ;</li>
+        <li>les décisions possibles ;</li>
+        <li>les répétitions éventuelles.</li>
+    </ul>
+
+    <p>
+        Ce diagramme ressemble beaucoup
+        à un organigramme.
+    </p>
+
+    <h3>2.6.1 Objectif du diagramme d’activités</h3>
+
+    <p>
+        Le diagramme d’activités permet de :
+    </p>
+
+    <ul>
+        <li>visualiser un processus ;</li>
+        <li>décrire un scénario ;</li>
+        <li>comprendre le fonctionnement du système ;</li>
+        <li>analyser les différentes étapes d’un traitement.</li>
+    </ul>
+
+    <h3>2.6.2 Les éléments principaux</h3>
+
+    <h3>a) Le point de départ</h3>
+
+    <p>
+        Le diagramme commence généralement
+        par un point de départ.
+    </p>
+
+<pre>
+●
+</pre>
+
+    <p>
+        Il représente le début du processus.
+    </p>
+
+    <h3>b) Les activités</h3>
+
+    <p>
+        Une activité représente une action
+        réalisée dans le système.
+    </p>
+
+<pre>
+[ Saisir mot de passe ]
+</pre>
+
+    <h3>c) Les transitions</h3>
+
+    <p>
+        Les flèches montrent l’enchaînement
+        des actions.
+    </p>
+
+<pre>
+[Connexion] -------> [Vérification]
+</pre>
+
+    <h3>d) La décision</h3>
+
+    <p>
+        Une décision permet de représenter
+        plusieurs chemins possibles.
+    </p>
+
+<pre>
+             /---- Oui ----\
+[ Vérifier ]
+             \---- Non ----/
+</pre>
+
+    <h3>e) Le point final</h3>
+
+    <p>
+        Le point final représente
+        la fin du processus.
+    </p>
+
+<pre>
+◎
+</pre>
+
+    <h3>2.6.3 Exemple simple de connexion</h3>
+
+    <p>
+        Exemple :
+        un utilisateur se connecte
+        à une application.
+    </p>
+
+<pre>
+●
+ |
+ v
+[ Saisir login ]
+ |
+ v
+[ Saisir mot de passe ]
+ |
+ v
+[ Vérifier utilisateur ]
+ |
+ v
+< Mot de passe correct ? >
+     | Oui
+     v
+[ Accès autorisé ]
+     |
+     v
+     ◎
+</pre>
+
+    <h3>Explication</h3>
+
+    <ul>
+        <li>
+            l’utilisateur saisit ses informations ;
+        </li>
+
+        <li>
+            le système vérifie les données ;
+        </li>
+
+        <li>
+            si les informations sont correctes,
+            l’accès est autorisé ;
+        </li>
+
+        <li>
+            le processus se termine ensuite.
+        </li>
+    </ul>
+
+    <h3>2.6.4 Exemple avec une décision</h3>
+
+<pre>
+●
+ |
+ v
+[ Vérifier stock ]
+ |
+ v
+< Produit disponible ? >
+
+   | Oui                 | Non
+   v                     v
+
+[ Valider commande ]   [ Afficher erreur ]
+          |                     |
+          v                     v
+          ◎                     ◎
+</pre>
+
+    <p>
+        Ici,
+        le système suit un chemin différent
+        selon le résultat de la vérification.
+    </p>
+
+    <h3>2.6.5 Activités parallèles</h3>
+
+    <p>
+        Certaines actions peuvent être exécutées
+        en même temps.
+    </p>
+
+<pre>
+                /--> [ Envoyer Email ]
+[ Paiement ] --|
+                \--> [ Générer Facture ]
+</pre>
+
+    <p>
+        Après le paiement :
+    </p>
+
+    <ul>
+        <li>un email peut être envoyé ;</li>
+        <li>une facture peut être générée ;</li>
+        <li>les deux actions peuvent se produire simultanément.</li>
+    </ul>
+
+    <h3>2.6.6 Diagramme d’activités et algorithme</h3>
+
+    <p>
+        Le diagramme d’activités ressemble
+        fortement à un algorithme.
+    </p>
+
+    <p>
+        Il permet donc de préparer
+        la logique du programme
+        avant le codage.
+    </p>
+
+<pre>
+Début
+  |
+Connexion
+  |
+Vérification
+  |
+Accès
+  |
+Fin
+</pre>
+
+    <h3>2.6.7 Exemple dans une application scolaire</h3>
+
+    <p>
+        Exemple :
+        inscription d’un étudiant.
+    </p>
+
+<pre>
+●
+ |
+ v
+[ Remplir formulaire ]
+ |
+ v
+[ Vérifier informations ]
+ |
+ v
+< Informations valides ? >
+
+   | Oui                 | Non
+   v                     v
+
+[ Enregistrer ]      [ Afficher erreur ]
+   |                     |
+   v                     v
+[ Envoyer confirmation ] ◎
+   |
+   v
+   ◎
+</pre>
+
+    <h3>2.6.8 Avantages du diagramme d’activités</h3>
+
+    <ul>
+        <li>facile à comprendre ;</li>
+        <li>visualise clairement les étapes ;</li>
+        <li>utile pour l’analyse fonctionnelle ;</li>
+        <li>aide à préparer les algorithmes ;</li>
+        <li>permet de détecter les erreurs logiques.</li>
+    </ul>
+
+    <h3>2.6.9 Différence avec le diagramme de séquence</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:15px;">
+
+<tr style="background:#ecf0f1;">
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme de séquence
+    </th>
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Diagramme d’activités
+    </th>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Montre les échanges entre objets
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Montre les étapes d’un processus
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Vue orientée interactions
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Vue orientée workflow
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Utilise des messages
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Utilise des activités et décisions
+    </td>
+
+</tr>
+
+</table>
+
+    <h3>2.6.10 Correspondance avec le code</h3>
+
+    <p>
+        Le diagramme d’activités correspond
+        souvent à la logique des conditions
+        et des traitements dans le programme.
+    </p>
+
+    <p>
+        Exemple en PHP :
+    </p>
+
+<pre>
+if($motdepasse == "1234"){
+
+    echo "Accès autorisé";
+
+}else{
+
+    echo "Erreur";
+
+}
+</pre>
+
+    <p>
+        Les conditions et les traitements
+        du code peuvent donc être représentés
+        dans un diagramme d’activités.
+    </p>
+
+</section>
+ 
+<section id="TD" class="section">
+<h1>Étude UML Complète d’un Système de Gestion Scolaire</h1>
+
+<!--div class="section"-->
+
+<h2>1. Présentation du projet</h2>
+
+<p>
+Le projet consiste à concevoir une application de gestion scolaire
+permettant d’automatiser la gestion administrative et pédagogique d’un établissement.
+</p>
+
+<p>
+Le système devra permettre :
+</p>
+
+<ul>
+<li>la gestion des étudiants ;</li>
+<li>la gestion des enseignants ;</li>
+<li>la gestion des classes ;</li>
+<li>la consultation des notes ;</li>
+<li>la gestion des utilisateurs ;</li>
+<li>la connexion sécurisée ;</li>
+<li>la génération des bulletins.</li>
+</ul>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>2. Analyse des besoins</h2>
+
+<h3>2.1 Besoins fonctionnels</h3>
+
+<ul>
+<li>Créer un compte utilisateur ;</li>
+<li>Se connecter au système ;</li>
+<li>Ajouter des étudiants ;</li>
+<li>Ajouter des enseignants ;</li>
+<li>Créer des classes scolaires ;</li>
+<li>Attribuer les notes ;</li>
+<li>Consulter les résultats ;</li>
+<li>Générer des rapports.</li>
+</ul>
+
+<h3>2.2 Besoins non fonctionnels</h3>
+
+<ul>
+<li>Sécurité des données ;</li>
+<li>Système simple à utiliser ;</li>
+<li>Bonne performance ;</li>
+<li>Maintenance facile ;</li>
+<li>Compatibilité web et mobile.</li>
+</ul>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>3. Diagramme de cas d’utilisation</h2>
+
+<h3>3.1 Acteurs</h3>
+
+<table>
+
+<tr>
+<th>Acteur</th>
+<th>Rôle</th>
+</tr>
+
+<tr>
+<td>Administrateur</td>
+<td>Gère les utilisateurs et le système</td>
+</tr>
+
+<tr>
+<td>Enseignant</td>
+<td>Ajoute les notes</td>
+</tr>
+
+<tr>
+<td>Étudiant</td>
+<td>Consulte ses résultats</td>
+</tr>
+
+</table>
+
+<h3>3.2 Diagramme</h3>
+
+<pre>
+                +--------------------------------------+
+                |        Système scolaire              |
+                |                                      |
+Etudiant ------>| (Consulter notes)                    |
+                |                                      |
+Enseignant ---->| (Ajouter notes)                      |
+                |                                      |
+Administrateur->| (Gérer utilisateurs)                 |
+                |                                      |
+Administrateur->| (Créer classes)                      |
+                |                                      |
+Etudiant ------>| (Se connecter)                       |
+                +--------------------------------------+
+</pre>
+
+<h3>3.3 Analyse</h3>
+
+<p>
+Le diagramme de cas d’utilisation permet d’identifier les fonctionnalités principales du système
+ainsi que les interactions entre les utilisateurs et l’application.
+</p>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>4. Diagramme de classes</h2>
+
+<h3>4.1 Diagramme principal</h3>
+
+<pre>
++----------------------+
+|      Utilisateur     |
++----------------------+
+| - id:int             |
+| - nom:string         |
+| - email:string       |
+| - motdepasse:string  |
++----------------------+
+| + seConnecter()      |
++----------------------+
+           ^
+           |
+--------------------------------
+|                              |
+|                              |
+
++----------------------+     +----------------------+
+|      Etudiant        |     |     Enseignant      |
++----------------------+     +----------------------+
+| - matricule:string   |     | - specialite:string |
++----------------------+     +----------------------+
+| + consulterNotes()   |     | + ajouterNotes()    |
++----------------------+     +----------------------+
+
+           |
+           |
+           v
+
++-----------------------------+
+|      ClasseScolaire         |
++-----------------------------+
+| - nomClasse:string          |
+| - niveau:string             |
++-----------------------------+
+
+           |
+           |
+           v
+
++----------------------+
+|        Note          |
++----------------------+
+| - valeur:float       |
+| - matiere:string     |
++----------------------+
+</pre>
+
+<h3>4.2 Analyse du diagramme</h3>
+
+<p>
+La classe <strong>Utilisateur</strong> représente la base commune des utilisateurs du système.
+</p>
+
+<p>
+Les classes <strong>Etudiant</strong> et <strong>Enseignant</strong> héritent de cette classe.
+</p>
+
+<p>
+La classe <strong>ClasseScolaire</strong> permet d’organiser les étudiants.
+</p>
+
+<p>
+La classe <strong>Note</strong> contient les résultats académiques.
+</p>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>5. Diagramme d’objets</h2>
+
+<h3>5.1 Représentation d’instances réelles</h3>
+
+<pre>
++------------------------------+
+| etudiant1 : Etudiant         |
++------------------------------+
+| nom = Rakoto                 |
+| matricule = ET001            |
++------------------------------+
+
+                |
+
+                v
+
++-----------------------------------+
+| classeA : ClasseScolaire          |
++-----------------------------------+
+| nomClasse = L1 Informatique       |
++-----------------------------------+
+
+                |
+
+                v
+
++-----------------------------+
+| noteAlgo : Note             |
++-----------------------------+
+| valeur = 16                 |
+| matiere = Algorithmique     |
++-----------------------------+
+</pre>
+
+<h3>5.2 Analyse</h3>
+
+<p>
+Le diagramme d’objets montre les données réelles manipulées par le système à un instant précis.
+</p>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>6. Diagramme de séquence</h2>
+
+<h3>6.1 Scénario : Consultation des notes</h3>
+
+<pre>
+Etudiant         Systeme          BaseDeDonnees
+
+    |                 |                    |
+    |-- login() ----->|                    |
+    |                 |                    |
+    |                 |-- verifier() ----->|
+    |                 |                    |
+    |                 |<- resultat --------|
+    |                 |                    |
+    |-- consulter() ->|                    |
+    |                 |                    |
+    |                 |-- rechercher() --->|
+    |                 |                    |
+    |                 |<- notes -----------|
+    |                 |                    |
+    |<- afficher() ---|                    |
+</pre>
+
+<h3>6.2 Analyse</h3>
+
+<p>
+Le diagramme montre le déroulement chronologique des échanges entre les objets.
+</p>
+
+<p>
+Le temps s’écoule du haut vers le bas.
+</p>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>7. Diagramme d’activités</h2>
+
+<h3>7.1 Processus de connexion</h3>
+
+<pre>
+●
+ |
+ v
+[ Saisir login ]
+ |
+ v
+[ Saisir mot de passe ]
+ |
+ v
+[ Vérifier utilisateur ]
+ |
+ v
+< Informations correctes ? >
+
+   | Oui                    | Non
+   v                        v
+
+[ Accès autorisé ]      [ Afficher erreur ]
+        |                       |
+        v                       v
+        ◎                       ◎
+</pre>
+
+<h3>7.2 Analyse</h3>
+
+<p>
+Le diagramme d’activités permet de représenter les différentes étapes du traitement,
+ainsi que les décisions possibles.
+</p>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>8. Diagramme de composants</h2>
+
+<h3>8.1 Architecture logique</h3>
+
+<pre>
++---------------------+
+| Interface Web       |
++---------------------+
+          |
+          v
++---------------------+
+| Module Authentif.   |
++---------------------+
+          |
+          v
++---------------------+
+| Gestion Etudiants   |
++---------------------+
+          |
+          v
++---------------------+
+| Gestion Notes       |
++---------------------+
+          |
+          v
++---------------------+
+| Base de Données     |
++---------------------+
+</pre>
+
+<h3>8.2 Analyse</h3>
+
+<p>
+Le diagramme de composants présente les différents modules du système
+et leurs dépendances.
+</p>
+
+<p>
+Chaque composant possède un rôle spécifique dans l’architecture globale.
+</p>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>9. Architecture MVC</h2>
+
+<pre>
++-------------+
+|    Vue      |
++-------------+
+       |
+       v
++-------------+
+| Contrôleur  |
++-------------+
+       |
+       v
++-------------+
+|   Modèle    |
++-------------+
+       |
+       v
++-------------+
+| Base Données|
++-------------+
+</pre>
+
+<h3>Analyse</h3>
+
+<ul>
+<li>La Vue gère l’affichage ;</li>
+<li>Le Contrôleur traite les actions ;</li>
+<li>Le Modèle communique avec la base de données.</li>
+</ul>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>10. Base de données proposée</h2>
+
+<table>
+
+<tr>
+<th>Table</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>utilisateurs</td>
+<td>Informations des utilisateurs</td>
+</tr>
+
+<tr>
+<td>etudiants</td>
+<td>Données des étudiants</td>
+</tr>
+
+<tr>
+<td>enseignants</td>
+<td>Données des enseignants</td>
+</tr>
+
+<tr>
+<td>classes</td>
+<td>Classes scolaires</td>
+</tr>
+
+<tr>
+<td>notes</td>
+<td>Résultats académiques</td>
+</tr>
+
+</table>
+
+<!--/div-->
+
+<!--div class="section"-->
+
+<h2>11. Conclusion générale</h2>
+
+<p>
+Cette étude UML permet de concevoir une application scolaire structurée,
+maintenable et évolutive.
+</p>
+
+<p>
+Les différents diagrammes UML fournissent des vues complémentaires du système :
+</p>
+
+<ul>
+<li>les cas d’utilisation montrent les besoins fonctionnels ;</li>
+<li>les diagrammes de classes montrent la structure ;</li>
+<li>les diagrammes de séquence montrent les interactions ;</li>
+<li>les diagrammes d’activités montrent les processus ;</li>
+<li>les diagrammes de composants montrent l’architecture.</li>
+</ul>
+
+<p>
+Cette modélisation facilite fortement le développement du projet logiciel.
+</p>
+<!--/div-->
+</section>
+
+<section id="outils" class="section">
+
+    <h2>3. Outils UML</h2>
+
+    <p>
+        Pour créer des diagrammes UML,
+        plusieurs logiciels peuvent être utilisés.
+    </p>
+
+    <p>
+        Ces outils permettent de :
+    </p>
+
+    <ul>
+        <li>dessiner des diagrammes UML ;</li>
+        <li>organiser les projets ;</li>
+        <li>documenter les applications ;</li>
+        <li>faciliter le travail en équipe.</li>
+    </ul>
+
+    <h3>3.1 Quelques outils UML populaires</h3>
+
+<table style="width:100%; border-collapse:collapse; margin-top:15px;">
+
+<tr style="background:#ecf0f1;">
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Outil
+    </th>
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Type
+    </th>
+
+    <th style="padding:10px; border:1px solid #bdc3c7;">
+        Particularités
+    </th>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        StarUML
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Payant
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Interface moderne et professionnelle
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Visual Paradigm
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Version gratuite limitée
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Très complet
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Draw.io
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Gratuit
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Fonctionne directement dans le navigateur
+    </td>
+
+</tr>
+
+<tr>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Modelio
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Logiciel libre
+    </td>
+
+    <td style="padding:10px; border:1px solid #bdc3c7;">
+        Open source et spécialisé UML
+    </td>
+
+</tr>
+
+</table>
+
+    <h3>3.2 Outil recommandé : Modelio</h3>
+
+    <p>
+        Pour l’apprentissage de UML,
+        nous allons utiliser
+        <strong>Modelio</strong>.
+    </p>
+
+    <p>
+        Modelio est un logiciel libre
+        et open source spécialement conçu
+        pour la modélisation UML.
+    </p>
+
+    <h3>Avantages de Modelio</h3>
+
+    <ul>
+        <li>gratuit ;</li>
+        <li>compatible Windows, Linux et Mac ;</li>
+        <li>interface professionnelle ;</li>
+        <li>supporte plusieurs diagrammes UML ;</li>
+        <li>adapté aux étudiants et aux professionnels.</li>
+    </ul>
+
+    <h3>3.3 Installation de Modelio</h3>
+
+    <h3>a) Télécharger le logiciel</h3>
+
+    <p>
+        Aller sur le site officiel :
+    </p>
+
+    <pre>
+https://www.modelio.org
+</pre>
+
+    <h3>b) Installer le logiciel</h3>
+
+    <ul>
+        <li>télécharger la version correspondant au système ;</li>
+        <li>lancer l’installation ;</li>
+        <li>suivre les étapes d’installation ;</li>
+        <li>ouvrir Modelio.</li>
+    </ul>
+
+    <h3>3.4 Création d’un projet UML</h3>
+
+    <p>
+        Après le lancement du logiciel :
+    </p>
+
+    <ul>
+        <li>cliquer sur <strong>Create a project</strong> ;</li>
+        <li>donner un nom au projet ;</li>
+        <li>valider la création.</li>
+    </ul>
+
+    <h3>3.5 Création d’un diagramme UML</h3>
+
+    <p>
+        Pour créer un diagramme :
+    </p>
+
+    <ul>
+        <li>faire un clic droit sur le projet ;</li>
+        <li>choisir <strong>Create Diagram</strong> ;</li>
+        <li>sélectionner le type de diagramme UML.</li>
+    </ul>
+
+    <p>
+        Exemples :
+    </p>
+
+    <ul>
+        <li>Use Case Diagram ;</li>
+        <li>Class Diagram ;</li>
+        <li>Sequence Diagram ;</li>
+        <li>Activity Diagram.</li>
+    </ul>
+
+    <h3>3.6 Tutoriel : créer un diagramme de classes</h3>
+
+    <h3>Étape 1 : créer les classes</h3>
+
+    <p>
+        Depuis la barre d’outils :
+    </p>
+
+    <ul>
+        <li>sélectionner l’outil <strong>Class</strong> ;</li>
+        <li>cliquer dans la zone de travail ;</li>
+        <li>créer les classes :
+            <strong>Etudiant</strong>,
+            <strong>ClasseScolaire</strong>,
+            <strong>Note</strong>.
+        </li>
+    </ul>
+
+    <h3>Étape 2 : ajouter les attributs</h3>
+
+<pre>
+Etudiant
+---------------------
+- matricule : string
+- nom : string
+</pre>
+
+    <h3>Étape 3 : ajouter les méthodes</h3>
+
+<pre>
++ consulterNotes()
+</pre>
+
+    <h3>Étape 4 : créer les relations</h3>
+
+    <p>
+        Utiliser les outils :
+    </p>
+
+    <ul>
+        <li>Association ;</li>
+        <li>Héritage ;</li>
+        <li>Agrégation ;</li>
+        <li>Composition.</li>
+    </ul>
+
+    <h3>Exemple</h3>
+
+<pre>
+Etudiant -------- ClasseScolaire
+</pre>
+
+    <h3>3.7 Exporter un diagramme</h3>
+
+    <p>
+        Une fois le diagramme terminé :
+    </p>
+
+    <ul>
+        <li>cliquer sur <strong>File</strong> ;</li>
+        <li>choisir <strong>Export Diagram</strong> ;</li>
+        <li>sélectionner le format :
+            PNG, JPG ou PDF.
+        </li>
+    </ul>
+
+    <h3>3.8 Conseils de modélisation</h3>
+
+    <ul>
+        <li>garder les diagrammes simples ;</li>
+        <li>utiliser des noms clairs ;</li>
+        <li>éviter les diagrammes trop chargés ;</li>
+        <li>organiser correctement les relations ;</li>
+        <li>documenter les éléments importants.</li>
+    </ul>
+
+    <h3>3.9 Conclusion</h3>
+
+    <p>
+        Les outils UML facilitent énormément
+        la conception des applications.
+    </p>
+
+    <p>
+        Grâce à un logiciel comme Modelio,
+        il devient possible de produire
+        des diagrammes professionnels
+        avant même de commencer le codage.
+    </p>
+
+</section>
+
+  <section id="conclusion" class="section">
+
+    <h2>Conclusion générale</h2>
+
+    <p>
+        UML est aujourd’hui un outil incontournable
+        dans le développement des applications modernes.
+        Grâce à ses différents diagrammes,
+        il permet de représenter clairement
+        la structure, le fonctionnement
+        et l’organisation d’un système informatique.
+    </p>
+
+    <p>
+        Tout au long de ce cours,
+        nous avons découvert :
+    </p>
+
+    <ul>
+        <li>les origines et les objectifs de UML ;</li>
+        <li>sa relation avec la Programmation Orientée Objet ;</li>
+        <li>le Processus Unifié (UP) ;</li>
+        <li>les principaux diagrammes UML ;</li>
+        <li>les outils de modélisation ;</li>
+        <li>la manière de représenter un projet logiciel de façon professionnelle.</li>
+    </ul>
+
+    <p>
+        UML ne remplace pas la programmation,
+        mais il prépare et organise le travail
+        des développeurs avant le codage.
+        Il joue donc un rôle comparable
+        au plan d’un architecte avant
+        la construction d’un bâtiment.
+    </p>
+
+    <p>
+        Une bonne modélisation permet :
+    </p>
+
+    <ul>
+        <li>de mieux comprendre les besoins ;</li>
+        <li>de réduire les erreurs de conception ;</li>
+        <li>de faciliter le travail en équipe ;</li>
+        <li>de produire des applications plus fiables et plus maintenables.</li>
+    </ul>
+
+    <p>
+        Dans les grands projets informatiques,
+        UML constitue ainsi un véritable langage
+        de communication entre analystes,
+        développeurs, chefs de projets et clients.
+    </p>
+
+    <p>
+        La maîtrise de UML représente donc
+        une compétence essentielle
+        pour tout futur développeur,
+        analyste ou ingénieur logiciel.
+    </p>
+
+    <p>
+        La prochaine étape consistera maintenant
+        à mettre ces connaissances en pratique
+        à travers la réalisation de projets,
+        la création de diagrammes complets
+        et l’implémentation des applications
+        correspondantes en code.
+    </p>
+
+</section>
+
+         
+   </main>
+    
+<script>
+
+function showSection(id){
+
+    const sections = document.querySelectorAll('.section');
+
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    document.getElementById(id).style.display = 'block';
+}
+
+window.onload = function(){
+    showSection('uml');
+}
+
+</script>
+</body>
+</html>
