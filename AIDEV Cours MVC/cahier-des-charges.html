@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide : Élaborer un Cahier des Charges</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+header{
+    background-color: #2c3e50;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+main{
+    width: 85%;
+    margin: auto;
+    padding: 20px;
+}
+
+section{
+    background: white;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    color: #2c3e50;
+}
+
+h3{
+    color: #34495e;
+}
+
+.exemple{
+    background-color: #eafaf1;
+    border-left: 5px solid #27ae60;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.attention{
+    background-color: #fdecea;
+    border-left: 5px solid #e74c3c;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.code{
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-family: Consolas, monospace;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table, th, td{
+    border: 1px solid #ccc;
+}
+
+th{
+    background-color: #2c3e50;
+    color: white;
+}
+
+th, td{
+    padding: 12px;
+    text-align: left;
+}
+
+details{
+    margin-top: 15px;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+summary{
+    cursor: pointer;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+footer{
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+   <img src="images/logo_AIDEV.png" alt="AI&Dev Academy" style="max-width:120px;">
+    <h1>Guide : Élaborer un Cahier des Charges</h1>
+    <p>Du besoin utilisateur au développement PHP MVC</p>
+</header>
+
+<main>
+
+<section>
+    <h2>1. Introduction</h2>
+
+    <p>
+        Avant de développer une application informatique, il est indispensable de comprendre le problème à résoudre.
+        Le cahier des charges est un document qui décrit les besoins, les objectifs et les contraintes d’un projet.
+    </p>
+
+    <div class="attention">
+        <strong>Important :</strong>  
+        Un développeur ne commence pas directement par coder.  
+        Il doit d’abord analyser les besoins du projet.
+    </div>
+
+    <h3>Pourquoi rédiger un cahier des charges ?</h3>
+
+    <ul>
+        <li>Comprendre le problème à résoudre</li>
+        <li>Définir clairement les fonctionnalités</li>
+        <li>Éviter les erreurs et les oublis</li>
+        <li>Organiser le développement</li>
+        <li>Faciliter la communication entre les acteurs du projet</li>
+    </ul>
+
+    <div class="exemple">
+        <strong>Exemple :</strong><br><br>
+
+        ❌ Mauvaise formulation :  
+        « Je veux créer un beau site web. »<br><br>
+
+        ✔ Bonne formulation :  
+        « Je veux créer une plateforme permettant aux étudiants de partager des supports de cours. »
+    </div>
+</section>
+
+<section>
+    <h2>2. Présentation Générale du Projet</h2>
+
+    <p>
+        Cette partie explique le contexte du projet, le problème rencontré et les objectifs à atteindre.
+    </p>
+
+    <h3>Éléments à présenter</h3>
+
+    <ul>
+        <li>Contexte</li>
+        <li>Problème</li>
+        <li>Objectifs</li>
+    </ul>
+
+    <div class="exemple">
+        <strong>Exemple :</strong><br><br>
+
+        <strong>Projet :</strong> Plateforme de partage de cours.<br><br>
+
+        <strong>Contexte :</strong>  
+        Les étudiants perdent souvent leurs documents pédagogiques.<br><br>
+
+        <strong>Objectif :</strong>  
+        Créer une plateforme permettant de publier et télécharger des cours.
+    </div>
+</section>
+
+<section>
+    <h2>3. Identification des Utilisateurs</h2>
+
+    <p>
+        Il faut identifier les personnes qui utiliseront le système.
+        En UML, ces utilisateurs sont appelés des <strong>acteurs</strong>.
+    </p>
+
+    <table>
+        <tr>
+            <th>Utilisateur</th>
+            <th>Rôle</th>
+        </tr>
+
+        <tr>
+            <td>Administrateur</td>
+            <td>Gère la plateforme</td>
+        </tr>
+
+        <tr>
+            <td>Enseignant</td>
+            <td>Publie les cours</td>
+        </tr>
+
+        <tr>
+            <td>Étudiant</td>
+            <td>Consulte et télécharge les cours</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <h2>4. Les Besoins Fonctionnels</h2>
+
+    <p>
+        Les besoins fonctionnels décrivent ce que le système doit faire.
+    </p>
+
+    <h3>Comment les rédiger ?</h3>
+
+    <ul>
+        <li>Le système doit permettre de...</li>
+        <li>L’utilisateur peut...</li>
+    </ul>
+
+    <div class="exemple">
+        <strong>Exemples :</strong>
+
+        <ul>
+            <li>L’étudiant peut télécharger un document.</li>
+            <li>L’enseignant peut publier un cours.</li>
+            <li>L’administrateur peut supprimer un utilisateur.</li>
+        </ul>
+    </div>
+
+    <div class="attention">
+        <strong>Erreur fréquente :</strong><br><br>
+
+        ❌ « Créer une belle application »<br><br>
+
+        ✔ « Permettre aux utilisateurs de gérer leurs tâches »
+    </div>
+</section>
+
+<section>
+    <h2>5. Les Besoins Non Fonctionnels</h2>
+
+    <p>
+        Les besoins non fonctionnels concernent la qualité du système.
+    </p>
+
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Exemple</th>
+        </tr>
+
+        <tr>
+            <td>Sécurité</td>
+            <td>Les mots de passe doivent être chiffrés</td>
+        </tr>
+
+        <tr>
+            <td>Performance</td>
+            <td>Les pages doivent charger rapidement</td>
+        </tr>
+
+        <tr>
+            <td>Ergonomie</td>
+            <td>L’interface doit être simple à utiliser</td>
+        </tr>
+
+        <tr>
+            <td>Compatibilité</td>
+            <td>L’application doit fonctionner sur mobile</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <h2>6. Les Contraintes Techniques</h2>
+
+    <p>
+        Cette partie précise les technologies imposées pour le projet.
+    </p>
+
+    <div class="code">
+        - PHP<br>
+        - Architecture MVC<br>
+        - MySQL<br>
+        - HTML / CSS / JavaScript<br>
+        - Bootstrap
+    </div>
+
+    <div class="exemple">
+        <strong>Exemple :</strong><br><br>
+
+        « L’application devra être développée en PHP selon l’architecture MVC. »
+    </div>
+</section>
+
+<section>
+    <h2>7. Les Diagrammes UML</h2>
+
+    <p>
+        UML permet de représenter graphiquement le projet.
+    </p>
+
+    <h3>Diagrammes les plus utilisés</h3>
+
+    <ul>
+        <li>Diagramme de cas d’utilisation</li>
+        <li>Diagramme de classes</li>
+        <li>Diagramme d’activités</li>
+    </ul>
+
+    <details>
+        <summary>Pourquoi utiliser UML ?</summary>
+
+        <p>
+            UML aide à mieux comprendre le fonctionnement du système avant le développement.
+            Il permet également de communiquer facilement les idées du projet.
+        </p>
+    </details>
+</section>
+
+<section>
+    <h2>8. Maquettes et Interfaces</h2>
+
+    <p>
+        Les maquettes représentent l’apparence future de l’application.
+    </p>
+
+    <ul>
+        <li>Croquis papier</li>
+        <li>Wireframes</li>
+        <li>Interfaces HTML simples</li>
+    </ul>
+
+    <div class="exemple">
+        <strong>Conseil :</strong><br><br>
+
+        Même une maquette très simple peut aider à mieux organiser le projet.
+    </div>
+</section>
+
+<section>
+    <h2>9. Planning Prévisionnel</h2>
+
+    <p>
+        Un projet informatique doit être organisé dans le temps.
+    </p>
+
+    <table>
+        <tr>
+            <th>Phase</th>
+            <th>Durée</th>
+        </tr>
+
+        <tr>
+            <td>Analyse des besoins</td>
+            <td>1 semaine</td>
+        </tr>
+
+        <tr>
+            <td>Conception UML</td>
+            <td>1 semaine</td>
+        </tr>
+
+        <tr>
+            <td>Développement</td>
+            <td>2 semaines</td>
+        </tr>
+
+        <tr>
+            <td>Tests</td>
+            <td>3 jours</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <h2>10. Exemple Simplifié de Cahier des Charges</h2>
+
+    <h3>Projet : Gestion de Bibliothèque</h3>
+
+    <p><strong>Objectif :</strong> gérer les emprunts de livres.</p>
+
+    <p><strong>Acteurs :</strong></p>
+
+    <ul>
+        <li>Bibliothécaire</li>
+        <li>Étudiant</li>
+    </ul>
+
+    <p><strong>Besoins fonctionnels :</strong></p>
+
+    <ul>
+        <li>Ajouter un livre</li>
+        <li>Emprunter un livre</li>
+        <li>Retourner un livre</li>
+    </ul>
+
+    <p><strong>Contraintes techniques :</strong></p>
+
+    <ul>
+        <li>PHP MVC</li>
+        <li>MySQL</li>
+    </ul>
+</section>
+
+<section>
+    <h2>11. Exercice</h2>
+
+    <p>
+        Rédigez un mini cahier des charges pour une application de gestion des clubs étudiants.
+    </p>
+
+    <h3>Le document devra contenir :</h3>
+
+    <ul>
+        <li>Le contexte</li>
+        <li>Les objectifs</li>
+        <li>Les utilisateurs</li>
+        <li>Les besoins fonctionnels</li>
+        <li>Les contraintes techniques</li>
+        <li>Un diagramme UML</li>
+    </ul>
+    <p>
+    <a href="solution_cahier_des_charges.pdf" target="_blank">
+        📄 Voir une solution complète de l’exercice
+    </a>
+</p>
+</section>
+
+<section>
+    <h2>12. Conclusion</h2>
+
+    <p>
+        Un bon projet informatique commence toujours par une bonne analyse des besoins.
+    </p>
+
+    <div class="attention">
+        <strong>À retenir :</strong><br><br>
+
+        Idée → Cahier des charges → UML → MVC → Développement PHP
+    </div>
+
+    <p>
+        Le cahier des charges constitue donc la base fondamentale de tout développement informatique professionnel.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    Guide pédagogique - Élaboration d’un Cahier des Charges Informatique
+</footer>
+
+</body>
+</html>
