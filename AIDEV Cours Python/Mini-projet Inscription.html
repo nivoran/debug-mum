@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Explication du Projet Tkinter</title>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    line-height:1.6;
+    margin:40px;
+}
+h1{
+    color:#2c3e50;
+}
+h2{
+    color:#3498db;
+}
+code{
+    background:#f4f4f4;
+    padding:2px 4px;
+}
+pre{
+    background:#f4f4f4;
+    padding:15px;
+    border-left:4px solid #3498db;
+    overflow:auto;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Mini-Projet Python : Formulaire d'inscription</h1>
+
+<p>
+Ce projet montre comment créer une petite application graphique avec
+Tkinter et enregistrer des données dans une base SQLite.
+</p>
+
+<h2>1. Importation des bibliothèques</h2>
+
+<pre>
+import tkinter as tk
+from tkinter import messagebox
+import sqlite3
+</pre>
+
+<p>
+
+<b>tkinter</b> permet de créer l'interface graphique.<br>
+<b>messagebox</b> permet d'afficher des fenêtres de dialogue.<br>
+<b>sqlite3</b> permet de travailler avec une base de données SQLite.
+</p>
+
+<h2>2. Connexion à la base de données</h2>
+
+<pre>
+connexion = sqlite3.connect("etudiants.db")
+curseur = connexion.cursor()
+</pre>
+
+<p>
+Si le fichier <code>etudiants.db</code> n'existe pas, SQLite le crée automatiquement.
+</p>
+
+<h2>3. Création de la table</h2>
+
+<pre>
+CREATE TABLE IF NOT EXISTS etudiant(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    email TEXT NOT NULL
+)
+</pre>
+
+<p>
+La table contient :
+</p>
+
+<ul>
+<li><b>id</b> : identifiant automatique</li>
+<li><b>nom</b> : nom de l'étudiant</li>
+<li><b>prenom</b> : prénom</li>
+<li><b>email</b> : adresse email</li>
+</ul>
+
+<h2>4. Fonction enregistrer()</h2>
+
+<pre>
+def enregistrer():
+</pre>
+
+<p>
+Cette fonction est exécutée lorsque l'utilisateur clique sur
+le bouton <b>Enregistrer</b>.
+</p>
+
+<h3>Lecture des champs</h3>
+
+<pre>
+nom = entree_nom.get()
+prenom = entree_prenom.get()
+email = entree_email.get()
+</pre>
+
+<p>
+La méthode <code>get()</code> récupère le contenu des zones de texte.
+</p>
+
+<h3>Validation</h3>
+
+<pre>
+if nom == "" or prenom == "" or email == "":
+</pre>
+
+<p>
+On vérifie qu'aucun champ n'est vide.
+</p>
+
+<h3>Insertion dans la base</h3>
+
+<pre>
+curseur.execute("""
+INSERT INTO etudiant(nom, prenom, email)
+VALUES (?, ?, ?)
+""", (nom, prenom, email))
+</pre>
+
+<p>
+Les caractères <code>?</code> représentent des paramètres transmis à SQLite.
+Cette technique évite plusieurs problèmes de sécurité.
+</p>
+
+<h3>Sauvegarde</h3>
+
+<pre>
+connexion.commit()
+</pre>
+
+<p>
+Les modifications sont enregistrées définitivement dans la base.
+</p>
+
+<h3>Vidage des champs</h3>
+
+<pre>
+entree_nom.delete(0, tk.END)
+entree_prenom.delete(0, tk.END)
+entree_email.delete(0, tk.END)
+</pre>
+
+<p>
+Après l'enregistrement, les zones de texte sont effacées afin de permettre
+une nouvelle saisie.
+</p>
+
+<h2>5. Création de la fenêtre</h2>
+
+<pre>
+fenetre = tk.Tk()
+</pre>
+
+<p>
+Cette instruction crée la fenêtre principale de l'application.
+</p>
+
+<h2>6. Création des composants graphiques</h2>
+
+<pre>
+tk.Label(...)
+tk.Entry(...)
+tk.Button(...)
+</pre>
+
+<ul>
+<li><b>Label</b> : affiche un texte.</li>
+<li><b>Entry</b> : permet la saisie.</li>
+<li><b>Button</b> : déclenche une action.</li>
+</ul>
+
+<h2>7. Bouton Enregistrer</h2>
+
+<pre>
+command=enregistrer
+</pre>
+
+<p>
+Le clic sur le bouton exécute la fonction
+<code>enregistrer()</code>.
+</p>
+
+<h2>8. Bouton Fermer</h2>
+
+<pre>
+command=fenetre.destroy
+</pre>
+
+<p>
+Le clic sur ce bouton ferme l'application.
+</p>
+
+<h2>9. Boucle principale</h2>
+
+<pre>
+fenetre.mainloop()
+</pre>
+
+<p>
+Cette boucle attend les actions de l'utilisateur
+(clavier, souris, clics sur les boutons, etc.).
+</p>
+
+<h2>10. Ce que l'étudiant apprend</h2>
+
+<ul>
+<li>Créer une interface graphique avec Tkinter</li>
+<li>Créer une base SQLite</li>
+<li>Créer une table</li>
+<li>Insérer des données</li>
+<li>Créer des fonctions Python</li>
+<li>Valider un formulaire</li>
+<li>Manipuler les boutons et événements</li>
+<li>Vider les champs après traitement</li>
+</ul>
+
+</body>
+</html>
