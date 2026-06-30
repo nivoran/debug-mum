@@ -1,0 +1,8718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Cours d'Algorithmique pour Débutants</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    line-height:1.7;
+    margin:40px;
+    color:#333;
+}
+h1{
+    color:#003366;
+    border-bottom:3px solid #003366;
+}
+h2{
+    color:#006699;
+    margin-top:30px;
+}
+h3{
+    color:#008080;
+}
+.code{
+    background:#f4f4f4;
+    border-left:5px solid #006699;
+    padding:10px;
+    margin:10px 0;
+    font-family:Courier New, monospace;
+}
+.exercice{
+    background:#fff8dc;
+    padding:15px;
+    border:1px solid #e0d18a;
+    margin:15px 0;
+}
+.td{
+    background:#eef7ff;
+    padding:15px;
+    border:1px solid #99c2ff;
+    margin:15px 0;
+}
+
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:280px;
+    height:100vh;
+
+    background:#003366;
+    padding:20px;
+    box-sizing:border-box;
+
+    overflow-y:auto;      /* ascenseur vertical */
+    overflow-x:hidden;    /* évite l'ascenseur horizontal */
+}
+
+.sidebar h2{
+    color:white;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar a{
+    color:white;
+    text-decoration:none;
+    display:block;
+    padding:10px;
+    margin-bottom:5px;
+}
+
+.sidebar a:hover{
+    background:#005599;
+}
+
+.contenu{
+    margin-left:300px;
+    padding:30px;
+}
+
+.chapitre{
+    display:none;
+}
+
+.chapitre.active{
+    display:block;
+}
+
+.btn-exercice{
+    background:#28a745;
+    color:white;
+    padding:12px 20px;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.btn-exercice:hover{
+    background:#218838;
+}
+</style>
+
+</head>
+
+<body>
+<nav class="sidebar">
+
+    <h2>Algorithmique</h2>
+
+    <ul>
+
+        <li><a href="#" onclick="afficherSection('intro')">Introduction</a></li>
+        <li><a href="#" onclick="afficherSection('chap1')">1. Algorithmes du quotidien</a></li>
+        <li><a href="#" onclick="afficherSection('chap2')">2. Le lien avec l'informatique</a></li>
+        <li><a href="#" onclick="afficherSection('chap3')">3. Définition d'un algorithme</a></li>
+        <li><a href="#" onclick="afficherSection('chap4')">4. Organigrammes et pseudocode</a></li>
+        <li><a href="#" onclick="afficherSection('chap5')">5. Variables et affectation</a></li>
+        <li><a href="#" onclick="afficherSection('chap6')">6. Opérations arithmétiques</a></li>
+        <li><a href="#" onclick="afficherSection('chap7')">7. Conditions</a></li>
+        <li><a href="#" onclick="afficherSection('chap8')">8. Boucles</a></li>
+        <li><a href="#" onclick="afficherSection('chap9')">9. Les tableaux</a></li>
+        <li><a href="#" onclick="afficherSection('chap10')">10. Sous-algorithmes, procédures et fonctions</a></li>
+        <li><a href="#" onclick="afficherSection('chap11')">11. Les enregistrements, structures de données composées</a></li>
+        <li><a href="#" onclick="afficherSection('chap12')">12. Méthode de résolution</a></li>
+         <li><a href="#" onclick="afficherSection('chap13')">13. Les fichiers</a></li>
+        <li><a href="#" onclick="afficherSection('chap14')">14. Complexité</a></li>
+        
+    </ul>
+
+</nav>
+
+<div class="main-content">
+
+    <div style="text-align:center; margin-bottom:15px;">
+            <img src="images/logo_AIDEV.png" alt="AI&Dev Academy" style="max-width:120px;">
+            <h1>Guide de Cours : Introduction à l'Algorithmique</h1>
+    </div>
+
+    <div class="contenu">
+    <section id="intro" class="chapitre">
+    <h2 id="intro">Introduction</h2>
+  
+<p>
+Lorsque nous entendons le mot <strong>informatique</strong>, nous pensons souvent aux ordinateurs, aux logiciels, aux applications mobiles ou encore à Internet. Pourtant, avant de pouvoir créer un programme informatique, il faut d'abord apprendre à organiser sa pensée et à décrire précisément les étapes nécessaires à la résolution d'un problème. C'est précisément le rôle de l'<strong>algorithmique</strong>.
+</p>
+
+<p>
+L'algorithmique constitue l'un des fondements de l'informatique. Elle permet de concevoir des solutions logiques et structurées à des problèmes de toute nature. Avant d'écrire un programme dans un langage comme Python, PHP, Java ou C#, il est indispensable de définir clairement les actions que l'ordinateur devra exécuter. Cette description préalable prend la forme d'un algorithme.
+</p>
+
+<h3>Origine du mot « algorithme »</h3>
+
+<p>
+Le mot <strong>algorithme</strong> possède une origine historique particulièrement intéressante. Il provient du nom du mathématicien et savant persan <strong>Abu Ja'far Muhammad ibn Musa al-Khwarizmi</strong>, qui vécut aux VIII<sup>e</sup> et IX<sup>e</sup> siècles.
+</p>
+
+<p>
+Al-Khwarizmi est considéré comme l'un des pères des mathématiques modernes. Ses travaux ont largement contribué à la diffusion des chiffres indo-arabes ainsi qu'au développement des méthodes de calcul. Lors de la traduction de ses ouvrages en latin au Moyen Âge, son nom fut latinisé sous la forme <em>Algoritmi</em>. Au fil du temps, ce terme a évolué pour donner naissance au mot « algorithme » que nous utilisons aujourd'hui.
+</p>
+
+<p>
+Il est intéressant de noter que le mot <strong>algèbre</strong> trouve également son origine dans le titre de l'un de ses ouvrages. Ainsi, deux termes fondamentaux des mathématiques et de l'informatique modernes trouvent leurs racines dans les travaux d'Al-Khwarizmi.
+</p>
+
+<h3>Les algorithmes sont partout autour de nous</h3>
+
+<p>
+Contrairement à ce que l'on pourrait penser, les algorithmes ne sont pas apparus avec les ordinateurs. Les êtres humains utilisent des algorithmes depuis des milliers d'années, souvent sans s'en rendre compte.
+</p>
+
+<p>
+Chaque fois que nous suivons une suite d'étapes pour atteindre un objectif, nous exécutons un algorithme :
+</p>
+
+<ul>
+<li>Suivre une recette de cuisine ;</li>
+<li>Monter un meuble en suivant une notice ;</li>
+<li>Se préparer le matin avant de partir au travail ou à l'école ;</li>
+<li>Effectuer un calcul mathématique ;</li>
+<li>Suivre un itinéraire pour se rendre à une destination.</li>
+</ul>
+
+<p>
+Dans chacun de ces exemples, les actions doivent être réalisées dans un certain ordre afin d'obtenir le résultat souhaité. Si l'on modifie cet ordre ou si l'on oublie une étape importante, le résultat risque d'être incorrect.
+</p>
+
+<h3>Pourquoi apprendre l'algorithmique ?</h3>
+
+<p>
+L'apprentissage de l'algorithmique présente de nombreux avantages :
+</p>
+
+<ul>
+<li>Développer la logique et le raisonnement ;</li>
+<li>Apprendre à décomposer un problème complexe en problèmes plus simples ;</li>
+<li>Concevoir des solutions efficaces et structurées ;</li>
+<li>Faciliter l'apprentissage de n'importe quel langage de programmation ;</li>
+<li>Acquérir une méthode de travail rigoureuse applicable dans de nombreux domaines.</li>
+</ul>
+
+<p>
+L'algorithmique est souvent comparée à l'élaboration d'un plan avant la construction d'une maison. Le programme informatique représente la maison construite, tandis que l'algorithme constitue le plan détaillé qui guide sa réalisation.
+</p>
+
+<h3>Objectifs de ce cours</h3>
+
+<p>
+À l'issue de ce module, vous serez capable de :
+</p>
+
+<ul>
+<li>Comprendre ce qu'est un algorithme ;</li>
+<li>Identifier les algorithmes présents dans la vie quotidienne ;</li>
+<li>Lire et écrire des algorithmes simples ;</li>
+<li>Utiliser le pseudocode pour représenter une solution ;</li>
+<li>Manipuler les notions de variables, conditions et boucles ;</li>
+<li>Résoudre des problèmes simples grâce à une démarche algorithmique.</li>
+</ul>
+
+<p>
+Aucune connaissance préalable en programmation n'est nécessaire pour suivre ce cours. Nous progresserons étape par étape, en partant d'exemples concrets de la vie quotidienne pour arriver progressivement aux concepts utilisés en informatique.
+</p>
+
+
+    </section>
+
+    <section id="chap1" class="chapitre">
+    <h2 id="chap1">Chapitre 1. Les algorithmes dans la vie quotidienne</h2>
+    <p>
+    Sans le savoir, nous utilisons des algorithmes tous les jours.
+    Chaque fois que nous suivons une série d'étapes pour accomplir une tâche,
+    nous appliquons un algorithme.
+    </p>
+
+    <h3>Exemple 1 : Préparer un café</h3>
+
+    <ol>
+        <li>Prendre une tasse.</li>
+        <li>Faire chauffer de l'eau.</li>
+        <li>Mettre du café dans la tasse.</li>
+        <li>Verser l'eau chaude.</li>
+        <li>Ajouter du sucre si nécessaire.</li>
+        <li>Mélanger.</li>
+        <li>Boire.</li>
+    </ol>
+
+    <p>
+    Cette suite d'étapes constitue un algorithme.
+    Si l'on oublie une étape importante, le résultat risque d'être incorrect.
+    </p>
+
+    <h3>Exemple 2 : Se préparer pour aller au travail</h3>
+
+    <ol>
+        <li>Se réveiller.</li>
+        <li>Se lever.</li>
+        <li>Prendre une douche.</li>
+        <li>S'habiller.</li>
+        <li>Prendre le petit-déjeuner.</li>
+        <li>Sortir de la maison.</li>
+        <li>Prendre le bus.</li>
+        <li>Arriver au travail.</li>
+    </ol>
+
+    <p>
+    Là encore, il s'agit d'un algorithme : une succession d'actions réalisées
+    dans un ordre précis.
+    </p>
+
+    <h3>Que se passe-t-il si l'ordre change ?</h3>
+
+    <p>
+    Imaginez l'algorithme suivant :
+    </p>
+    <ol>
+        <li>Prendre le bus.</li>
+        <li>Sortir de la maison.</li>
+    </ol>
+
+    <p>
+    Cela n'a aucun sens !
+    L'ordre des actions est donc très important.
+    </p>
+<div class="exercice">
+
+    <h3>Exercice pratique</h3>
+
+    <p>
+        Nous avons étudié plusieurs algorithmes de la vie quotidienne. À votre tour maintenant ! </p>
+
+    <p>
+        Recherchez deux autres exemples d'algorithmes utilisés dans votre vie quotidienne.
+        Pour chacun d'eux :
+    </p>
+
+    <ul>
+        <li>Donnez un titre.</li>
+        <li>Décrivez les étapes dans l'ordre.</li>
+        <li>Vérifiez que le résultat obtenu correspond bien à l'objectif recherché.</li>
+    </ul>
+
+    <p>
+        Cliquez sur le bouton ci-dessous pour soumettre votre travail.
+    </p>
+
+    <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScwVBWQ3PTuR1_Xdo3VpsQttOOMplKS4VBs4zcXm7aASChavQ/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+
+</div>
+
+
+    </section>
+
+    <section id="chap2" class="chapitre">
+        
+       <h2 id="chap2">Chapitre 2 : Le lien entre l'algorithmique et l'informatique</h2>
+
+<p>
+Dans le chapitre précédent, nous avons découvert que les algorithmes ne sont pas propres à l'informatique. Chaque jour, nous suivons des suites d'actions organisées pour atteindre un objectif : préparer un repas, se rendre à l'école, utiliser un distributeur automatique ou encore suivre une recette de cuisine.
+</p>
+
+<p>
+Mais alors, quel est le lien entre ces algorithmes du quotidien et l'informatique ?
+</p>
+
+<p>
+La réponse est simple : <strong>l'ordinateur fonctionne lui aussi en suivant des algorithmes</strong>. Contrairement à l'être humain, qui peut improviser ou interpréter certaines situations, l'ordinateur exécute uniquement les instructions qui lui sont données. Il ne réfléchit pas, ne devine pas et ne prend aucune initiative. Pour accomplir une tâche, il doit recevoir une série d'instructions précises et ordonnées.
+</p>
+
+<h3>2.1 L'ordinateur : un exécutant très obéissant</h3>
+
+<p>
+Imaginez que vous demandiez à un ami de préparer une tasse de café. Si vous oubliez de préciser certaines étapes, votre ami pourra probablement les deviner grâce à son expérience.
+</p>
+
+<p>
+Un ordinateur, en revanche, ne possède ni intuition ni bon sens. Si une instruction manque, il ne saura pas quoi faire.
+</p>
+
+<p>
+Par exemple, si l'on écrit simplement :
+</p>
+
+<pre>
+Préparer un café
+</pre>
+
+<p>
+L'être humain comprend immédiatement ce que cela signifie. Mais pour un ordinateur, cette instruction est beaucoup trop vague.
+</p>
+
+<p>
+Il faudrait plutôt détailler toutes les étapes :
+</p>
+
+<pre>
+1. Prendre une tasse.
+2. Faire chauffer l'eau.
+3. Mettre du café dans la tasse.
+4. Verser l'eau chaude.
+5. Mélanger.
+6. Servir.
+</pre>
+
+<p>
+L'ordinateur a besoin de cette précision pour pouvoir exécuter correctement la tâche.
+</p>
+
+<h3>2.2 Qu'est-ce qu'un programme informatique ?</h3>
+
+<p>
+Un <strong>programme informatique</strong> est un ensemble d'instructions écrites dans un langage de programmation et destinées à être exécutées par un ordinateur.
+</p>
+
+<p>
+Avant d'écrire un programme, le développeur doit réfléchir à la solution du problème. Cette réflexion conduit à la création d'un algorithme.
+</p>
+
+<p>
+On peut résumer le processus ainsi :
+</p>
+
+<pre>
+Problème
+   ↓
+Algorithme
+   ↓
+Programme
+   ↓
+Exécution par l'ordinateur
+</pre>
+
+<p>
+L'algorithme constitue donc le plan de construction du programme.
+</p>
+
+<h3>2.3 Une analogie : construire une maison</h3>
+
+<p>
+Pour construire une maison, il ne suffit pas d'acheter des briques et du ciment. Il faut d'abord élaborer un plan détaillé indiquant :
+</p>
+
+<ul>
+<li>La disposition des pièces ;</li>
+<li>L'emplacement des portes ;</li>
+<li>Les dimensions du bâtiment ;</li>
+<li>Les matériaux à utiliser.</li>
+</ul>
+
+<p>
+Une fois le plan terminé, les ouvriers peuvent commencer la construction.
+</p>
+
+<p>
+En informatique, l'algorithme joue le rôle du plan et le programme joue le rôle de la maison construite.
+</p>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Construction</th>
+<th>Informatique</th>
+</tr>
+<tr>
+<td>Plan</td>
+<td>Algorithme</td>
+</tr>
+<tr>
+<td>Construction</td>
+<td>Programmation</td>
+</tr>
+<tr>
+<td>Maison terminée</td>
+<td>Programme exécutable</td>
+</tr>
+</table>
+
+<h3>2.4 Pourquoi ne pas programmer directement ?</h3>
+
+<p>
+Les débutants sont souvent tentés d'écrire directement du code dans un langage comme Python ou PHP.
+</p>
+
+<p>
+Cette approche fonctionne parfois pour de petits exercices, mais devient rapidement problématique lorsque les programmes deviennent complexes.
+</p>
+
+<p>
+L'algorithmique permet :
+</p>
+
+<ul>
+<li>de mieux comprendre le problème à résoudre ;</li>
+<li>de détecter les erreurs avant la programmation ;</li>
+<li>de gagner du temps lors du développement ;</li>
+<li>de produire des programmes plus fiables ;</li>
+<li>de travailler indépendamment du langage de programmation choisi.</li>
+</ul>
+
+<h3>2.5 Un même algorithme, plusieurs langages</h3>
+
+<p>
+L'un des grands avantages de l'algorithmique est son indépendance vis-à-vis des langages de programmation.
+</p>
+
+<p>
+Prenons l'algorithme suivant :
+</p>
+
+<pre>
+Lire deux nombres
+Calculer leur somme
+Afficher le résultat
+</pre>
+
+<p>
+Cet algorithme pourra être programmé en Python, PHP, Java, C#, JavaScript ou tout autre langage.
+</p>
+
+<p>
+La logique reste la même ; seule l'écriture change.
+</p>
+
+<p>
+C'est pourquoi l'apprentissage de l'algorithmique est souvent considéré comme plus important que l'apprentissage d'un langage particulier.
+</p>
+
+<h3>2.6 Les domaines où les algorithmes sont utilisés</h3>
+
+<p>
+Les algorithmes sont présents dans pratiquement tous les domaines de l'informatique :
+</p>
+
+<ul>
+<li>Applications mobiles ;</li>
+<li>Sites web ;</li>
+<li>Jeux vidéo ;</li>
+<li>Intelligence artificielle ;</li>
+<li>Robotique ;</li>
+<li>Systèmes bancaires ;</li>
+<li>Réseaux sociaux ;</li>
+<li>Moteurs de recherche ;</li>
+<li>Systèmes embarqués.</li>
+</ul>
+
+<p>
+Chaque fois qu'un ordinateur doit prendre une décision, effectuer un calcul ou traiter une information, il exécute un ou plusieurs algorithmes.
+</p>
+
+<h3>2.7 Exemple concret : calculer la moyenne d'un étudiant</h3>
+
+<p>
+Supposons que nous souhaitions créer un programme permettant de calculer la moyenne de trois notes.
+</p>
+
+<p>
+Avant d'écrire le programme, nous concevons l'algorithme :
+</p>
+
+<pre>
+Début
+
+Lire note1
+Lire note2
+Lire note3
+
+moyenne ← (note1 + note2 + note3) / 3
+
+Afficher moyenne
+
+Fin
+</pre>
+
+<p>
+Cet algorithme pourra ensuite être traduit dans n'importe quel langage de programmation.
+</p>
+
+<h3>À retenir</h3>
+
+<ul>
+<li>L'ordinateur exécute des algorithmes.</li>
+<li>Il ne comprend que les instructions qui lui sont données.</li>
+<li>Un programme est la traduction d'un algorithme dans un langage de programmation.</li>
+<li>L'algorithme est le plan ; le programme est sa réalisation.</li>
+<li>Une bonne maîtrise de l'algorithmique facilite l'apprentissage de tous les langages informatiques.</li>
+</ul>
+
+<h3>Exercice de réflexion</h3>
+
+<p>
+Parmi les situations suivantes, lesquelles nécessitent selon vous l'utilisation d'un algorithme informatique ?
+</p>
+
+<ol>
+<li>Envoyer un message sur WhatsApp.</li>
+<li>Effectuer un retrait à un distributeur automatique bancaire.</li>
+<li>Rechercher une vidéo sur YouTube.</li>
+<li>Commander un repas en ligne.</li>
+</ol>
+
+<p>
+Pour chacune de ces situations, essayez d'imaginer quelques étapes que l'ordinateur doit exécuter pour accomplir la tâche demandée.
+</p>
+<textarea id="reponse" rows="10" style="width:100%;padding:10px;" placeholder="Écrivez ici vos réponses..."></textarea> <br><br>
+<button onclick="afficherCorrige()"> J'ai terminé mon exercice </button>
+
+    
+    </section>
+
+    <section id="correctionExoChap2" class="chapitre">
+        <h3>Correction de l'exercice de réflexion du chapitre 2</h3>
+<p> Bravo d'avoir tenté l'exercice ! Comparez maintenant vos réponses avec la proposition de correction. </p>
+<p>
+Les quatre situations proposées utilisent effectivement des algorithmes informatiques. Examinons chacune d'elles.
+</p>
+
+<hr>
+
+<h4>1. Envoyer un message sur WhatsApp</h4>
+
+<p>
+Lorsqu'un utilisateur envoie un message, l'application exécute de nombreux traitements automatiquement.
+</p>
+
+<p><strong>Exemple simplifié d'algorithme :</strong></p>
+
+<pre>
+Début
+
+Lire le message saisi
+Vérifier que le destinataire existe
+Envoyer le message au serveur
+Transmettre le message au destinataire
+Afficher "Message envoyé"
+
+Fin
+</pre>
+
+<p>
+En réalité, WhatsApp effectue également des opérations de chiffrement, de vérification de connexion et de stockage du message.
+</p>
+
+<hr>
+
+<h4>2. Effectuer un retrait à un distributeur automatique bancaire</h4>
+
+<p>
+Le distributeur suit une suite d'étapes très précise avant de remettre l'argent.
+</p>
+
+<p><strong>Exemple simplifié d'algorithme :</strong></p>
+
+<pre>
+Début
+
+Lire la carte bancaire
+Demander le code PIN
+Vérifier le code
+
+Si le code est correct Alors
+
+    Demander le montant
+    Vérifier le solde du compte
+
+    Si le solde est suffisant Alors
+        Distribuer les billets
+        Mettre à jour le solde
+    Sinon
+        Afficher "Solde insuffisant"
+    FinSi
+
+Sinon
+    Afficher "Code incorrect"
+FinSi
+
+Fin
+</pre>
+
+<hr>
+
+<h4>3. Rechercher une vidéo sur YouTube</h4>
+
+<p>
+Lorsqu'un utilisateur effectue une recherche, YouTube utilise des algorithmes très sophistiqués pour retrouver les vidéos les plus pertinentes.
+</p>
+
+<p><strong>Exemple simplifié d'algorithme :</strong></p>
+
+<pre>
+Début
+
+Lire les mots-clés saisis
+Rechercher les vidéos correspondantes
+Classer les résultats
+Afficher la liste des vidéos
+
+Fin
+</pre>
+
+<p>
+En pratique, YouTube tient également compte de la popularité des vidéos, des préférences de l'utilisateur et de nombreux autres critères.
+</p>
+
+<hr>
+
+<h4>4. Commander un repas en ligne</h4>
+
+<p>
+Une application de livraison suit plusieurs étapes pour traiter une commande.
+</p>
+
+<p><strong>Exemple simplifié d'algorithme :</strong></p>
+
+<pre>
+Début
+
+Choisir un restaurant
+Choisir les plats
+Calculer le montant total
+Effectuer le paiement
+Transmettre la commande au restaurant
+Préparer la livraison
+Informer le client
+
+Fin
+</pre>
+
+<hr>
+
+<h3>Conclusion</h3>
+
+<p>
+Ces exemples montrent que les algorithmes sont présents partout dans notre quotidien numérique.
+Chaque fois qu'une application réalise une tâche, elle suit une suite d'instructions soigneusement définies par des développeurs.
+</p>
+
+<p>
+L'objectif de l'algorithmique est justement d'apprendre à concevoir ces suites d'instructions avant de les traduire dans un langage de programmation.
+</p>
+
+<div style="background:#eef7ff;padding:15px;border-left:5px solid #006699;margin-top:20px;">
+
+<strong>À retenir :</strong>
+
+<ul>
+<li>Les applications informatiques reposent sur des algorithmes.</li>
+<li>Un même problème peut être résolu par différents algorithmes.</li>
+<li>Plus un algorithme est bien conçu, plus le programme sera efficace.</li>
+<li>L'algorithmique est la première étape avant la programmation.</li>
+</ul>
+
+</div>
+</section>
+
+<section id="chap3" class="chapitre">
+        <h2 id="chap3">Chapitre 3 : Définition d'un algorithme</h2>
+
+<p>
+Après avoir découvert que les algorithmes sont présents dans notre vie quotidienne et qu'ils jouent un rôle fondamental en informatique, nous allons maintenant donner une définition plus précise de ce qu'est un algorithme.
+</p>
+
+<p>
+L'algorithmique constitue le cœur de la résolution des problèmes informatiques. Avant qu'un ordinateur puisse exécuter une tâche, il est nécessaire de définir clairement les actions à réaliser. Cette suite d'actions constitue un algorithme.
+</p>
+
+<hr>
+
+<h3>3.1 Définition</h3>
+
+<p>
+Un <strong>algorithme</strong> est une suite finie, ordonnée et non ambiguë d'instructions permettant de résoudre un problème ou d'atteindre un objectif.
+</p>
+
+<p>
+Cette définition contient plusieurs mots importants :
+</p>
+
+<ul>
+<li><strong>Suite</strong> : les instructions s'enchaînent les unes après les autres.</li>
+<li><strong>Finie</strong> : l'algorithme doit se terminer après un nombre limité d'étapes.</li>
+<li><strong>Ordonnée</strong> : les instructions doivent être exécutées dans un ordre précis.</li>
+<li><strong>Non ambiguë</strong> : chaque instruction doit être claire et ne laisser place à aucune interprétation.</li>
+</ul>
+
+<p>
+Un algorithme doit toujours conduire à un résultat attendu.
+</p>
+
+<hr>
+
+<h3>3.2 Exemple simple</h3>
+
+<p>
+Considérons l'objectif suivant :
+</p>
+
+<blockquote>
+Calculer la somme de deux nombres.
+</blockquote>
+
+<p>
+L'algorithme correspondant pourrait être :
+</p>
+
+<pre>
+Début
+
+Lire le premier nombre
+Lire le deuxième nombre
+Calculer leur somme
+Afficher le résultat
+
+Fin
+</pre>
+
+<p>
+Cet algorithme est simple, mais il respecte déjà les caractéristiques fondamentales d'un algorithme :
+</p>
+
+<ul>
+<li>les étapes sont clairement définies ;</li>
+<li>elles sont exécutées dans un ordre précis ;</li>
+<li>un résultat est obtenu à la fin.</li>
+</ul>
+
+<hr>
+
+<h3>3.3 Les caractéristiques d'un bon algorithme</h3>
+
+<p>
+Tous les algorithmes ne se valent pas. Un bon algorithme doit posséder certaines qualités.
+</p>
+
+<h4>1. La précision</h4>
+
+<p>
+Les instructions doivent être parfaitement claires.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<pre>
+Faire le calcul.
+</pre>
+
+<p>
+Cette instruction est trop vague.
+</p>
+
+<p>
+Il vaut mieux écrire :
+</p>
+
+<pre>
+Additionner le nombre A et le nombre B.
+</pre>
+
+<h4>2. La simplicité</h4>
+
+<p>
+Un algorithme doit être aussi simple que possible afin d'être facilement compris et maintenu.
+</p>
+
+<h4>3. L'efficacité</h4>
+
+<p>
+Il doit résoudre le problème avec un minimum de ressources et dans un temps raisonnable.
+</p>
+
+<h4>4. La terminaison</h4>
+
+<p>
+Un algorithme doit toujours finir son exécution.
+</p>
+
+<p>
+Un algorithme qui tourne indéfiniment sans produire de résultat n'est généralement pas acceptable.
+</p>
+
+<hr>
+
+<h3>3.4 Les éléments d'un algorithme</h3>
+
+<p>
+La plupart des algorithmes manipulent trois types d'éléments :
+</p>
+
+<h4>Les données d'entrée</h4>
+
+<p>
+Ce sont les informations fournies à l'algorithme.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<ul>
+<li>une note d'examen ;</li>
+<li>un âge ;</li>
+<li>un nom ;</li>
+<li>deux nombres à additionner.</li>
+</ul>
+
+<h4>Le traitement</h4>
+
+<p>
+Il s'agit des opérations effectuées sur les données.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<ul>
+<li>additionner ;</li>
+<li>multiplier ;</li>
+<li>comparer ;</li>
+<li>trier ;</li>
+<li>compter.</li>
+</ul>
+
+<h4>Les données de sortie</h4>
+
+<p>
+Ce sont les résultats produits par l'algorithme.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<ul>
+<li>une moyenne ;</li>
+<li>une décision (admis ou non) ;</li>
+<li>un montant ;</li>
+<li>une liste triée.</li>
+</ul>
+
+<hr>
+
+<h3>3.5 Schéma général d'un algorithme</h3>
+
+<p>
+La plupart des algorithmes suivent le modèle suivant :
+</p>
+
+<pre>
+Entrées
+   ↓
+Traitements
+   ↓
+Sorties
+</pre>
+
+<p>
+Prenons un exemple :
+</p>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Entrée</th>
+<th>Traitement</th>
+<th>Sortie</th>
+</tr>
+
+<tr>
+<td>Deux nombres</td>
+<td>Calcul de la somme</td>
+<td>Résultat de l'addition</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>3.6 Exemple complet</h3>
+
+<p>
+Problème :
+Calculer l'aire d'un rectangle.
+</p>
+
+<p>
+Données d'entrée :
+</p>
+
+<ul>
+<li>Longueur</li>
+<li>Largeur</li>
+</ul>
+
+<p>
+Traitement :
+</p>
+
+<pre>
+Aire = Longueur × Largeur
+</pre>
+
+<p>
+Donnée de sortie :
+</p>
+
+<ul>
+<li>L'aire du rectangle</li>
+</ul>
+
+<p>
+Algorithme :
+</p>
+
+<pre>
+Début
+
+Lire longueur
+Lire largeur
+
+aire ← longueur × largeur
+
+Afficher aire
+
+Fin
+</pre>
+
+<hr>
+
+<h3>3.7 Erreurs fréquentes chez les débutants</h3>
+
+<h4>Erreur n°1 : oublier des étapes</h4>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Lire deux nombres
+Afficher le résultat
+</pre>
+
+<p>
+Quel résultat ?
+L'étape de calcul manque.
+</p>
+
+<h4>Erreur n°2 : changer l'ordre des instructions</h4>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Afficher la somme
+Calculer la somme
+</pre>
+
+<p>
+Le résultat ne peut pas être affiché avant d'avoir été calculé.
+</p>
+
+<h4>Erreur n°3 : utiliser des instructions ambiguës</h4>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Faire quelque chose avec le nombre.
+</pre>
+
+<p>
+Cette instruction est incompréhensible pour l'ordinateur.
+</p>
+
+<hr>
+
+<h3>3.8 Algorithmes et programmation</h3>
+
+<p>
+Il est important de distinguer l'algorithme du programme.
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Algorithme</th>
+<th>Programme</th>
+</tr>
+
+<tr>
+<td>Description de la solution</td>
+<td>Implémentation de la solution</td>
+</tr>
+
+<tr>
+<td>Indépendant du langage</td>
+<td>Écrit dans un langage précis</td>
+</tr>
+
+<tr>
+<td>Compréhensible par l'humain</td>
+<td>Compréhensible par l'ordinateur</td>
+</tr>
+
+</table>
+
+<p>
+Ainsi, un même algorithme peut être programmé en Python, PHP, Java, C# ou JavaScript.
+</p>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+<li>Un algorithme est une suite finie et ordonnée d'instructions.</li>
+<li>Il doit être précis, clair et sans ambiguïté.</li>
+<li>Il comporte généralement des entrées, des traitements et des sorties.</li>
+<li>L'ordre des instructions est essentiel.</li>
+<li>Un algorithme n'est pas un programme mais le plan qui permettra de créer ce programme.</li>
+</ul>
+
+<hr>
+
+<div class="exercice">
+<h3>Exercice d'application nr1</h3>
+
+<p>
+Pour calculer la moyenne de trois notes, identifiez :
+</p>
+
+<ul>
+<li>les données d'entrée ;</li>
+<li>le traitement à effectuer ;</li>
+<li>les données de sortie.</li>
+</ul>
+
+    <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSesysP0qbG7T4V0ASS2acdZshz6a_XwwF6CMUaAYoO5DIlLZQ/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a></p>
+
+<h3>Exercice d'application nr2</h3>
+
+<p>
+Pour déterminer si un nombre est pair ou impair, identifiez :
+</p>
+
+<ul>
+<li>les données d'entrée ;</li>
+<li>le traitement à effectuer ;</li>
+<li>les données de sortie.</li>
+</ul>
+
+    <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSesysP0qbG7T4V0ASS2acdZshz6a_XwwF6CMUaAYoO5DIlLZQ/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a></p>
+
+<h3>Exercice d'application nr3</h3>
+
+<p>
+Pour calculer le périmètre d'un rectangle, identifiez :
+</p>
+
+<ul>
+<li>les données d'entrée ;</li>
+<li>le traitement à effectuer ;</li>
+<li>les données de sortie.</li>
+</ul>
+
+    <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSesysP0qbG7T4V0ASS2acdZshz6a_XwwF6CMUaAYoO5DIlLZQ/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a></p>
+
+<h3>Exercice d'application nr4</h3>
+
+<p>
+Pour déterminer si un nombre est pair ou impair, identifiez :
+</p>
+
+<ul>
+<li>les données d'entrée ;</li>
+<li>le traitement à effectuer ;</li>
+<li>les données de sortie.</li>
+</ul>
+
+
+    <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSesysP0qbG7T4V0ASS2acdZshz6a_XwwF6CMUaAYoO5DIlLZQ/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a></p>
+
+<h3>Exercice d'application nr5</h3>
+
+<p>
+Pour calculer le prix total de plusieurs articles, identifiez :
+</p>
+
+<ul>
+<li>les données d'entrée ;</li>
+<li>le traitement à effectuer ;</li>
+<li>les données de sortie.</li>
+</ul>
+
+   <p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSesysP0qbG7T4V0ASS2acdZshz6a_XwwF6CMUaAYoO5DIlLZQ/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a></p>
+</div>
+<!--/div>
+</div-->
+
+
+    </section>
+
+    <section id="chap4" class="chapitre">
+        <h2 id="chap4">Chapitre 4 : Les moyens de représenter un algorithme : Organigrammes et Pseudocode</h2>
+
+<p>
+Maintenant que nous savons ce qu'est un algorithme, une question se pose naturellement :
+</p>
+
+<blockquote>
+Comment écrire un algorithme de manière claire et compréhensible ?
+</blockquote>
+
+<p>
+En effet, lorsqu'un problème devient complexe, il devient difficile de décrire sa solution uniquement avec des phrases. Les informaticiens ont donc développé plusieurs méthodes permettant de représenter un algorithme de façon structurée.
+</p>
+
+<p>
+Les deux représentations les plus utilisées sont :
+</p>
+
+<ul>
+<li><strong>L'organigramme</strong> (représentation graphique)</li>
+<li><strong>Le pseudocode</strong> (représentation textuelle)</li>
+</ul>
+
+<p>
+Ces deux outils poursuivent le même objectif : décrire précisément les étapes d'un algorithme avant sa programmation.
+</p>
+
+<hr>
+
+<h3>4.1 Pourquoi représenter un algorithme ?</h3>
+
+<p>
+Imaginez que vous deviez développer un logiciel de gestion scolaire contenant plusieurs milliers de lignes de code.
+</p>
+
+<p>
+Commencer directement à programmer sans plan serait comparable à construire une maison sans plans d'architecte.
+</p>
+
+<p>
+La représentation d'un algorithme permet :
+</p>
+
+<ul>
+<li>de mieux comprendre le problème ;</li>
+<li>de communiquer la solution à d'autres personnes ;</li>
+<li>de détecter les erreurs avant la programmation ;</li>
+<li>de faciliter la maintenance future ;</li>
+<li>de rendre la solution indépendante du langage de programmation.</li>
+</ul>
+
+<hr>
+
+<h2>Partie I : L'Organigramme</h2>
+
+<h3>4.2 Définition</h3>
+
+<p>
+Un <strong>organigramme</strong> est une représentation graphique d'un algorithme.
+</p>
+
+<p>
+Il utilise des symboles normalisés reliés entre eux par des flèches indiquant l'ordre d'exécution des opérations.
+</p>
+
+<p>
+L'organigramme permet de visualiser rapidement le déroulement d'un traitement.
+</p>
+
+<hr>
+
+<h3>4.3 Les principaux symboles</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Symbole</th>
+<th>Nom</th>
+<th>Utilisation</th>
+</tr>
+
+<tr>
+<td>Ovale</td>
+<td>Début / Fin</td>
+<td>Marque le commencement ou la fin de l'algorithme</td>
+</tr>
+
+<tr>
+<td>Rectangle</td>
+<td>Traitement</td>
+<td>Exécuter une opération</td>
+</tr>
+
+<tr>
+<td>Parallélogramme</td>
+<td>Entrée / Sortie</td>
+<td>Lire ou afficher des données</td>
+</tr>
+
+<tr>
+<td>Losange</td>
+<td>Test</td>
+<td>Prendre une décision</td>
+</tr>
+
+<tr>
+<td>Flèche</td>
+<td>Flux</td>
+<td>Indique le sens d'exécution</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>4.4 Exemple d'organigramme</h3>
+
+<p>
+Problème : Afficher un message de bienvenue.
+</p>
+
+<p>
+L'organigramme correspondant serait :
+</p>
+
+<pre>
+     Début
+        |
+        v
+Afficher "Bienvenue"
+        |
+        v
+       Fin
+</pre>
+
+<p>
+Même si cet exemple est simple, il montre déjà la logique de représentation graphique.
+</p>
+
+<hr>
+
+<h3>4.5 Exemple avec une condition</h3>
+
+<p>
+Problème :
+Déterminer si un étudiant est admis.
+</p>
+
+<p>
+Règle :
+</p>
+
+<ul>
+<li>Si la note est supérieure ou égale à 10 : Admis.</li>
+<li>Sinon : Ajourné.</li>
+</ul>
+
+<p>
+L'organigramme simplifié :
+</p>
+
+<pre>
+
+      Début
+         |
+         v
+     Lire note
+         |
+         v
+    Note >= 10 ?
+      /      \
+    Oui      Non
+     |         |
+     v         v
+ Afficher   Afficher
+  "Admis"   "Ajourné"
+      \      /
+        \  /
+         v
+        Fin
+
+</pre>
+
+<hr>
+
+<h3>4.6 Avantages et limites des organigrammes</h3>
+
+<h4>Avantages</h4>
+
+<ul>
+<li>Très visuels.</li>
+<li>Faciles à comprendre.</li>
+<li>Idéaux pour les petits algorithmes.</li>
+<li>Facilitent les explications.</li>
+</ul>
+
+<h4>Limites</h4>
+
+<ul>
+<li>Deviennent difficiles à lire lorsqu'ils sont volumineux.</li>
+<li>Prennent beaucoup de place.</li>
+<li>Sont plus longs à dessiner.</li>
+</ul>
+
+<p>
+C'est pourquoi les développeurs utilisent aujourd'hui davantage le pseudocode.
+</p>
+
+<hr>
+
+<h2>Partie II : Le Pseudocode</h2>
+
+<h3>4.7 Définition</h3>
+
+<p>
+Le <strong>pseudocode</strong> est une représentation textuelle d'un algorithme.
+</p>
+
+<p>
+Il utilise un langage simplifié, proche du langage naturel, tout en respectant une structure rigoureuse.
+</p>
+
+<p>
+Le pseudocode n'est pas un langage de programmation.
+</p>
+
+<p>
+Il sert uniquement à décrire la logique de résolution d'un problème.
+</p>
+
+<hr>
+
+<h3>4.8 Pourquoi privilégier le pseudocode ?</h3>
+
+<p>
+Dans la pratique professionnelle, le pseudocode est souvent préféré aux organigrammes car il :
+</p>
+
+<ul>
+<li>est rapide à écrire ;</li>
+<li>reste lisible même pour de grands algorithmes ;</li>
+<li>se rapproche des langages de programmation ;</li>
+<li>facilite la traduction vers Python, PHP ou Java.</li>
+</ul>
+
+<p>
+C'est pourquoi nous mettrons particulièrement l'accent sur le pseudocode dans ce cours.
+</p>
+
+<hr>
+
+<h3>4.9 Structure générale d'un pseudocode</h3>
+
+<pre>
+Début
+
+    Instructions
+
+Fin
+</pre>
+
+<p>
+Tout algorithme possède un point de départ et un point d'arrivée.
+</p>
+
+<hr>
+
+<h3>4.10 Exemple : afficher un message</h3>
+
+<pre>
+Début
+
+Afficher "Bonjour"
+
+Fin
+</pre>
+
+<hr>
+
+<h3>4.11 Exemple : additionner deux nombres</h3>
+
+<pre>
+Début
+
+Lire nombre1
+Lire nombre2
+
+somme ← nombre1 + nombre2
+
+Afficher somme
+
+Fin
+</pre>
+
+<p>
+Cet algorithme suit le modèle :
+</p>
+
+<pre>
+Entrées
+    ↓
+Traitement
+    ↓
+Sortie
+</pre>
+
+<hr>
+
+<h3>4.12 Les mots-clés fréquemment utilisés</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Mot-clé</th>
+<th>Rôle</th>
+</tr>
+
+<tr>
+<td>Début</td>
+<td>Commencement de l'algorithme</td>
+</tr>
+
+<tr>
+<td>Fin</td>
+<td>Fin de l'algorithme</td>
+</tr>
+
+<tr>
+<td>Lire</td>
+<td>Saisir une donnée</td>
+</tr>
+
+<tr>
+<td>Afficher</td>
+<td>Montrer un résultat</td>
+</tr>
+
+<tr>
+<td>Si</td>
+<td>Début d'une condition</td>
+</tr>
+
+<tr>
+<td>Sinon</td>
+<td>Cas alternatif</td>
+</tr>
+
+<tr>
+<td>FinSi</td>
+<td>Fin d'une condition</td>
+</tr>
+
+<tr>
+<td>Pour</td>
+<td>Boucle de répétition</td>
+</tr>
+
+<tr>
+<td>FinPour</td>
+<td>Fin d'une boucle</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>4.13 Exemple complet</h3>
+
+<p>
+Problème :
+Calculer la moyenne de trois notes.
+</p>
+
+<pre>
+Début
+
+Lire note1
+Lire note2
+Lire note3
+
+moyenne ← (note1 + note2 + note3) / 3
+
+Afficher moyenne
+
+Fin
+</pre>
+
+<hr>
+
+<h3>4.14 Comparaison entre organigramme et pseudocode</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Critère</th>
+<th>Organigramme</th>
+<th>Pseudocode</th>
+</tr>
+
+<tr>
+<td>Présentation</td>
+<td>Graphique</td>
+<td>Textuelle</td>
+</tr>
+
+<tr>
+<td>Lisibilité</td>
+<td>Bonne pour les petits algorithmes</td>
+<td>Bonne pour tous les algorithmes</td>
+</tr>
+
+<tr>
+<td>Rapidité d'écriture</td>
+<td>Faible</td>
+<td>Élevée</td>
+</tr>
+
+<tr>
+<td>Utilisation professionnelle</td>
+<td>Limitée</td>
+<td>Très fréquente</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Un algorithme peut être représenté sous forme graphique ou textuelle.</li>
+
+<li>L'organigramme utilise des symboles normalisés reliés par des flèches.</li>
+
+<li>Le pseudocode est une représentation textuelle proche du langage naturel.</li>
+
+<li>Le pseudocode est aujourd'hui la méthode la plus utilisée par les développeurs.</li>
+
+<li>Il permet de préparer facilement la programmation dans n'importe quel langage.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 1</h4>
+<p>Écrire en pseudocode un algorithme permettant d'afficher votre nom. </p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 2</h4>
+
+<p>Écrire en pseudocode un algorithme demandant l'âge d'une personne puis affichant cet âge.</p>
+ <p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+
+
+
+<h4>TD 3</h4>
+
+<p>
+Écrire en pseudocode un algorithme calculant le produit de deux nombres.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Pour chacune des situations suivantes :
+</p>
+
+<ol>
+
+<li>Préparer une tasse de thé.</li>
+
+<li>Calculer le périmètre d'un rectangle.</li>
+
+<li>Retirer de l'argent à un distributeur automatique.</li>
+
+</ol>
+
+<p>
+Réalisez :
+</p>
+
+<ul>
+
+<li>un organigramme simplifié ;</li>
+
+<li>un pseudocode correspondant.</li>
+
+</ul>
+
+<p>
+Comparez ensuite les deux représentations et indiquez laquelle vous semble la plus facile à utiliser.
+</p>
+
+    </section>
+
+    <section id="chap5" class="chapitre">
+    
+   <h2 id="chap5">Chapitre 5 : Les variables, les constantes, les types de données et l'affectation</h2>
+
+<p>
+Dans les chapitres précédents, nous avons appris ce qu'est un algorithme et comment le représenter à l'aide d'un pseudocode ou d'un organigramme.
+</p>
+
+<p>
+Cependant, pour résoudre un problème, un algorithme doit généralement manipuler des informations : des nombres, des noms, des dates, des notes d'examen, des montants, etc.
+</p>
+
+<p>
+Pour stocker et utiliser ces informations, nous avons besoin de <strong>variables</strong> et parfois de <strong>constantes</strong>.
+</p>
+
+<p>
+Ces notions sont fondamentales car elles sont présentes dans tous les langages de programmation.
+</p>
+
+<hr>
+
+<h3>5.1 Pourquoi stocker des informations ?</h3>
+
+<p>
+Imaginons que nous souhaitions calculer la moyenne d'un étudiant.
+</p>
+
+<p>
+Pour effectuer ce calcul, nous devons mémoriser plusieurs notes :
+</p>
+
+<ul>
+<li>Note de Mathématiques ;</li>
+<li>Note de Physique ;</li>
+<li>Note d'Informatique.</li>
+</ul>
+
+<p>
+L'algorithme doit donc disposer d'emplacements permettant de conserver ces valeurs pendant son exécution.
+</p>
+
+<p>
+Ces emplacements sont appelés <strong>variables</strong>.
+</p>
+
+<hr>
+
+<h3>5.2 Définition d'une variable</h3>
+
+<p>
+Une <strong>variable</strong> est une zone de mémoire utilisée pour stocker une donnée qui peut changer au cours de l'exécution d'un algorithme.
+</p>
+
+<p>
+Le terme « variable » vient du fait que sa valeur peut varier.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<pre>
+âge = 18
+</pre>
+
+<p>
+Plus tard dans le programme :
+</p>
+
+<pre>
+âge = 19
+</pre>
+
+<p>
+La valeur stockée a changé.
+</p>
+
+<hr>
+
+<h3>5.3 Une analogie simple</h3>
+
+<p>
+Imaginez une boîte portant une étiquette.
+</p>
+
+<p>
+L'étiquette représente le nom de la variable et le contenu de la boîte représente la valeur stockée.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<pre>
+Nom de la boîte : âge
+
+Contenu : 18
+</pre>
+
+<p>
+Nous pouvons retirer le contenu et le remplacer :
+</p>
+
+<pre>
+Nom de la boîte : âge
+
+Contenu : 19
+</pre>
+
+<p>
+Le nom reste le même, mais le contenu change.
+</p>
+
+<hr>
+
+<h3>5.4 Nommer correctement une variable</h3>
+
+<p>
+Le nom d'une variable doit être explicite afin de faciliter la compréhension de l'algorithme.
+</p>
+
+<p>
+Exemples recommandés :
+</p>
+
+<pre>
+nom
+prenom
+age
+salaire
+moyenne
+prixTotal
+</pre>
+
+<p>
+Exemples peu recommandés :
+</p>
+
+<pre>
+x
+y
+z
+a1
+abc
+</pre>
+
+<p>
+Un nom explicite rend l'algorithme plus facile à lire et à maintenir.
+</p>
+
+<hr>
+
+<h3>5.5 Déclaration d'une variable</h3>
+
+<p>
+Avant d'utiliser une variable, il est recommandé de la déclarer.
+</p>
+
+<p>
+La déclaration indique :
+</p>
+
+<ul>
+<li>son nom ;</li>
+<li>son type de donnée.</li>
+</ul>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Variables
+
+    nom : Chaîne
+    age : Entier
+    moyenne : Réel
+</pre>
+
+<hr>
+
+<h3>5.6 Les principaux types de données</h3>
+
+<p>
+Les données manipulées par un algorithme peuvent être de différentes natures.
+</p>
+
+<h4>1. Le type Entier</h4>
+
+<p>
+Il représente les nombres sans partie décimale.
+</p>
+
+<p>
+Exemples :
+</p>
+
+<pre>
+5
+18
+100
+2025
+</pre>
+
+<hr>
+
+<h4>2. Le type Réel</h4>
+
+<p>
+Il représente les nombres contenant une partie décimale.
+</p>
+
+<p>
+Exemples :
+</p>
+
+<pre>
+12.5
+3.14
+18.75
+</pre>
+
+<hr>
+
+<h4>3. Le type Chaîne de caractères</h4>
+
+<p>
+Il représente du texte.
+</p>
+
+<p>
+Exemples :
+</p>
+
+<pre>
+"Jean"
+"Madagascar"
+"Informatique"
+</pre>
+
+<hr>
+
+<h4>4. Le type Booléen</h4>
+
+<p>
+Il représente une valeur logique.
+</p>
+
+<p>
+Il ne peut prendre que deux valeurs :
+</p>
+
+<pre>
+Vrai
+Faux
+</pre>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+admis = Vrai
+</pre>
+
+<hr>
+
+<h3>5.7 Tableau récapitulatif</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Type</th>
+<th>Exemple</th>
+</tr>
+
+<tr>
+<td>Entier</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>Réel</td>
+<td>15.75</td>
+</tr>
+
+<tr>
+<td>Chaîne</td>
+<td>"Marie"</td>
+</tr>
+
+<tr>
+<td>Booléen</td>
+<td>Vrai</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>5.8 L'affectation</h3>
+
+<p>
+L'affectation consiste à attribuer une valeur à une variable.
+</p>
+
+<p>
+En algorithmique, on utilise généralement le symbole :
+</p>
+
+<pre>
+←
+</pre>
+
+<p>
+qui se lit :
+</p>
+
+<blockquote>
+« reçoit »
+</blockquote>
+
+<p>
+Exemples :
+</p>
+
+<pre>
+age ← 18
+
+nom ← "Paul"
+
+moyenne ← 14.5
+</pre>
+
+<p>
+L'affectation signifie que la valeur située à droite est placée dans la variable située à gauche.
+</p>
+
+<hr>
+
+<h3>5.9 Attention à ne pas confondre avec l'égalité</h3>
+
+<p>
+L'instruction suivante :
+</p>
+
+<pre>
+age ← 18
+</pre>
+
+<p>
+ne signifie pas :
+</p>
+
+<pre>
+age est égal à 18
+</pre>
+
+<p>
+mais :
+</p>
+
+<blockquote>
+La variable age reçoit la valeur 18.
+</blockquote>
+
+<p>
+Cette distinction est très importante en algorithmique et en programmation.
+</p>
+
+<hr>
+
+<h3>5.10 Lecture de données</h3>
+
+<p>
+Souvent, la valeur d'une variable est fournie par l'utilisateur.
+</p>
+
+<p>
+On utilise alors l'instruction :
+</p>
+
+<pre>
+Lire
+</pre>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Lire age
+</pre>
+
+<p>
+L'algorithme attend que l'utilisateur saisisse une valeur.
+</p>
+
+<hr>
+
+<h3>5.11 Affichage de données</h3>
+
+<p>
+Pour afficher une information à l'écran, on utilise :
+</p>
+
+<pre>
+Afficher
+</pre>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Afficher age
+</pre>
+
+<p>
+La valeur contenue dans la variable est alors affichée.
+</p>
+
+<hr>
+
+<h3>5.12 Exemple complet</h3>
+
+<p>
+Problème :
+Demander le nom et l'âge d'une personne puis les afficher.
+</p>
+
+<pre>
+Variables
+
+    nom : Chaîne
+    age : Entier
+
+Début
+
+    Lire nom
+    Lire age
+
+    Afficher "Nom :", nom
+    Afficher "Âge :", age
+
+Fin
+</pre>
+
+<hr>
+
+<h3>5.13 Exemple : calcul de l'aire d'un rectangle</h3>
+
+<pre>
+Variables
+
+    longueur : Réel
+    largeur : Réel
+    aire : Réel
+
+Début
+
+    Lire longueur
+    Lire largeur
+
+    aire ← longueur * largeur
+
+    Afficher aire
+
+Fin
+</pre>
+
+<p>
+Dans cet exemple :
+</p>
+
+<ul>
+<li>longueur et largeur sont les données d'entrée ;</li>
+<li>aire est le résultat calculé ;</li>
+<li>l'affectation permet de stocker le résultat du calcul.</li>
+</ul>
+
+<hr>
+
+<h3>5.14 Erreurs fréquentes chez les débutants</h3>
+
+<h4>Erreur n°1 : utiliser une variable non déclarée</h4>
+
+<pre>
+Afficher moyenne
+</pre>
+
+<p>
+alors que moyenne n'a jamais été définie.
+</p>
+
+<hr>
+
+<h4>Erreur n°2 : oublier de lire une valeur</h4>
+
+<pre>
+somme ← nombre1 + nombre2
+</pre>
+
+<p>
+sans avoir demandé les valeurs de nombre1 et nombre2.
+</p>
+
+<hr>
+
+<h4>Erreur n°3 : confondre texte et nombre</h4>
+
+<p>
+Par exemple :
+</p>
+
+<pre>
+age ← "18"
+</pre>
+
+<p>
+Ici, 18 est considéré comme du texte et non comme un nombre.
+</p>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Une variable est un emplacement mémoire permettant de stocker une donnée.</li>
+
+<li>La valeur d'une variable peut changer au cours de l'exécution.</li>
+
+<li>Chaque variable possède un type de donnée.</li>
+
+<li>Les principaux types sont : Entier, Réel, Chaîne et Booléen.</li>
+
+<li>L'affectation utilise généralement le symbole ←.</li>
+
+<li>Lire permet de saisir une donnée.</li>
+
+<li>Afficher permet de présenter un résultat.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+
+<div class="exercice">
+<h4>TD 4</h4>
+
+<p>
+Déclarer les variables nécessaires pour représenter :
+</p>
+
+<ul>
+<li>le nom d'un étudiant ;</li>
+<li>son âge ;</li>
+<li>sa moyenne générale.</li>
+</ul>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+
+<h4>TD 5</h4>
+
+<p>
+Écrire un algorithme qui demande un prénom puis l'affiche.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 6</h4>
+
+<p>
+Écrire un algorithme qui demande deux nombres et affiche leur produit.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Écrire un algorithme permettant :
+</p>
+
+<ol>
+
+<li>de saisir le nom d'un produit ;</li>
+
+<li>de saisir son prix unitaire ;</li>
+
+<li>de saisir la quantité achetée ;</li>
+
+<li>de calculer le montant total ;</li>
+
+<li>d'afficher le résultat.</li>
+
+</ol>
+
+<p>
+Identifiez d'abord les variables nécessaires ainsi que leur type avant de rédiger le pseudocode complet.
+</p>
+
+    </section>
+  
+    <section id="chap6" class="chapitre">
+   <h2 id="chap6">Chapitre 6 : Les opérateurs en algorithmique</h2>
+
+<p>
+Dans le chapitre précédent, nous avons appris à utiliser des variables pour stocker des informations.
+</p>
+
+<p>
+Cependant, stocker des données ne suffit pas. Pour résoudre des problèmes, un algorithme doit également effectuer des calculs, comparer des valeurs et prendre des décisions.
+</p>
+
+<p>
+Pour cela, nous utilisons des <strong>opérateurs</strong>.
+</p>
+
+<p>
+Les opérateurs sont des symboles permettant d'effectuer des opérations sur des données.
+</p>
+
+<hr>
+
+<h3>6.1 Qu'est-ce qu'un opérateur ?</h3>
+
+<p>
+Un opérateur est un symbole ou un mot-clé permettant d'effectuer une action sur une ou plusieurs valeurs.
+</p>
+
+<p>
+Exemples :
+</p>
+
+<pre>
+5 + 3
+
+10 > 7
+
+âge >= 18
+</pre>
+
+<p>
+Dans ces exemples :
+</p>
+
+<ul>
+<li>+</li>
+<li>></li>
+<li>>=</li>
+</ul>
+
+<p>
+sont des opérateurs.
+</p>
+
+<hr>
+
+<h3>6.2 Les différentes catégories d'opérateurs</h3>
+
+<p>
+En algorithmique, nous distinguons principalement trois familles d'opérateurs :
+</p>
+
+<ul>
+<li>Les opérateurs arithmétiques</li>
+<li>Les opérateurs relationnels</li>
+<li>Les opérateurs logiques</li>
+</ul>
+
+<hr>
+
+<h2>Partie I : Les opérateurs arithmétiques</h2>
+
+<h3>6.3 Définition</h3>
+
+<p>
+Les opérateurs arithmétiques permettent d'effectuer des calculs mathématiques.
+</p>
+
+<hr>
+
+<h3>6.4 L'addition</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Opérateur</th>
+<th>Signification</th>
+<th>Exemple</th>
+</tr>
+
+<tr>
+<td>+</td>
+<td>Addition</td>
+<td>5 + 3 = 8</td>
+</tr>
+
+</table>
+
+<p>
+Exemple en pseudocode :
+</p>
+
+<pre>
+somme ← note1 + note2
+</pre>
+
+<hr>
+
+<h3>6.5 La soustraction</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<td>-</td>
+<td>Soustraction</td>
+<td>10 - 4 = 6</td>
+</tr>
+
+</table>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+difference ← prixInitial - reduction
+</pre>
+
+<hr>
+
+<h3>6.6 La multiplication</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<td>*</td>
+<td>Multiplication</td>
+<td>4 * 6 = 24</td>
+</tr>
+
+</table>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+aire ← longueur * largeur
+</pre>
+
+<hr>
+
+<h3>6.7 La division</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<td>/</td>
+<td>Division</td>
+<td>20 / 4 = 5</td>
+</tr>
+
+</table>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+moyenne ← somme / 3
+</pre>
+
+<hr>
+
+<h3>6.8 Le modulo</h3>
+
+<p>
+L'opérateur modulo est très utilisé en algorithmique.
+</p>
+
+<p>
+Il permet d'obtenir le reste d'une division entière.
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<td>MOD</td>
+<td>Reste d'une division</td>
+</tr>
+
+</table>
+
+<p>
+Exemples :
+</p>
+
+<pre>
+10 MOD 3 = 1
+
+15 MOD 4 = 3
+
+20 MOD 5 = 0
+</pre>
+
+<p>
+Le modulo est particulièrement utile pour déterminer si un nombre est pair ou impair.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Si nombre MOD 2 = 0 Alors
+
+    Afficher "Pair"
+
+Sinon
+
+    Afficher "Impair"
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>6.9 Priorité des opérateurs arithmétiques</h3>
+
+<p>
+Comme en mathématiques, certaines opérations sont effectuées avant d'autres.
+</p>
+
+<p>
+Ordre de priorité :
+</p>
+
+<ol>
+<li>Parenthèses</li>
+<li>Multiplication et division</li>
+<li>Addition et soustraction</li>
+</ol>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+5 + 3 * 2
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+5 + 6 = 11
+</pre>
+
+<p>
+et non :
+</p>
+
+<pre>
+(5 + 3) * 2 = 16
+</pre>
+
+<hr>
+
+<h2>Partie II : Les opérateurs relationnels</h2>
+
+<h3>6.10 Définition</h3>
+
+<p>
+Les opérateurs relationnels servent à comparer deux valeurs.
+</p>
+
+<p>
+Le résultat obtenu est toujours :
+</p>
+
+<ul>
+<li>Vrai</li>
+<li>Faux</li>
+</ul>
+
+<hr>
+
+<h3>6.11 Les principaux opérateurs relationnels</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Opérateur</th>
+<th>Signification</th>
+</tr>
+
+<tr>
+<td>=</td>
+<td>Égal à</td>
+</tr>
+
+<tr>
+<td>≠</td>
+<td>Différent de</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>Inférieur à</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>Supérieur à</td>
+</tr>
+
+<tr>
+<td>&lt;=</td>
+<td>Inférieur ou égal à</td>
+</tr>
+
+<tr>
+<td>&gt;=</td>
+<td>Supérieur ou égal à</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>6.12 Exemples</h3>
+
+<pre>
+10 > 5
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+Vrai
+</pre>
+
+<hr>
+
+<pre>
+8 = 8
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+Vrai
+</pre>
+
+<hr>
+
+<pre>
+12 < 7
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+Faux
+</pre>
+
+<hr>
+
+<h3>6.13 Application : Vérifier la majorité</h3>
+
+<pre>
+Si age >= 18 Alors
+
+    Afficher "Majeur"
+
+Sinon
+
+    Afficher "Mineur"
+
+FinSi
+</pre>
+
+<p>
+L'opérateur relationnel permet ici de comparer l'âge à 18.
+</p>
+
+<hr>
+
+<h2>Partie III : Les opérateurs logiques</h2>
+
+<h3>6.14 Définition</h3>
+
+<p>
+Les opérateurs logiques permettent de combiner plusieurs conditions.
+</p>
+
+<p>
+Ils sont très utiles lorsque plusieurs critères doivent être vérifiés simultanément.
+</p>
+
+<hr>
+
+<h3>6.15 L'opérateur ET</h3>
+
+<p>
+La condition est vraie uniquement si toutes les conditions sont vraies.
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Condition A</th>
+<th>Condition B</th>
+<th>A ET B</th>
+</tr>
+
+<tr>
+<td>Vrai</td>
+<td>Vrai</td>
+<td>Vrai</td>
+</tr>
+
+<tr>
+<td>Vrai</td>
+<td>Faux</td>
+<td>Faux</td>
+</tr>
+
+<tr>
+<td>Faux</td>
+<td>Vrai</td>
+<td>Faux</td>
+</tr>
+
+<tr>
+<td>Faux</td>
+<td>Faux</td>
+<td>Faux</td>
+</tr>
+
+</table>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Si age >= 18 ET nationalite = "Malagasy" Alors
+
+    Afficher "Condition remplie"
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>6.16 L'opérateur OU</h3>
+
+<p>
+La condition est vraie lorsqu'au moins une condition est vraie.
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A OU B</th>
+</tr>
+
+<tr>
+<td>Vrai</td>
+<td>Vrai</td>
+<td>Vrai</td>
+</tr>
+
+<tr>
+<td>Vrai</td>
+<td>Faux</td>
+<td>Vrai</td>
+</tr>
+
+<tr>
+<td>Faux</td>
+<td>Vrai</td>
+<td>Vrai</td>
+</tr>
+
+<tr>
+<td>Faux</td>
+<td>Faux</td>
+<td>Faux</td>
+</tr>
+
+</table>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Si moyenne >= 10
+OU noteProjet >= 15 Alors
+
+    Afficher "Admis"
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>6.17 L'opérateur NON</h3>
+
+<p>
+L'opérateur NON inverse le résultat d'une condition.
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Condition</th>
+<th>NON Condition</th>
+</tr>
+
+<tr>
+<td>Vrai</td>
+<td>Faux</td>
+</tr>
+
+<tr>
+<td>Faux</td>
+<td>Vrai</td>
+</tr>
+
+</table>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Si NON(admis) Alors
+
+    Afficher "Session de rattrapage"
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>6.18 Exemple complet</h3>
+
+<p>
+On souhaite vérifier si un étudiant est admis.
+</p>
+
+<p>
+Conditions :
+</p>
+
+<ul>
+<li>Moyenne supérieure ou égale à 10.</li>
+<li>Absence inférieure à 5.</li>
+</ul>
+
+<pre>
+Début
+
+Lire moyenne
+Lire absences
+
+Si moyenne >= 10 ET absences < 5 Alors
+
+    Afficher "Admis"
+
+Sinon
+
+    Afficher "Ajourné"
+
+FinSi
+
+Fin
+</pre>
+
+<hr>
+
+<h3>6.19 Résumé des opérateurs</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Catégorie</th>
+<th>Opérateurs</th>
+</tr>
+
+<tr>
+<td>Arithmétiques</td>
+<td>+  -  *  /  MOD</td>
+</tr>
+
+<tr>
+<td>Relationnels</td>
+<td>=  ≠  &lt;  &gt;  &lt;=  &gt;=</td>
+</tr>
+
+<tr>
+<td>Logiques</td>
+<td>ET  OU  NON</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Les opérateurs permettent d'effectuer des calculs et des comparaisons.</li>
+
+<li>Les opérateurs arithmétiques servent aux calculs mathématiques.</li>
+
+<li>Les opérateurs relationnels produisent un résultat Vrai ou Faux.</li>
+
+<li>Les opérateurs logiques permettent de combiner plusieurs conditions.</li>
+
+<li>L'opérateur MOD est très utile pour détecter les nombres pairs et impairs.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 7</h4>
+
+<p>
+Écrire un algorithme permettant de calculer le périmètre d'un rectangle.
+</p>
+
+<p>
+Formule :
+</p>
+
+<p>
+P = 2 × (longueur + largeur)
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 8</h4>
+
+<p>
+Écrire un algorithme permettant de calculer la moyenne de quatre notes.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 9</h4>
+
+<p>
+Écrire un algorithme permettant de déterminer si un nombre est pair ou impair.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Une compagnie de transport accorde une réduction si :
+</p>
+
+<ul>
+<li>le voyageur a moins de 12 ans ;</li>
+<li>ou s'il a plus de 60 ans.</li>
+</ul>
+
+<p>
+Écrire un algorithme permettant :
+</p>
+
+<ol>
+<li>de lire l'âge d'un voyageur ;</li>
+<li>de vérifier les conditions ;</li>
+<li>d'afficher :
+<ul>
+<li>"Réduction accordée"</li>
+<li>ou "Tarif normal"</li>
+</ul>
+</li>
+</ol>
+
+<p>
+Indiquez quels opérateurs relationnels et logiques sont utilisés.
+</p>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Dans ce chapitre, nous avons appris à comparer des valeurs et à produire des résultats de type <strong>Vrai</strong> ou <strong>Faux</strong>.
+</p>
+
+<p>
+Nous allons maintenant utiliser ces résultats pour permettre à l'algorithme de prendre des décisions.
+</p>
+
+<p>
+Le prochain chapitre sera consacré aux <strong>structures conditionnelles (Si... Alors... Sinon)</strong>, qui constituent l'un des mécanismes les plus importants de l'algorithmique.
+</p>
+
+
+    </section>
+
+    <section id="chap7" class="chapitre">
+   <h2 id="chap7">Chapitre 7 : Les structures conditionnelles (Si... Alors... Sinon)</h2>
+
+<p>
+Dans le chapitre précédent, nous avons appris à utiliser les opérateurs relationnels et logiques pour effectuer des comparaisons.
+</p>
+
+<p>
+Nous avons vu qu'une comparaison produit généralement un résultat de type :
+</p>
+
+<ul>
+<li><strong>Vrai</strong></li>
+<li><strong>Faux</strong></li>
+</ul>
+
+<p>
+Mais à quoi servent réellement ces résultats ?
+</p>
+
+<p>
+Ils permettent à un algorithme de prendre des décisions.
+</p>
+
+<p>
+En effet, tous les traitements ne suivent pas toujours le même chemin. Selon certaines conditions, l'algorithme peut exécuter une action ou une autre.
+</p>
+
+<p>
+C'est ce que l'on appelle une <strong>structure conditionnelle</strong>.
+</p>
+
+<hr>
+
+<h3>7.1 Les décisions dans la vie quotidienne</h3>
+
+<p>
+Avant de parler d'informatique, observons quelques situations de la vie courante :
+</p>
+
+<pre>
+Si la pluie tombe
+    Alors prendre un parapluie
+Sinon
+    Sortir normalement
+</pre>
+
+<hr>
+
+<pre>
+Si le feu est rouge
+    Alors s'arrêter
+Sinon
+    Continuer
+</pre>
+
+<hr>
+
+<pre>
+Si le réveil sonne
+    Alors se lever
+Sinon
+    Continuer à dormir
+</pre>
+
+<p>
+Chaque fois que nous prenons une décision, nous appliquons inconsciemment une structure conditionnelle.
+</p>
+
+<p>
+L'ordinateur fonctionne exactement de la même manière.
+</p>
+
+<hr>
+
+<h3>7.2 Définition d'une structure conditionnelle</h3>
+
+<p>
+Une structure conditionnelle permet d'exécuter certaines instructions uniquement lorsque certaines conditions sont remplies.
+</p>
+
+<p>
+Elle permet à l'algorithme de choisir entre plusieurs actions possibles.
+</p>
+
+<hr>
+
+<h3>7.3 La structure « Si... Alors »</h3>
+
+<p>
+C'est la forme la plus simple.
+</p>
+
+<p>
+Syntaxe :
+</p>
+
+<pre>
+Si condition Alors
+
+    Instructions
+
+FinSi
+</pre>
+
+<p>
+Si la condition est vraie, les instructions sont exécutées.
+</p>
+
+<p>
+Si la condition est fausse, elles sont ignorées.
+</p>
+
+<hr>
+
+<h3>7.4 Exemple : vérifier la majorité</h3>
+
+<pre>
+Début
+
+Lire age
+
+Si age >= 18 Alors
+
+    Afficher "Vous êtes majeur"
+
+FinSi
+
+Fin
+</pre>
+
+<p>
+Dans cet exemple :
+</p>
+
+<ul>
+<li>si l'âge est supérieur ou égal à 18, le message s'affiche ;</li>
+<li>sinon, rien ne se passe.</li>
+</ul>
+
+<hr>
+
+<h3>7.5 La structure « Si... Alors... Sinon »</h3>
+
+<p>
+Souvent, nous souhaitons exécuter une action lorsque la condition est vraie et une autre lorsqu'elle est fausse.
+</p>
+
+<p>
+Nous utilisons alors la structure :
+</p>
+
+<pre>
+Si condition Alors
+
+    Instructions 1
+
+Sinon
+
+    Instructions 2
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>7.6 Exemple : étudiant admis ou ajourné</h3>
+
+<pre>
+Début
+
+Lire moyenne
+
+Si moyenne >= 10 Alors
+
+    Afficher "Admis"
+
+Sinon
+
+    Afficher "Ajourné"
+
+FinSi
+
+Fin
+</pre>
+
+<p>
+L'algorithme choisit automatiquement le message approprié.
+</p>
+
+<hr>
+
+<h3>7.7 Représentation par organigramme</h3>
+
+<p>
+La structure conditionnelle est représentée par un losange.
+</p>
+
+<pre>
+
+            Note >= 10 ?
+               / \
+             Oui Non
+             /     \
+            v       v
+
+       Afficher   Afficher
+        "Admis"   "Ajourné"
+
+</pre>
+
+<p>
+Le losange représente toujours une question dont la réponse est Oui ou Non.
+</p>
+
+<hr>
+
+<h3>7.8 Conditions composées</h3>
+
+<p>
+Une condition peut contenir plusieurs comparaisons reliées par des opérateurs logiques.
+</p>
+
+<h4>Exemple avec ET</h4>
+
+<p>
+Un étudiant est admis s'il a :
+</p>
+
+<ul>
+<li>une moyenne supérieure ou égale à 10 ;</li>
+<li>moins de 5 absences.</li>
+</ul>
+
+<pre>
+Si moyenne >= 10 ET absences < 5 Alors
+
+    Afficher "Admis"
+
+Sinon
+
+    Afficher "Ajourné"
+
+FinSi
+</pre>
+
+<hr>
+
+<h4>Exemple avec OU</h4>
+
+<p>
+Une réduction est accordée :
+</p>
+
+<ul>
+<li>aux enfants de moins de 12 ans ;</li>
+<li>ou aux personnes âgées de plus de 60 ans.</li>
+</ul>
+
+<pre>
+Si age < 12 OU age > 60 Alors
+
+    Afficher "Réduction accordée"
+
+Sinon
+
+    Afficher "Tarif normal"
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>7.9 Conditions imbriquées</h3>
+
+<p>
+Il est possible d'insérer une condition à l'intérieur d'une autre.
+</p>
+
+<p>
+On parle alors de conditions imbriquées.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Début
+
+Lire moyenne
+
+Si moyenne >= 10 Alors
+
+    Si moyenne >= 16 Alors
+
+        Afficher "Très bien"
+
+    Sinon
+
+        Afficher "Admis"
+
+    FinSi
+
+Sinon
+
+    Afficher "Ajourné"
+
+FinSi
+
+Fin
+</pre>
+
+<hr>
+
+<h3>7.10 La structure SinonSi</h3>
+
+<p>
+Lorsqu'il existe plusieurs possibilités, l'utilisation de conditions imbriquées peut rapidement devenir difficile à lire.
+</p>
+
+<p>
+On utilise alors la structure :
+</p>
+
+<pre>
+Si condition1 Alors
+
+    ...
+
+SinonSi condition2 Alors
+
+    ...
+
+SinonSi condition3 Alors
+
+    ...
+
+Sinon
+
+    ...
+
+FinSi
+</pre>
+
+<hr>
+
+<h3>7.11 Exemple : attribution d'une mention</h3>
+
+<pre>
+Début
+
+Lire moyenne
+
+Si moyenne >= 16 Alors
+
+    Afficher "Très Bien"
+
+SinonSi moyenne >= 14 Alors
+
+    Afficher "Bien"
+
+SinonSi moyenne >= 12 Alors
+
+    Afficher "Assez Bien"
+
+SinonSi moyenne >= 10 Alors
+
+    Afficher "Passable"
+
+Sinon
+
+    Afficher "Ajourné"
+
+FinSi
+
+Fin
+</pre>
+
+<p>
+Cette structure est plus lisible qu'une succession de conditions imbriquées.
+</p>
+
+<hr>
+
+<h3>7.12 Erreurs fréquentes</h3>
+
+<h4>Erreur n°1 : oublier FinSi</h4>
+
+<pre>
+Si moyenne >= 10 Alors
+
+    Afficher "Admis"
+</pre>
+
+<p>
+La structure n'est pas correctement fermée.
+</p>
+
+<hr>
+
+<h4>Erreur n°2 : utiliser = au lieu de >=</h4>
+
+<p>
+Si l'on écrit :
+</p>
+
+<pre>
+Si moyenne = 10 Alors
+</pre>
+
+<p>
+seuls les étudiants ayant exactement 10 seront admis.
+</p>
+
+<hr>
+
+<h4>Erreur n°3 : ordre incorrect des conditions</h4>
+
+<p>
+Observons :
+</p>
+
+<pre>
+Si moyenne >= 10 Alors
+
+    Afficher "Passable"
+
+SinonSi moyenne >= 16 Alors
+
+    Afficher "Très Bien"
+
+FinSi
+</pre>
+
+<p>
+Cette logique est incorrecte.
+</p>
+
+<p>
+En effet, un étudiant ayant 17 sera déjà capturé par la première condition.
+</p>
+
+<p>
+Les conditions doivent être testées du cas le plus spécifique vers le plus général.
+</p>
+
+<hr>
+
+<h3>7.13 Exemple complet : accès à un cinéma</h3>
+
+<p>
+Supposons les règles suivantes :
+</p>
+
+<ul>
+<li>moins de 12 ans : tarif enfant ;</li>
+<li>de 12 à 59 ans : tarif normal ;</li>
+<li>60 ans et plus : tarif réduit senior.</li>
+</ul>
+
+<pre>
+Début
+
+Lire age
+
+Si age < 12 Alors
+
+    Afficher "Tarif enfant"
+
+SinonSi age >= 60 Alors
+
+    Afficher "Tarif senior"
+
+Sinon
+
+    Afficher "Tarif normal"
+
+FinSi
+
+Fin
+</pre>
+
+<hr>
+
+<h3>7.14 Quand utiliser une structure conditionnelle ?</h3>
+
+<p>
+Chaque fois qu'un programme doit prendre une décision.
+</p>
+
+<p>
+Exemples :
+</p>
+
+<ul>
+
+<li>Vérifier un mot de passe ;</li>
+
+<li>Déterminer si un étudiant est admis ;</li>
+
+<li>Calculer une réduction ;</li>
+
+<li>Contrôler l'accès à une application ;</li>
+
+<li>Déterminer si un nombre est pair ou impair ;</li>
+
+<li>Afficher un message différent selon le résultat obtenu.</li>
+
+</ul>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Une structure conditionnelle permet de prendre une décision.</li>
+
+<li>La condition produit toujours Vrai ou Faux.</li>
+
+<li>La structure la plus simple est : Si... Alors.</li>
+
+<li>Pour deux choix possibles, on utilise : Si... Alors... Sinon.</li>
+
+<li>Pour plusieurs choix possibles, on utilise : SinonSi.</li>
+
+<li>Les opérateurs relationnels et logiques sont souvent utilisés dans les conditions.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 10</h4>
+
+<p>
+Écrire un algorithme qui demande un nombre et affiche :
+</p>
+
+<ul>
+<li>"Positif" si le nombre est supérieur à 0 ;</li>
+<li>"Négatif" sinon.</li>
+</ul>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 11</h4>
+
+<p>
+Écrire un algorithme qui détermine si une personne est majeure ou mineure.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 12</h4>
+
+<p>
+Écrire un algorithme qui vérifie si un nombre est pair ou impair.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Une école applique les règles suivantes :
+</p>
+
+<ul>
+
+<li>Moyenne ≥ 16 : Mention Très Bien ;</li>
+
+<li>Moyenne ≥ 14 : Mention Bien ;</li>
+
+<li>Moyenne ≥ 12 : Mention Assez Bien ;</li>
+
+<li>Moyenne ≥ 10 : Mention Passable ;</li>
+
+<li>Sinon : Ajourné.</li>
+
+</ul>
+
+<p>
+Écrire un algorithme permettant :
+</p>
+
+<ol>
+
+<li>de saisir la moyenne d'un étudiant ;</li>
+
+<li>de déterminer sa mention ;</li>
+
+<li>d'afficher le résultat.</li>
+
+</ol>
+
+<hr>
+
+<h3>Correction de l'exercice</h3>
+
+<pre>
+Début
+
+Lire moyenne
+
+Si moyenne >= 16 Alors
+
+    Afficher "Très Bien"
+
+SinonSi moyenne >= 14 Alors
+
+    Afficher "Bien"
+
+SinonSi moyenne >= 12 Alors
+
+    Afficher "Assez Bien"
+
+SinonSi moyenne >= 10 Alors
+
+    Afficher "Passable"
+
+Sinon
+
+    Afficher "Ajourné"
+
+FinSi
+
+Fin
+</pre>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Jusqu'à présent, chaque instruction n'était exécutée qu'une seule fois.
+</p>
+
+<p>
+Or, dans de nombreuses situations, il est nécessaire de répéter plusieurs fois les mêmes opérations.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<ul>
+<li>afficher un message 100 fois ;</li>
+<li>calculer la somme de plusieurs nombres ;</li>
+<li>traiter une liste d'étudiants.</li>
+</ul>
+
+<p>
+Pour cela, nous utiliserons les <strong>structures répétitives ou boucles</strong>, qui feront l'objet du chapitre suivant.
+</p>
+
+
+    </section>
+
+    <section id="chap8" class="chapitre">
+
+    <h2 id="chap8">Chapitre 8 : Les structures répétitives (Les boucles)</h2>
+
+<p>
+Dans les chapitres précédents, nous avons appris à :
+</p>
+
+<ul>
+<li>déclarer des variables ;</li>
+<li>effectuer des calculs ;</li>
+<li>utiliser des opérateurs ;</li>
+<li>prendre des décisions grâce aux structures conditionnelles.</li>
+</ul>
+
+<p>
+Cependant, de nombreux problèmes nécessitent de répéter plusieurs fois les mêmes instructions.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<ul>
+<li>afficher un message 100 fois ;</li>
+<li>calculer la somme de 50 nombres ;</li>
+<li>saisir les notes de tous les étudiants d'une classe ;</li>
+<li>traiter une liste de produits.</li>
+</ul>
+
+<p>
+Sans mécanisme de répétition, il faudrait écrire les mêmes instructions encore et encore, ce qui serait long, fastidieux et source d'erreurs.
+</p>
+
+<p>
+Pour résoudre ce problème, l'algorithmique utilise les <strong>structures répétitives</strong>, plus connues sous le nom de <strong>boucles</strong>.
+</p>
+
+<hr>
+
+<h3>8.1 Les répétitions dans la vie quotidienne</h3>
+
+<p>
+Les boucles existent naturellement dans notre vie quotidienne.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Pour chaque jour de la semaine
+
+    Se lever
+    Se laver
+    S'habiller
+    Aller au travail
+
+FinPour
+</pre>
+
+<p>
+Les mêmes actions sont répétées plusieurs fois.
+</p>
+
+<p>
+L'informatique applique exactement le même principe.
+</p>
+
+<hr>
+
+<h3>8.2 Définition d'une boucle</h3>
+
+<p>
+Une <strong>boucle</strong> est une structure permettant de répéter automatiquement une ou plusieurs instructions.
+</p>
+
+<p>
+Au lieu d'écrire plusieurs fois les mêmes lignes, on les écrit une seule fois à l'intérieur d'une boucle.
+</p>
+
+<hr>
+
+<h3>8.3 Pourquoi utiliser une boucle ?</h3>
+
+<p>
+Supposons que nous souhaitions afficher :
+</p>
+
+<pre>
+Bonjour
+Bonjour
+Bonjour
+Bonjour
+Bonjour
+</pre>
+
+<p>
+Sans boucle :
+</p>
+
+<pre>
+Afficher "Bonjour"
+Afficher "Bonjour"
+Afficher "Bonjour"
+Afficher "Bonjour"
+Afficher "Bonjour"
+</pre>
+
+<p>
+Avec une boucle :
+</p>
+
+<pre>
+Pour i allant de 1 à 5
+
+    Afficher "Bonjour"
+
+FinPour
+</pre>
+
+<p>
+Le résultat est identique mais le programme est beaucoup plus court.
+</p>
+
+<hr>
+
+<h2>Partie I : La boucle Pour</h2>
+
+<h3>8.4 Définition</h3>
+
+<p>
+La boucle <strong>Pour</strong> est utilisée lorsque le nombre de répétitions est connu à l'avance.
+</p>
+
+<p>
+Syntaxe générale :
+</p>
+
+<pre>
+Pour compteur allant de début à fin
+
+    Instructions
+
+FinPour
+</pre>
+
+<hr>
+
+<h3>8.5 Exemple : afficher les nombres de 1 à 5</h3>
+
+<pre>
+Début
+
+Pour i allant de 1 à 5
+
+    Afficher i
+
+FinPour
+
+Fin
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+1
+2
+3
+4
+5
+</pre>
+
+<hr>
+
+<h3>8.6 Le rôle du compteur</h3>
+
+<p>
+La variable utilisée dans la boucle est appelée <strong>compteur</strong>.
+</p>
+
+<p>
+Dans l'exemple précédent :
+</p>
+
+<pre>
+i
+</pre>
+
+<p>
+prend successivement les valeurs :
+</p>
+
+<pre>
+1
+2
+3
+4
+5
+</pre>
+
+<p>
+à chaque passage dans la boucle.
+</p>
+
+<hr>
+
+<h3>8.7 Exemple : afficher les nombres de 10 à 20</h3>
+
+<pre>
+Pour i allant de 10 à 20
+
+    Afficher i
+
+FinPour
+</pre>
+
+<hr>
+
+<h3>8.8 Exemple : calculer la somme des nombres de 1 à 5</h3>
+
+<pre>
+Variables
+
+    somme : Entier
+
+Début
+
+    somme ← 0
+
+    Pour i allant de 1 à 5
+
+        somme ← somme + i
+
+    FinPour
+
+    Afficher somme
+
+Fin
+</pre>
+
+<p>
+Calcul effectué :
+</p>
+
+<pre>
+1 + 2 + 3 + 4 + 5 = 15
+</pre>
+
+<hr>
+
+<h2>Partie II : La boucle TantQue</h2>
+
+<h3>8.9 Définition</h3>
+
+<p>
+La boucle <strong>TantQue</strong> est utilisée lorsque le nombre de répétitions n'est pas connu à l'avance.
+</p>
+
+<p>
+Elle répète les instructions tant qu'une condition est vraie.
+</p>
+
+<p>
+Syntaxe :
+</p>
+
+<pre>
+TantQue condition Faire
+
+    Instructions
+
+FinTantQue
+</pre>
+
+<hr>
+
+<h3>8.10 Exemple simple</h3>
+
+<pre>
+Variables
+
+    compteur : Entier
+
+Début
+
+    compteur ← 1
+
+    TantQue compteur <= 5 Faire
+
+        Afficher compteur
+
+        compteur ← compteur + 1
+
+    FinTantQue
+
+Fin
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+1
+2
+3
+4
+5
+</pre>
+
+<hr>
+
+<h3>8.11 Attention au risque de boucle infinie</h3>
+
+<p>
+Une erreur fréquente consiste à oublier de modifier la variable de contrôle.
+</p>
+
+<p>
+Exemple incorrect :
+</p>
+
+<pre>
+compteur ← 1
+
+TantQue compteur <= 5 Faire
+
+    Afficher compteur
+
+FinTantQue
+</pre>
+
+<p>
+Le compteur ne change jamais.
+</p>
+
+<p>
+La condition reste toujours vraie.
+</p>
+
+<p>
+L'algorithme ne s'arrête jamais.
+</p>
+
+<p>
+On parle alors de <strong>boucle infinie</strong>.
+</p>
+
+<hr>
+
+<h2>Partie III : La boucle Répéter... Jusqu'à</h2>
+
+<h3>8.12 Définition</h3>
+
+<p>
+Cette boucle exécute les instructions au moins une fois avant de vérifier la condition.
+</p>
+
+<p>
+Syntaxe :
+</p>
+
+<pre>
+Répéter
+
+    Instructions
+
+Jusqu'à condition
+</pre>
+
+<hr>
+
+<h3>8.13 Exemple</h3>
+
+<pre>
+Variables
+
+    motDePasse : Chaîne
+
+Début
+
+    Répéter
+
+        Lire motDePasse
+
+    Jusqu'à motDePasse = "admin"
+
+Fin
+</pre>
+
+<p>
+L'utilisateur devra continuer à saisir un mot de passe tant qu'il n'aura pas saisi "admin".
+</p>
+
+<hr>
+
+<h3>8.14 Comparaison des trois boucles</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Boucle</th>
+<th>Quand l'utiliser ?</th>
+</tr>
+
+<tr>
+<td>Pour</td>
+<td>Nombre de répétitions connu</td>
+</tr>
+
+<tr>
+<td>TantQue</td>
+<td>Nombre de répétitions inconnu</td>
+</tr>
+
+<tr>
+<td>Répéter... Jusqu'à</td>
+<td>Au moins une exécution obligatoire</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>8.15 Exemple pratique : saisie de plusieurs notes</h3>
+
+<p>
+Supposons qu'un enseignant souhaite saisir les notes de 5 étudiants.
+</p>
+
+<pre>
+Variables
+
+    note : Réel
+
+Début
+
+    Pour i allant de 1 à 5
+
+        Lire note
+
+        Afficher "Note enregistrée"
+
+    FinPour
+
+Fin
+</pre>
+
+<hr>
+
+<h3>8.16 Exemple pratique : calcul d'une moyenne de classe</h3>
+
+<pre>
+Variables
+
+    note : Réel
+    somme : Réel
+    moyenne : Réel
+
+Début
+
+    somme ← 0
+
+    Pour i allant de 1 à 5
+
+        Lire note
+
+        somme ← somme + note
+
+    FinPour
+
+    moyenne ← somme / 5
+
+    Afficher moyenne
+
+Fin
+</pre>
+
+<hr>
+
+<h3>8.17 Boucles et conditions</h3>
+
+<p>
+Les boucles peuvent contenir des conditions.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Pour i allant de 1 à 10
+
+    Si i MOD 2 = 0 Alors
+
+        Afficher i
+
+    FinSi
+
+FinPour
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+2
+4
+6
+8
+10
+</pre>
+
+<p>
+Seuls les nombres pairs sont affichés.
+</p>
+
+<hr>
+
+<h3>8.18 Erreurs fréquentes</h3>
+
+<h4>Erreur n°1 : oublier l'initialisation</h4>
+
+<pre>
+somme ← somme + note
+</pre>
+
+<p>
+alors que somme n'a jamais reçu de valeur initiale.
+</p>
+
+<hr>
+
+<h4>Erreur n°2 : mauvaise condition d'arrêt</h4>
+
+<p>
+Une condition incorrecte peut provoquer une boucle infinie ou un arrêt prématuré.
+</p>
+
+<hr>
+
+<h4>Erreur n°3 : modifier le compteur d'une boucle Pour</h4>
+
+<p>
+Dans une boucle Pour, le compteur est géré automatiquement.
+</p>
+
+<p>
+Il est déconseillé de modifier sa valeur manuellement.
+</p>
+
+<hr>
+
+<h3>8.19 Organigramme simplifié d'une boucle</h3>
+
+<pre>
+
+         Début
+            |
+            v
+
+      Condition ?
+
+       Oui   Non
+        |      |
+        v      |
+   Instructions|
+        |      |
+        --------
+            |
+            v
+           Fin
+
+</pre>
+
+<p>
+Le principe fondamental est simple :
+</p>
+
+<ul>
+<li>tant que la condition est vraie, la boucle continue ;</li>
+<li>dès qu'elle devient fausse, l'algorithme poursuit son exécution.</li>
+</ul>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Les boucles permettent de répéter des instructions.</li>
+
+<li>La boucle Pour est utilisée lorsque le nombre de répétitions est connu.</li>
+
+<li>La boucle TantQue est utilisée lorsque le nombre de répétitions dépend d'une condition.</li>
+
+<li>La boucle Répéter... Jusqu'à exécute les instructions au moins une fois.</li>
+
+<li>Une mauvaise condition peut provoquer une boucle infinie.</li>
+
+<li>Les boucles permettent de simplifier considérablement les algorithmes.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 13</h4>
+
+<p>
+Écrire un algorithme affichant les nombres de 1 à 20.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 14</h4>
+
+<p>
+Écrire un algorithme affichant les nombres pairs de 2 à 20.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 15</h4>
+
+<p>
+Écrire un algorithme calculant la somme des nombres de 1 à 100.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 16</h4>
+
+<p>
+Écrire un algorithme demandant un mot de passe jusqu'à ce que l'utilisateur saisisse :
+</p>
+
+<pre>
+informatique
+</pre>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Un enseignant souhaite calculer la moyenne d'une classe de 10 étudiants.
+</p>
+
+<p>
+Écrire un algorithme permettant :
+</p>
+
+<ol>
+
+<li>de saisir les 10 notes ;</li>
+
+<li>de calculer leur somme ;</li>
+
+<li>de calculer la moyenne générale ;</li>
+
+<li>d'afficher le résultat.</li>
+
+</ol>
+
+<hr>
+
+<h3>Mini-projet</h3>
+
+<p>
+Créer un algorithme permettant de :
+</p>
+
+<ul>
+
+<li>saisir plusieurs nombres ;</li>
+
+<li>arrêter la saisie lorsque l'utilisateur entre 0 ;</li>
+
+<li>calculer la somme des nombres saisis ;</li>
+
+<li>afficher cette somme.</li>
+
+</ul>
+
+<p>
+Indice : utilisez une boucle <strong>TantQue</strong> ou <strong>Répéter... Jusqu'à</strong>.
+</p>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Jusqu'à présent, nous avons manipulé des variables simples contenant une seule valeur.
+</p>
+
+<p>
+Mais comment stocker les notes de 30 étudiants ?
+</p>
+
+<p>
+Créer 30 variables différentes serait peu pratique.
+</p>
+
+<p>
+Le chapitre suivant introduira les <strong>tableaux</strong>, qui permettent de stocker plusieurs valeurs dans une seule structure de données.
+</p>
+
+    </section>
+
+    <section id="chap9" class="chapitre">
+
+    <h2 id="chap9">Chapitre 9 : Les tableaux</h2>
+
+<p>
+Dans les chapitres précédents, nous avons appris à utiliser des variables pour stocker des informations.
+</p>
+
+<p>
+Une variable permet de mémoriser une seule valeur à la fois.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<pre>
+nom ← "Jean"
+age ← 20
+moyenne ← 14.5
+</pre>
+
+<p>
+Cette méthode fonctionne parfaitement lorsqu'il y a peu de données à manipuler.
+</p>
+
+<p>
+Mais imaginons maintenant qu'un enseignant doive enregistrer les notes de 40 étudiants.
+</p>
+
+<p>
+Faudrait-il créer 40 variables ?
+</p>
+
+<pre>
+note1
+note2
+note3
+...
+note40
+</pre>
+
+<p>
+Une telle solution serait longue, difficile à maintenir et peu pratique.
+</p>
+
+<p>
+Pour résoudre ce problème, l'algorithmique utilise une structure appelée <strong>tableau</strong>.
+</p>
+
+<hr>
+
+<h3>9.1 Les tableaux dans la vie quotidienne</h3>
+
+<p>
+Imaginons une rangée de casiers numérotés dans une école :
+</p>
+
+<pre>
+Casiers :
+
+[1] [2] [3] [4] [5]
+</pre>
+
+<p>
+Chaque casier peut contenir un objet.
+</p>
+
+<p>
+Pour retrouver un objet, il suffit de connaître son numéro.
+</p>
+
+<p>
+Un tableau fonctionne exactement de la même manière :
+</p>
+
+<ul>
+<li>il contient plusieurs emplacements ;</li>
+<li>chaque emplacement possède un numéro appelé indice ;</li>
+<li>chaque emplacement peut stocker une valeur.</li>
+</ul>
+
+<hr>
+
+<h3>9.2 Définition d'un tableau</h3>
+
+<p>
+Un <strong>tableau</strong> est une structure de données permettant de stocker plusieurs valeurs de même type sous un seul nom.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+notes[1]
+notes[2]
+notes[3]
+notes[4]
+notes[5]
+</pre>
+
+<p>
+Toutes ces valeurs appartiennent au même tableau :
+</p>
+
+<pre>
+notes
+</pre>
+
+<hr>
+
+<h3>9.3 Pourquoi utiliser un tableau ?</h3>
+
+<p>
+Les tableaux permettent :
+</p>
+
+<ul>
+
+<li>de stocker un grand nombre de données ;</li>
+
+<li>de simplifier les algorithmes ;</li>
+
+<li>de réduire le nombre de variables ;</li>
+
+<li>de faciliter les traitements répétitifs.</li>
+
+</ul>
+
+<p>
+Ils sont utilisés partout en informatique :
+</p>
+
+<ul>
+
+<li>listes d'étudiants ;</li>
+
+<li>catalogues de produits ;</li>
+
+<li>résultats sportifs ;</li>
+
+<li>coordonnées GPS ;</li>
+
+<li>images numériques ;</li>
+
+<li>bases de données.</li>
+
+</ul>
+
+<hr>
+
+<h3>9.4 Déclaration d'un tableau</h3>
+
+<p>
+Pour utiliser un tableau, il faut indiquer :
+</p>
+
+<ul>
+<li>son nom ;</li>
+<li>sa taille ;</li>
+<li>le type des données qu'il contiendra.</li>
+</ul>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Variables
+
+notes : Tableau[10] d'Entier
+</pre>
+
+<p>
+Ce tableau peut stocker 10 nombres entiers.
+</p>
+
+<hr>
+
+<h3>9.5 Les indices</h3>
+
+<p>
+Chaque élément d'un tableau possède un numéro appelé <strong>indice</strong>.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Indice :  1   2   3   4   5
+
+Notes  : 12  15  10  18  14
+</pre>
+
+<p>
+Pour accéder à la troisième note :
+</p>
+
+<pre>
+notes[3]
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+10
+</pre>
+
+<hr>
+
+<h3>9.6 Affectation d'une valeur dans un tableau</h3>
+
+<p>
+On peut placer une valeur dans un élément précis du tableau.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+notes[1] ← 12
+
+notes[2] ← 15
+
+notes[3] ← 10
+</pre>
+
+<p>
+Chaque case reçoit sa propre valeur.
+</p>
+
+<hr>
+
+<h3>9.7 Lecture d'un tableau</h3>
+
+<p>
+L'utilisateur peut remplir un tableau grâce à une boucle.
+</p>
+
+<pre>
+Pour i allant de 1 à 5
+
+    Lire notes[i]
+
+FinPour
+</pre>
+
+<p>
+L'algorithme demande successivement les cinq notes.
+</p>
+
+<hr>
+
+<h3>9.8 Affichage d'un tableau</h3>
+
+<pre>
+Pour i allant de 1 à 5
+
+    Afficher notes[i]
+
+FinPour
+</pre>
+
+<p>
+Toutes les valeurs du tableau sont affichées.
+</p>
+
+<hr>
+
+<h3>9.9 Exemple complet : saisie de notes</h3>
+
+<pre>
+Variables
+
+notes : Tableau[5] d'Entier
+
+Début
+
+    Pour i allant de 1 à 5
+
+        Lire notes[i]
+
+    FinPour
+
+    Pour i allant de 1 à 5
+
+        Afficher notes[i]
+
+    FinPour
+
+Fin
+</pre>
+
+<hr>
+
+<h3>9.10 Recherche d'un élément dans un tableau</h3>
+
+<p>
+Supposons que nous souhaitions vérifier si une note existe dans le tableau.
+</p>
+
+<p>
+Méthode :
+</p>
+
+<ul>
+<li>parcourir chaque case ;</li>
+<li>comparer la valeur recherchée ;</li>
+<li>s'arrêter lorsqu'elle est trouvée.</li>
+</ul>
+
+<pre>
+trouve ← Faux
+
+Pour i allant de 1 à 5
+
+    Si notes[i] = valeurRecherchee Alors
+
+        trouve ← Vrai
+
+    FinSi
+
+FinPour
+</pre>
+
+<hr>
+
+<h3>9.11 Calculer la somme des éléments d'un tableau</h3>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Variables
+
+notes : Tableau[5] d'Entier
+
+somme : Entier
+
+Début
+
+    somme ← 0
+
+    Pour i allant de 1 à 5
+
+        somme ← somme + notes[i]
+
+    FinPour
+
+    Afficher somme
+
+Fin
+</pre>
+
+<hr>
+
+<h3>9.12 Calcul de la moyenne d'une classe</h3>
+
+<pre>
+Variables
+
+notes : Tableau[10] de Réel
+
+somme : Réel
+
+moyenne : Réel
+
+Début
+
+    somme ← 0
+
+    Pour i allant de 1 à 10
+
+        Lire notes[i]
+
+        somme ← somme + notes[i]
+
+    FinPour
+
+    moyenne ← somme / 10
+
+    Afficher moyenne
+
+Fin
+</pre>
+
+<hr>
+
+<h3>9.13 Trouver la plus grande valeur</h3>
+
+<p>
+C'est l'un des exercices les plus classiques en algorithmique.
+</p>
+
+<p>
+Principe :
+</p>
+
+<ul>
+
+<li>considérer la première valeur comme la plus grande ;</li>
+
+<li>parcourir le tableau ;</li>
+
+<li>remplacer le maximum lorsqu'une valeur plus grande est trouvée.</li>
+
+</ul>
+
+<pre>
+max ← notes[1]
+
+Pour i allant de 2 à 10
+
+    Si notes[i] > max Alors
+
+        max ← notes[i]
+
+    FinSi
+
+FinPour
+
+Afficher max
+</pre>
+
+<hr>
+
+<h3>9.14 Trouver la plus petite valeur</h3>
+
+<pre>
+min ← notes[1]
+
+Pour i allant de 2 à 10
+
+    Si notes[i] < min Alors
+
+        min ← notes[i]
+
+    FinSi
+
+FinPour
+
+Afficher min
+</pre>
+
+<hr>
+
+<h3>9.15 Parcours d'un tableau</h3>
+
+<p>
+Parcourir un tableau signifie visiter chacun de ses éléments.
+</p>
+
+<p>
+La boucle Pour est particulièrement adaptée à cette tâche.
+</p>
+
+<pre>
+Pour i allant de 1 à taille
+
+    Traiter tableau[i]
+
+FinPour
+</pre>
+
+<p>
+Cette structure sera utilisée très fréquemment.
+</p>
+
+<hr>
+
+<h3>9.16 Erreurs fréquentes</h3>
+
+<h4>Erreur n°1 : dépasser la taille du tableau</h4>
+
+<pre>
+notes[11]
+</pre>
+
+<p>
+alors que le tableau contient seulement 10 éléments.
+</p>
+
+<p>
+Cette erreur est appelée :
+</p>
+
+<blockquote>
+Dépassement de tableau
+</blockquote>
+
+<hr>
+
+<h4>Erreur n°2 : oublier de remplir le tableau</h4>
+
+<p>
+Un élément non initialisé peut contenir une valeur incorrecte.
+</p>
+
+<hr>
+
+<h4>Erreur n°3 : mauvaise borne dans une boucle</h4>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Pour i allant de 1 à 15
+</pre>
+
+<p>
+alors que le tableau possède seulement 10 cases.
+</p>
+
+<hr>
+
+<h3>9.17 Tableau et mémoire</h3>
+
+<p>
+Un tableau est stocké dans la mémoire de l'ordinateur sous forme d'une série de cases consécutives.
+</p>
+
+<p>
+Cette organisation permet un accès rapide aux données.
+</p>
+
+<p>
+C'est l'une des raisons pour lesquelles les tableaux sont largement utilisés dans les logiciels modernes.
+</p>
+
+<hr>
+
+<h3>Applications concrètes</h3>
+
+<p>
+Les tableaux sont utilisés dans :
+</p>
+
+<ul>
+
+<li>les listes de contacts d'un téléphone ;</li>
+
+<li>les catalogues de produits d'un site e-commerce ;</li>
+
+<li>les résultats scolaires ;</li>
+
+<li>les jeux vidéo ;</li>
+
+<li>les statistiques ;</li>
+
+<li>l'intelligence artificielle.</li>
+
+</ul>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Un tableau permet de stocker plusieurs valeurs sous un même nom.</li>
+
+<li>Chaque élément possède un indice.</li>
+
+<li>Les éléments d'un tableau sont généralement du même type.</li>
+
+<li>Les boucles sont souvent utilisées pour parcourir les tableaux.</li>
+
+<li>Les tableaux facilitent le traitement d'un grand nombre de données.</li>
+
+<li>Ils constituent l'une des structures de données les plus importantes en informatique.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+    <h4>TD 17</h4>
+
+<p>
+Créer un tableau de 5 entiers puis afficher son contenu.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 18</h4>
+
+<p>
+Saisir les notes de 10 étudiants puis calculer leur moyenne.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+
+<h4>TD 19</h4>
+
+<p>
+Rechercher un nombre donné dans un tableau de 20 entiers.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 20</h4>
+
+<p>
+Déterminer la plus grande valeur contenue dans un tableau.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Une boutique enregistre les ventes réalisées pendant une semaine.
+</p>
+
+<p>
+Écrire un algorithme permettant :
+</p>
+
+<ol>
+
+<li>de saisir les ventes des 7 jours dans un tableau ;</li>
+
+<li>de calculer le total des ventes ;</li>
+
+<li>de calculer la moyenne journalière ;</li>
+
+<li>de déterminer le jour ayant réalisé la meilleure vente ;</li>
+
+<li>d'afficher tous les résultats.</li>
+
+</ol>
+
+<hr>
+
+<h3>Mini-projet</h3>
+
+<p>
+Créer un programme permettant de gérer les notes d'une classe :
+</p>
+
+<ul>
+
+<li>saisie des notes dans un tableau ;</li>
+
+<li>calcul de la moyenne ;</li>
+
+<li>recherche de la meilleure note ;</li>
+
+<li>recherche de la plus faible note ;</li>
+
+<li>affichage de toutes les notes.</li>
+
+</ul>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Jusqu'à présent, nos algorithmes exécutaient les instructions les unes après les autres dans un seul bloc.
+</p>
+
+<p>
+Mais lorsqu'un programme devient volumineux, il devient difficile à lire et à maintenir.
+</p>
+
+<p>
+Le chapitre suivant introduira les <strong>sous-algorithmes, procédures et fonctions</strong>, qui permettent de découper un problème complexe en plusieurs petites tâches plus simples à gérer.
+</p>
+
+
+    </section>
+
+    <section id="chap10" class="chapitre">
+   
+   <h2 id="chap10">Chapitre 10 : Les sous-algorithmes, procédures et fonctions</h2>
+
+<p>
+Depuis le début de ce cours, nous avons écrit des algorithmes relativement courts.
+</p>
+
+<p>
+Cependant, dans un projet réel, un programme peut contenir des centaines, voire des milliers d'instructions.
+</p>
+
+<p>
+Imaginez un logiciel de gestion universitaire capable :
+</p>
+
+<ul>
+<li>d'enregistrer les étudiants ;</li>
+<li>de gérer les enseignants ;</li>
+<li>de calculer les moyennes ;</li>
+<li>d'éditer les bulletins ;</li>
+<li>de gérer les inscriptions ;</li>
+<li>de produire des statistiques.</li>
+</ul>
+
+<p>
+Si toutes ces opérations étaient écrites dans un seul algorithme, celui-ci deviendrait extrêmement long et difficile à comprendre.
+</p>
+
+<p>
+Pour résoudre ce problème, les informaticiens découpent les programmes en plusieurs petits blocs spécialisés.
+</p>
+
+<p>
+Ces blocs sont appelés :
+</p>
+
+<ul>
+<li><strong>sous-algorithmes</strong> ;</li>
+<li><strong>procédures</strong> ;</li>
+<li><strong>fonctions</strong>.</li>
+</ul>
+
+<hr>
+
+<h3>10.1 Une analogie avec la vie quotidienne</h3>
+
+<p>
+Imaginons que vous organisiez une fête.
+</p>
+
+<p>
+Au lieu de tout faire vous-même, vous répartissez les tâches :
+</p>
+
+<ul>
+<li>une personne prépare les invitations ;</li>
+<li>une autre prépare le repas ;</li>
+<li>une autre décore la salle ;</li>
+<li>une autre accueille les invités.</li>
+</ul>
+
+<p>
+Chaque personne effectue une tâche précise.
+</p>
+
+<p>
+L'organisation devient plus simple.
+</p>
+
+<p>
+Les procédures et fonctions appliquent exactement ce principe à la programmation.
+</p>
+
+<hr>
+
+<h3>10.2 Qu'est-ce qu'un sous-algorithme ?</h3>
+
+<p>
+Un <strong>sous-algorithme</strong> est une partie d'un algorithme principal chargée d'effectuer une tâche spécifique.
+</p>
+
+<p>
+Il permet de découper un problème complexe en plusieurs problèmes plus simples.
+</p>
+
+<p>
+Cette méthode est appelée :
+</p>
+
+<blockquote>
+Diviser pour mieux régner.
+</blockquote>
+
+<hr>
+
+<h3>10.3 Les avantages des sous-algorithmes</h3>
+
+<ul>
+
+<li>Meilleure organisation du programme.</li>
+
+<li>Réduction de la taille des algorithmes.</li>
+
+<li>Réutilisation du code.</li>
+
+<li>Maintenance facilitée.</li>
+
+<li>Détection plus rapide des erreurs.</li>
+
+<li>Travail collaboratif plus simple.</li>
+
+</ul>
+
+<hr>
+
+<h2>Partie I : Les procédures</h2>
+
+<h3>10.4 Définition d'une procédure</h3>
+
+<p>
+Une <strong>procédure</strong> est un sous-algorithme qui exécute une tâche mais ne renvoie pas directement de résultat.
+</p>
+
+<p>
+Elle réalise simplement une action.
+</p>
+
+<hr>
+
+<h3>10.5 Exemple simple</h3>
+
+<p>
+Supposons que nous souhaitions afficher un message de bienvenue plusieurs fois dans notre programme.
+</p>
+
+<p>
+Au lieu d'écrire :
+</p>
+
+<pre>
+Afficher "Bienvenue"
+Afficher "Bienvenue"
+Afficher "Bienvenue"
+</pre>
+
+<p>
+nous pouvons créer une procédure.
+</p>
+
+<pre>
+Procédure AfficherBienvenue()
+
+    Afficher "Bienvenue"
+
+FinProcédure
+</pre>
+
+<hr>
+
+<h3>10.6 Appel d'une procédure</h3>
+
+<p>
+Pour utiliser une procédure, il suffit de l'appeler.
+</p>
+
+<pre>
+Début
+
+    AfficherBienvenue()
+
+    AfficherBienvenue()
+
+Fin
+</pre>
+
+<p>
+Le code devient plus lisible et plus facile à modifier.
+</p>
+
+<hr>
+
+<h3>10.7 Procédure avec paramètres</h3>
+
+<p>
+Une procédure peut recevoir des informations appelées <strong>paramètres</strong>.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Procédure AfficherNom(nom)
+
+    Afficher "Bonjour ", nom
+
+FinProcédure
+</pre>
+
+<p>
+Appel :
+</p>
+
+<pre>
+AfficherNom("Jean")
+
+AfficherNom("Marie")
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+Bonjour Jean
+
+Bonjour Marie
+</pre>
+
+<hr>
+
+<h3>10.8 Pourquoi utiliser des paramètres ?</h3>
+
+<p>
+Les paramètres rendent les procédures plus flexibles.
+</p>
+
+<p>
+Une même procédure peut être utilisée avec des valeurs différentes.
+</p>
+
+<hr>
+
+<h2>Partie II : Les fonctions</h2>
+
+<h3>10.9 Définition d'une fonction</h3>
+
+<p>
+Une <strong>fonction</strong> est un sous-algorithme qui exécute une tâche et renvoie un résultat.
+</p>
+
+<p>
+Contrairement à la procédure, la fonction produit une valeur qui pourra être utilisée ailleurs dans le programme.
+</p>
+
+<hr>
+
+<h3>10.10 Exemple de fonction</h3>
+
+<p>
+Créons une fonction calculant le carré d'un nombre.
+</p>
+
+<pre>
+Fonction Carre(nombre) : Entier
+
+    Retourner nombre * nombre
+
+FinFonction
+</pre>
+
+<hr>
+
+<h3>10.11 Utilisation de la fonction</h3>
+
+<pre>
+Début
+
+    resultat ← Carre(5)
+
+    Afficher resultat
+
+Fin
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+25
+</pre>
+
+<hr>
+
+<h3>10.12 Autre exemple : calcul de la moyenne</h3>
+
+<pre>
+Fonction CalculerMoyenne(note1, note2, note3) : Réel
+
+    Retourner (note1 + note2 + note3) / 3
+
+FinFonction
+</pre>
+
+<p>
+Utilisation :
+</p>
+
+<pre>
+moyenne ← CalculerMoyenne(12,15,18)
+
+Afficher moyenne
+</pre>
+
+<hr>
+
+<h3>10.13 Différence entre procédure et fonction</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Procédure</th>
+<th>Fonction</th>
+</tr>
+
+<tr>
+<td>Exécute une action</td>
+<td>Exécute une action et retourne un résultat</td>
+</tr>
+
+<tr>
+<td>Pas de valeur retournée</td>
+<td>Retourne une valeur</td>
+</tr>
+
+<tr>
+<td>Souvent utilisée pour afficher ou enregistrer des données</td>
+<td>Souvent utilisée pour effectuer des calculs</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>10.14 Exemple concret</h3>
+
+<p>
+Supposons un programme scolaire.
+</p>
+
+<p>
+La procédure :
+</p>
+
+<pre>
+AfficherBulletin()
+</pre>
+
+<p>
+affiche un bulletin.
+</p>
+
+<p>
+La fonction :
+</p>
+
+<pre>
+CalculerMoyenne()
+</pre>
+
+<p>
+renvoie une valeur numérique.
+</p>
+
+<hr>
+
+<h2>Partie III : Les paramètres</h2>
+
+<h3>10.15 Qu'est-ce qu'un paramètre ?</h3>
+
+<p>
+Un paramètre est une donnée transmise à une procédure ou à une fonction.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+AfficherNom("Paul")
+</pre>
+
+<p>
+Ici :
+</p>
+
+<pre>
+"Paul"
+</pre>
+
+<p>
+est un paramètre.
+</p>
+
+<hr>
+
+<h3>10.16 Plusieurs paramètres</h3>
+
+<pre>
+Fonction Addition(a,b) : Entier
+
+    Retourner a + b
+
+FinFonction
+</pre>
+
+<p>
+Utilisation :
+</p>
+
+<pre>
+resultat ← Addition(5,7)
+</pre>
+
+<p>
+Résultat :
+</p>
+
+<pre>
+12
+</pre>
+
+<hr>
+
+<h3>10.17 Variables locales</h3>
+
+<p>
+Les variables déclarées à l'intérieur d'une procédure ou d'une fonction sont appelées variables locales.
+</p>
+
+<p>
+Elles n'existent que pendant l'exécution de cette procédure ou fonction.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Fonction Double(nombre)
+
+    resultat ← nombre * 2
+
+    Retourner resultat
+
+FinFonction
+</pre>
+
+<p>
+La variable :
+</p>
+
+<pre>
+resultat
+</pre>
+
+<p>
+n'est accessible qu'à l'intérieur de la fonction.
+</p>
+
+<hr>
+
+<h3>10.18 Réutilisation du code</h3>
+
+<p>
+L'un des principaux avantages des fonctions et procédures est la réutilisation.
+</p>
+
+<p>
+Une fonction écrite une seule fois peut être utilisée dans plusieurs programmes.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+CalculerMoyenne()
+</pre>
+
+<p>
+pourra être utilisée :
+</p>
+
+<ul>
+
+<li>dans un logiciel scolaire ;</li>
+
+<li>dans une plateforme d'enseignement ;</li>
+
+<li>dans une application mobile.</li>
+
+</ul>
+
+<hr>
+
+<h3>10.19 Exemple complet</h3>
+
+<p>
+Programme calculant l'aire d'un rectangle grâce à une fonction.
+</p>
+
+<pre>
+Fonction AireRectangle(longueur, largeur) : Réel
+
+    Retourner longueur * largeur
+
+FinFonction
+
+
+Début
+
+    Lire longueur
+
+    Lire largeur
+
+    aire ← AireRectangle(longueur, largeur)
+
+    Afficher aire
+
+Fin
+</pre>
+
+<hr>
+
+<h3>10.20 Décomposition d'un problème complexe</h3>
+
+<p>
+Supposons un système de gestion des étudiants.
+</p>
+
+<p>
+Nous pourrions créer :
+</p>
+
+<pre>
+SaisirEtudiant()
+
+CalculerMoyenne()
+
+AfficherBulletin()
+
+EnregistrerEtudiant()
+</pre>
+
+<p>
+Chaque sous-algorithme remplit un rôle précis.
+</p>
+
+<p>
+Le programme devient plus clair et plus professionnel.
+</p>
+
+<hr>
+
+<h3>10.21 Organigramme simplifié</h3>
+
+<pre>
+
+          Programme Principal
+                    |
+     --------------------------------
+     |              |              |
+     v              v              v
+
+Saisir()     Calculer()     Afficher()
+
+</pre>
+
+<p>
+Cette approche est appelée :
+</p>
+
+<blockquote>
+Programmation modulaire.
+</blockquote>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Un sous-algorithme permet de découper un programme en plusieurs parties.</li>
+
+<li>Une procédure exécute une tâche sans retourner de valeur.</li>
+
+<li>Une fonction exécute une tâche et retourne un résultat.</li>
+
+<li>Les paramètres permettent de transmettre des données.</li>
+
+<li>Les fonctions et procédures favorisent la réutilisation du code.</li>
+
+<li>La programmation modulaire améliore la lisibilité et la maintenance des programmes.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 21</h4>
+
+<p>
+Créer une procédure nommée <strong>AfficherBienvenue()</strong> affichant :
+</p>
+
+<pre>
+Bienvenue dans le cours d'algorithmique
+</pre>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 22</h4>
+
+<p>
+Créer une fonction <strong>Carre(nombre)</strong> retournant le carré d'un nombre.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 23</h4>
+
+<p>
+Créer une fonction <strong>PerimetreRectangle(longueur, largeur)</strong>.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Écrire un programme permettant :
+</p>
+
+<ol>
+
+<li>de saisir trois notes ;</li>
+
+<li>d'utiliser une fonction <strong>CalculerMoyenne()</strong> ;</li>
+
+<li>d'afficher la moyenne obtenue ;</li>
+
+<li>d'utiliser une procédure <strong>AfficherMention()</strong> qui affiche :
+<ul>
+<li>Très Bien</li>
+<li>Bien</li>
+<li>Assez Bien</li>
+<li>Passable</li>
+<li>Ajourné</li>
+</ul>
+selon la moyenne calculée.
+</li>
+
+</ol>
+
+<hr>
+
+<h3>Mini-projet</h3>
+
+<p>
+Créer un mini-système de gestion d'étudiants composé des sous-algorithmes suivants :
+</p>
+
+<pre>
+SaisirEtudiant()
+
+CalculerMoyenne()
+
+DeterminerMention()
+
+AfficherBulletin()
+</pre>
+
+<p>
+Chaque tâche devra être réalisée dans une procédure ou une fonction distincte.
+</p>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Jusqu'à présent, nos algorithmes manipulent principalement des données simples : nombres, textes et tableaux.
+</p>
+
+<p>
+Mais dans de nombreux cas, nous devons regrouper plusieurs informations décrivant un même objet.
+</p>
+
+<p>
+Par exemple, un étudiant possède :
+</p>
+
+<ul>
+<li>un numéro ;</li>
+<li>un nom ;</li>
+<li>un prénom ;</li>
+<li>une date de naissance ;</li>
+<li>une moyenne.</li>
+</ul>
+
+<p>
+Le prochain chapitre introduira les <strong>enregistrements (structures)</strong>, qui permettent de regrouper plusieurs informations au sein d'une même entité.
+</p>
+
+   </section>
+
+    <section id="chap11" class="chapitre">
+<h2 id="chap11">Chapitre 11 : Les enregistrements (structures de données composées)</h2>
+
+<p>
+Depuis le début de ce cours, nous avons appris à manipuler différents types de données :
+</p>
+
+<ul>
+<li>les entiers ;</li>
+<li>les réels ;</li>
+<li>les chaînes de caractères ;</li>
+<li>les booléens ;</li>
+<li>les tableaux.</li>
+</ul>
+
+<p>
+Ces structures sont suffisantes pour résoudre de nombreux problèmes simples.
+</p>
+
+<p>
+Cependant, dans les applications réelles, nous devons souvent manipuler des objets plus complexes.
+</p>
+
+<p>
+Par exemple, dans une université, un étudiant ne se résume pas à un simple nom ou à une simple note.
+</p>
+
+<p>
+Un étudiant possède plusieurs informations :
+</p>
+
+<ul>
+<li>un numéro matricule ;</li>
+<li>un nom ;</li>
+<li>un prénom ;</li>
+<li>une date de naissance ;</li>
+<li>une adresse ;</li>
+<li>une moyenne générale.</li>
+</ul>
+
+<p>
+Créer une variable indépendante pour chacune de ces informations devient rapidement difficile à gérer.
+</p>
+
+<p>
+Pour résoudre ce problème, l'algorithmique utilise les <strong>enregistrements</strong>.
+</p>
+
+<hr>
+
+<h3>11.1 Une analogie avec une fiche administrative</h3>
+
+<p>
+Imaginez une fiche d'inscription universitaire.
+</p>
+
+<p>
+Cette fiche contient plusieurs champs :
+</p>
+
+<pre>
+Matricule : ETU001
+
+Nom : Rakoto
+
+Prénom : Jean
+
+Âge : 20
+
+Moyenne : 14.75
+</pre>
+
+<p>
+Toutes ces informations décrivent une seule personne.
+</p>
+
+<p>
+Au lieu de les manipuler séparément, il est plus logique de les regrouper.
+</p>
+
+<p>
+C'est exactement le rôle des enregistrements.
+</p>
+
+<hr>
+
+<h3>11.2 Définition d'un enregistrement</h3>
+
+<p>
+Un <strong>enregistrement</strong> est une structure de données permettant de regrouper plusieurs informations de types différents sous un même nom.
+</p>
+
+<p>
+Chaque information est appelée un <strong>champ</strong>.
+</p>
+
+<hr>
+
+<h3>11.3 Structure générale</h3>
+
+<p>
+Exemple d'un enregistrement représentant un étudiant :
+</p>
+
+<pre>
+Type Etudiant
+
+    matricule : Chaîne
+    nom : Chaîne
+    prenom : Chaîne
+    age : Entier
+    moyenne : Réel
+
+FinType
+</pre>
+
+<p>
+Ici :
+</p>
+
+<ul>
+<li>Etudiant est le nom de l'enregistrement ;</li>
+<li>matricule, nom, prenom, age et moyenne sont les champs.</li>
+</ul>
+
+<hr>
+
+<h3>11.4 Déclaration d'une variable de type enregistrement</h3>
+
+<p>
+Une fois le type défini, nous pouvons créer une variable de ce type.
+</p>
+
+<pre>
+Variables
+
+    etu : Etudiant
+</pre>
+
+<p>
+La variable :
+</p>
+
+<pre>
+etu
+</pre>
+
+<p>
+contient maintenant tous les champs de l'étudiant.
+</p>
+
+<hr>
+
+<h3>11.5 Accès aux champs</h3>
+
+<p>
+Pour accéder à un champ, on utilise généralement la notation par point.
+</p>
+
+<pre>
+etu.nom
+
+etu.prenom
+
+etu.age
+</pre>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+etu.nom ← "Rakoto"
+
+etu.age ← 20
+</pre>
+
+<hr>
+
+<h3>11.6 Lecture des données d'un enregistrement</h3>
+
+<pre>
+Lire etu.matricule
+
+Lire etu.nom
+
+Lire etu.prenom
+
+Lire etu.age
+
+Lire etu.moyenne
+</pre>
+
+<hr>
+
+<h3>11.7 Affichage des données</h3>
+
+<pre>
+Afficher etu.matricule
+
+Afficher etu.nom
+
+Afficher etu.prenom
+
+Afficher etu.age
+
+Afficher etu.moyenne
+</pre>
+
+<hr>
+
+<h3>11.8 Exemple complet</h3>
+
+<pre>
+Type Etudiant
+
+    matricule : Chaîne
+    nom : Chaîne
+    prenom : Chaîne
+    moyenne : Réel
+
+FinType
+
+
+Variables
+
+    etu : Etudiant
+
+
+Début
+
+    Lire etu.matricule
+
+    Lire etu.nom
+
+    Lire etu.prenom
+
+    Lire etu.moyenne
+
+    Afficher etu.nom
+
+    Afficher etu.moyenne
+
+Fin
+</pre>
+
+<hr>
+
+<h2>Partie I : Tableaux d'enregistrements</h2>
+
+<h3>11.9 Pourquoi combiner tableaux et enregistrements ?</h3>
+
+<p>
+Dans la réalité, nous manipulons rarement un seul étudiant.
+</p>
+
+<p>
+Une classe peut contenir plusieurs dizaines d'étudiants.
+</p>
+
+<p>
+Nous avons donc besoin d'un tableau contenant plusieurs enregistrements.
+</p>
+
+<hr>
+
+<h3>11.10 Déclaration</h3>
+
+<pre>
+Variables
+
+    classe : Tableau[30] de Etudiant
+</pre>
+
+<p>
+Ce tableau peut stocker les informations de 30 étudiants.
+</p>
+
+<hr>
+
+<h3>11.11 Accès à un étudiant particulier</h3>
+
+<p>
+Pour accéder au premier étudiant :
+</p>
+
+<pre>
+classe[1]
+</pre>
+
+<p>
+Pour accéder à son nom :
+</p>
+
+<pre>
+classe[1].nom
+</pre>
+
+<p>
+Pour accéder à sa moyenne :
+</p>
+
+<pre>
+classe[1].moyenne
+</pre>
+
+<hr>
+
+<h3>11.12 Exemple de saisie</h3>
+
+<pre>
+Pour i allant de 1 à 30
+
+    Lire classe[i].matricule
+
+    Lire classe[i].nom
+
+    Lire classe[i].moyenne
+
+FinPour
+</pre>
+
+<hr>
+
+<h3>11.13 Exemple d'affichage</h3>
+
+<pre>
+Pour i allant de 1 à 30
+
+    Afficher classe[i].nom
+
+    Afficher classe[i].moyenne
+
+FinPour
+</pre>
+
+<hr>
+
+<h2>Partie II : Recherche dans un tableau d'enregistrements</h2>
+
+<h3>11.14 Rechercher un étudiant</h3>
+
+<p>
+Supposons que nous souhaitions retrouver un étudiant à partir de son matricule.
+</p>
+
+<pre>
+trouve ← Faux
+
+Pour i allant de 1 à 30
+
+    Si classe[i].matricule = matriculeRecherche Alors
+
+        trouve ← Vrai
+
+    FinSi
+
+FinPour
+</pre>
+
+<hr>
+
+<h3>11.15 Recherche avec affichage</h3>
+
+<pre>
+Si classe[i].matricule = matriculeRecherche Alors
+
+    Afficher classe[i].nom
+
+    Afficher classe[i].moyenne
+
+FinSi
+</pre>
+
+<p>
+Cette technique est très utilisée dans les logiciels de gestion.
+</p>
+
+<hr>
+
+<h2>Partie III : Applications concrètes</h2>
+
+<h3>11.16 Gestion des étudiants</h3>
+
+<p>
+Chaque étudiant est représenté par un enregistrement contenant :
+</p>
+
+<ul>
+<li>matricule ;</li>
+<li>nom ;</li>
+<li>prénom ;</li>
+<li>niveau ;</li>
+<li>moyenne.</li>
+</ul>
+
+<hr>
+
+<h3>11.17 Gestion des produits</h3>
+
+<pre>
+Type Produit
+
+    reference : Chaîne
+
+    designation : Chaîne
+
+    prix : Réel
+
+    stock : Entier
+
+FinType
+</pre>
+
+<p>
+Chaque produit est alors représenté par un seul objet logique.
+</p>
+
+<hr>
+
+<h3>11.18 Gestion des livres d'une bibliothèque</h3>
+
+<pre>
+Type Livre
+
+    code : Chaîne
+
+    titre : Chaîne
+
+    auteur : Chaîne
+
+    annee : Entier
+
+FinType
+</pre>
+
+<p>
+Les bibliothèques numériques utilisent ce principe.
+</p>
+
+<hr>
+
+<h3>11.19 Gestion des employés</h3>
+
+<pre>
+Type Employe
+
+    matricule : Chaîne
+
+    nom : Chaîne
+
+    salaire : Réel
+
+    service : Chaîne
+
+FinType
+</pre>
+
+<hr>
+
+<h2>Partie IV : Enregistrements et programmation orientée objet</h2>
+
+<h3>11.20 Une première approche des objets</h3>
+
+<p>
+Les enregistrements constituent une étape importante vers la programmation orientée objet (POO).
+</p>
+
+<p>
+Dans les langages modernes comme :
+</p>
+
+<ul>
+
+<li>Python ;</li>
+
+<li>Java ;</li>
+
+<li>C# ;</li>
+
+<li>PHP ;</li>
+
+</ul>
+
+<p>
+les classes et les objets reposent sur une idée similaire :
+</p>
+
+<blockquote>
+Regrouper les données décrivant une même entité.
+</blockquote>
+
+<p>
+L'enregistrement peut donc être considéré comme l'ancêtre simplifié de la classe.
+</p>
+
+<hr>
+
+<h3>11.21 Comparaison entre tableau et enregistrement</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Tableau</th>
+<th>Enregistrement</th>
+</tr>
+
+<tr>
+<td>Contient plusieurs valeurs du même type</td>
+<td>Contient plusieurs valeurs éventuellement de types différents</td>
+</tr>
+
+<tr>
+<td>Accès par indice</td>
+<td>Accès par nom de champ</td>
+</tr>
+
+<tr>
+<td>Exemple : notes[1]</td>
+<td>Exemple : etu.nom</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>11.22 Comparaison entre variable simple et enregistrement</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Variable simple</th>
+<th>Enregistrement</th>
+</tr>
+
+<tr>
+<td>Une seule information</td>
+<td>Plusieurs informations regroupées</td>
+</tr>
+
+<tr>
+<td>nom</td>
+<td>étudiant complet</td>
+</tr>
+
+<tr>
+<td>prix</td>
+<td>produit complet</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Un enregistrement regroupe plusieurs informations sous une même structure.</li>
+
+<li>Chaque information est appelée champ.</li>
+
+<li>Les champs peuvent être de types différents.</li>
+
+<li>On accède aux champs grâce à la notation par point.</li>
+
+<li>Les tableaux peuvent contenir des enregistrements.</li>
+
+<li>Les enregistrements sont largement utilisés dans les logiciels de gestion.</li>
+
+<li>Ils constituent une introduction naturelle à la programmation orientée objet.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 24</h4>
+
+<p>
+Créer un type <strong>Livre</strong> contenant :
+</p>
+
+<ul>
+<li>code ;</li>
+<li>titre ;</li>
+<li>auteur ;</li>
+<li>année de publication.</li>
+</ul>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<hr>
+
+<h4>TD 25</h4>
+
+<p>
+Créer un type <strong>Produit</strong> contenant :
+</p>
+
+<ul>
+<li>référence ;</li>
+<li>désignation ;</li>
+<li>prix ;</li>
+<li>stock.</li>
+</ul>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<hr>
+
+<h4>TD 26</h4>
+
+<p>
+Créer un tableau de 10 étudiants et afficher leurs noms.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Une université souhaite gérer les informations de 20 étudiants.
+</p>
+
+<p>
+Créer :
+</p>
+
+<ol>
+
+<li>un type <strong>Etudiant</strong> contenant :
+<ul>
+<li>matricule ;</li>
+<li>nom ;</li>
+<li>prénom ;</li>
+<li>moyenne.</li>
+</ul>
+</li>
+
+<li>un tableau de 20 étudiants ;</li>
+
+<li>un algorithme permettant de saisir toutes les informations ;</li>
+
+<li>un algorithme affichant l'étudiant ayant la meilleure moyenne.</li>
+
+</ol>
+
+<hr>
+
+<h3>Mini-projet</h3>
+
+<p>
+Développer un mini-système de gestion de bibliothèque utilisant :
+</p>
+
+<ul>
+
+<li>un type Livre ;</li>
+
+<li>un tableau de livres ;</li>
+
+<li>une procédure d'ajout d'un livre ;</li>
+
+<li>une procédure d'affichage des livres ;</li>
+
+<li>une fonction de recherche par titre.</li>
+
+</ul>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Nous savons maintenant stocker des données complexes grâce aux enregistrements.
+</p>
+
+<p>
+Cependant, lorsqu'un algorithme devient important, il faut également apprendre à l'analyser avant de le programmer.
+</p>
+
+<p>
+Le prochain chapitre sera consacré à la <strong>méthode de résolution de problèmes et à la conception d'algorithmes</strong> : comment passer d'un besoin exprimé en langage naturel à un algorithme complet, structuré et efficace.
+</p>
+
+
+
+    </section>
+
+    <section id="chap12" class="chapitre">
+    <h2 id="chap12">Chapitre 12 : Méthode de résolution de problèmes et conception d'algorithmes</h2>
+
+<p>
+Depuis le début de ce cours, nous avons découvert les principales structures utilisées en algorithmique :
+</p>
+
+<ul>
+<li>les variables ;</li>
+<li>les opérateurs ;</li>
+<li>les conditions ;</li>
+<li>les boucles ;</li>
+<li>les tableaux ;</li>
+<li>les fonctions ;</li>
+<li>les enregistrements.</li>
+</ul>
+
+<p>
+Cependant, connaître ces outils ne suffit pas pour devenir capable de résoudre un problème informatique.
+</p>
+
+<p>
+Dans la réalité, un programmeur ne commence pas directement à écrire du code.
+</p>
+
+<p>
+Il doit d'abord comprendre le problème, analyser les besoins et concevoir une solution.
+</p>
+
+<p>
+Cette étape est souvent la plus importante.
+</p>
+
+<p>
+Un bon programmeur n'est pas seulement quelqu'un qui sait programmer. C'est avant tout quelqu'un qui sait analyser un problème et construire une solution logique.
+</p>
+
+<hr>
+
+<h3>12.1 Pourquoi analyser avant de programmer ?</h3>
+
+<p>
+Supposons que l'on vous demande :
+</p>
+
+<blockquote>
+Créer un programme permettant de calculer la moyenne d'un étudiant.
+</blockquote>
+
+<p>
+Si vous commencez immédiatement à écrire du code, vous risquez d'oublier certaines informations importantes.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<ul>
+<li>Combien de notes faut-il saisir ?</li>
+<li>Les notes sont-elles entières ou décimales ?</li>
+<li>Comment afficher le résultat ?</li>
+<li>Faut-il calculer une mention ?</li>
+</ul>
+
+<p>
+L'analyse permet d'éviter ces oublis.
+</p>
+
+<hr>
+
+<h3>12.2 Les étapes de résolution d'un problème</h3>
+
+<p>
+La conception d'un algorithme suit généralement les étapes suivantes :
+</p>
+
+<ol>
+
+<li>Comprendre le problème.</li>
+
+<li>Identifier les données d'entrée.</li>
+
+<li>Identifier les résultats attendus.</li>
+
+<li>Déterminer les traitements à effectuer.</li>
+
+<li>Rédiger l'algorithme.</li>
+
+<li>Tester l'algorithme.</li>
+
+<li>Corriger les éventuelles erreurs.</li>
+
+</ol>
+
+<hr>
+
+<h3>12.3 Identifier les entrées, traitements et sorties</h3>
+
+<p>
+Cette méthode est appelée :
+</p>
+
+<blockquote>
+Méthode E.T.S. (Entrées - Traitements - Sorties)
+</blockquote>
+
+<h4>Exemple : calcul de l'aire d'un rectangle</h4>
+
+<p><strong>Entrées :</strong></p>
+
+<ul>
+<li>Longueur</li>
+<li>Largeur</li>
+</ul>
+
+<p><strong>Traitement :</strong></p>
+
+<pre>
+Aire ← Longueur × Largeur
+</pre>
+
+<p><strong>Sortie :</strong></p>
+
+<ul>
+<li>Aire du rectangle</li>
+</ul>
+
+<hr>
+
+<h3>12.4 Exemple complet d'analyse</h3>
+
+<h4>Problème</h4>
+
+<p>
+Calculer le salaire net d'un employé sachant que :
+</p>
+
+<ul>
+<li>le salaire brut est saisi ;</li>
+<li>une retenue de 20 % est appliquée.</li>
+</ul>
+
+<h4>Analyse</h4>
+
+<p><strong>Entrée :</strong></p>
+
+<pre>
+SalaireBrut
+</pre>
+
+<p><strong>Traitements :</strong></p>
+
+<pre>
+Retenue ← SalaireBrut × 20 / 100
+
+SalaireNet ← SalaireBrut - Retenue
+</pre>
+
+<p><strong>Sortie :</strong></p>
+
+<pre>
+SalaireNet
+</pre>
+
+<hr>
+
+<h3>12.5 Du problème à l'algorithme</h3>
+
+<p>
+Après l'analyse vient la rédaction de l'algorithme.
+</p>
+
+<pre>
+Variables
+
+SalaireBrut : Réel
+
+Retenue : Réel
+
+SalaireNet : Réel
+
+Début
+
+    Lire SalaireBrut
+
+    Retenue ← SalaireBrut * 20 / 100
+
+    SalaireNet ← SalaireBrut - Retenue
+
+    Afficher SalaireNet
+
+Fin
+</pre>
+
+<hr>
+
+<h3>12.6 Le découpage d'un problème</h3>
+
+<p>
+Face à un problème complexe, il est souvent préférable de le découper en plusieurs sous-problèmes.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<blockquote>
+Créer un système de gestion des étudiants.
+</blockquote>
+
+<p>
+Peut être décomposé en :
+</p>
+
+<ul>
+
+<li>Saisir les étudiants.</li>
+
+<li>Calculer les moyennes.</li>
+
+<li>Déterminer les mentions.</li>
+
+<li>Afficher les bulletins.</li>
+
+<li>Produire les statistiques.</li>
+
+</ul>
+
+<p>
+Cette méthode simplifie énormément le travail.
+</p>
+
+<hr>
+
+<h3>12.7 Les erreurs fréquentes dans l'analyse</h3>
+
+<h4>Erreur n°1 : oublier une donnée d'entrée</h4>
+
+<p>
+Exemple :
+</p>
+
+<p>
+Calculer l'aire d'un rectangle sans demander la largeur.
+</p>
+
+<hr>
+
+<h4>Erreur n°2 : oublier une sortie</h4>
+
+<p>
+Calculer un résultat sans l'afficher.
+</p>
+
+<hr>
+
+<h4>Erreur n°3 : confondre données et traitements</h4>
+
+<p>
+Une donnée est fournie.
+</p>
+
+<p>
+Un traitement est calculé.
+</p>
+
+<hr>
+
+<h3>12.8 Les tests de validation</h3>
+
+<p>
+Une fois l'algorithme terminé, il faut le tester.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Entrée</th>
+<th>Résultat attendu</th>
+</tr>
+
+<tr>
+<td>Longueur = 5<br>Largeur = 4</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>Longueur = 10<br>Largeur = 3</td>
+<td>30</td>
+</tr>
+
+</table>
+
+<p>
+Les tests permettent de vérifier que l'algorithme fonctionne correctement.
+</p>
+
+<hr>
+
+<h3>12.9 Étude de cas n°1 : Calcul d'une moyenne</h3>
+
+<h4>Analyse</h4>
+
+<p><strong>Entrées :</strong></p>
+
+<ul>
+<li>Note1</li>
+<li>Note2</li>
+<li>Note3</li>
+</ul>
+
+<p><strong>Traitement :</strong></p>
+
+<pre>
+Moyenne ← (Note1 + Note2 + Note3) / 3
+</pre>
+
+<p><strong>Sortie :</strong></p>
+
+<pre>
+Moyenne
+</pre>
+
+<hr>
+
+<h3>12.10 Étude de cas n°2 : Nombre pair ou impair</h3>
+
+<h4>Entrée</h4>
+
+<pre>
+Nombre
+</pre>
+
+<h4>Traitement</h4>
+
+<pre>
+Si Nombre MOD 2 = 0
+</pre>
+
+<h4>Sortie</h4>
+
+<pre>
+"Pair" ou "Impair"
+</pre>
+
+<hr>
+
+<h3>12.11 Étude de cas n°3 : Gestion d'une classe</h3>
+
+<p>
+Objectif :
+</p>
+
+<ul>
+
+<li>saisir plusieurs notes ;</li>
+
+<li>calculer la moyenne ;</li>
+
+<li>trouver la meilleure note ;</li>
+
+<li>trouver la plus faible note.</li>
+
+</ul>
+
+<p>
+On reconnaît immédiatement :
+</p>
+
+<ul>
+
+<li>un tableau ;</li>
+
+<li>une boucle ;</li>
+
+<li>des variables ;</li>
+
+<li>des comparaisons.</li>
+
+</ul>
+
+<p>
+L'analyse permet donc d'identifier les outils algorithmiques à utiliser.
+</p>
+
+<hr>
+
+<h3>12.12 Les qualités d'un bon algorithme</h3>
+
+<p>
+Un bon algorithme doit être :
+</p>
+
+<ul>
+
+<li><strong>Correct</strong> : il produit le bon résultat.</li>
+
+<li><strong>Simple</strong> : facile à comprendre.</li>
+
+<li><strong>Lisible</strong> : bien présenté.</li>
+
+<li><strong>Efficace</strong> : utilise peu de ressources.</li>
+
+<li><strong>Modulaire</strong> : découpé en fonctions et procédures.</li>
+
+</ul>
+
+<hr>
+
+<h3>12.13 De l'algorithmique à la programmation</h3>
+
+<p>
+L'algorithmique est indépendante du langage utilisé.
+</p>
+
+<p>
+Une fois l'algorithme conçu, il peut être traduit en :
+</p>
+
+<ul>
+
+<li>Python ;</li>
+
+<li>PHP ;</li>
+
+<li>Java ;</li>
+
+<li>C# ;</li>
+
+<li>C++ ;</li>
+
+<li>JavaScript ;</li>
+
+</ul>
+
+<p>
+C'est pourquoi l'algorithmique constitue la base de toute formation en développement informatique.
+</p>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>La résolution d'un problème commence par l'analyse.</li>
+
+<li>La méthode ETS (Entrées - Traitements - Sorties) est fondamentale.</li>
+
+<li>Un problème complexe doit être découpé en sous-problèmes.</li>
+
+<li>Tout algorithme doit être testé avant son utilisation.</li>
+
+<li>L'algorithmique précède toujours la programmation.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+<div class="exercice">
+<h4>TD 27</h4>
+
+<p>
+Identifier les entrées, traitements et sorties d'un programme calculant le périmètre d'un rectangle.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 28</h4>
+
+<p>
+
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+Identifier les entrées, traitements et sorties d'un programme calculant la TVA d'un produit.
+</p>
+
+<h4>TD 29</h4>
+
+<p>
+Réaliser l'analyse complète d'un programme déterminant si un étudiant est admis ou ajourné.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+</div>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Une boutique souhaite calculer automatiquement la remise accordée à un client :
+</p>
+
+<ul>
+
+<li>si le montant est supérieur à 100 000 Ar, remise de 10 % ;</li>
+
+<li>sinon aucune remise.</li>
+
+</ul>
+
+<p>
+Réaliser :
+</p>
+
+<ol>
+
+<li>l'analyse ETS ;</li>
+
+<li>l'algorithme complet ;</li>
+
+<li>un jeu de tests permettant de vérifier le résultat.</li>
+
+</ol>
+
+<hr>
+
+<h3>Projet de fin de module</h3>
+
+<p>
+Concevoir entièrement un système simplifié de gestion des notes d'une classe :
+</p>
+
+<ul>
+
+<li>saisie des étudiants ;</li>
+
+<li>saisie des notes ;</li>
+
+<li>calcul des moyennes ;</li>
+
+<li>détermination des mentions ;</li>
+
+<li>classement des étudiants ;</li>
+
+<li>édition d'un bulletin simplifié.</li>
+
+</ul>
+
+<p>
+Ce projet devra mobiliser l'ensemble des notions étudiées depuis le chapitre 1.
+</p>
+
+<hr>
+
+<h3>Conclusion du cours d'algorithmique</h3>
+
+<p>
+Félicitations !
+</p>
+
+<p>
+Vous avez découvert les fondements de l'algorithmique :
+</p>
+
+<ul>
+
+<li>la logique de résolution de problèmes ;</li>
+
+<li>les variables ;</li>
+
+<li>les opérateurs ;</li>
+
+<li>les structures conditionnelles ;</li>
+
+<li>les boucles ;</li>
+
+<li>les tableaux ;</li>
+
+<li>les fonctions et procédures ;</li>
+
+<li>les enregistrements.</li>
+
+</ul>
+
+<p>
+Vous disposez désormais des bases nécessaires pour apprendre un langage de programmation moderne tel que Python, PHP, Java, C# ou JavaScript.
+</p>
+
+    </section>
+
+    <section id="chap13" class="chapitre">
+
+        <h2 id="chap13">Chapitre 13 : Les fichiers – Lecture et écriture de données</h2>
+
+<p>
+Jusqu'à présent, tous les algorithmes que nous avons développés présentent une limitation importante :
+</p>
+
+<p>
+Lorsque le programme se termine, toutes les données disparaissent.
+</p>
+
+<p>
+Par exemple, si un utilisateur saisit :
+</p>
+
+<ul>
+<li>des notes d'étudiants ;</li>
+<li>une liste de produits ;</li>
+<li>des informations sur des clients ;</li>
+<li>des résultats d'examens ;</li>
+</ul>
+
+<p>
+ces données sont perdues dès que le programme s'arrête.
+</p>
+
+<p>
+Or, dans la réalité, les logiciels doivent conserver les informations afin de pouvoir les réutiliser plus tard.
+</p>
+
+<p>
+Pour cela, l'informatique utilise les <strong>fichiers</strong>.
+</p>
+
+<hr>
+
+<h3>13.1 Une analogie avec la vie quotidienne</h3>
+
+<p>
+Imaginez un enseignant qui note les résultats des étudiants sur une feuille de papier.
+</p>
+
+<p>
+Même après avoir quitté son bureau, les informations restent disponibles.
+</p>
+
+<p>
+Le lendemain, il peut reprendre la feuille et continuer son travail.
+</p>
+
+<p>
+Un fichier informatique joue exactement le même rôle :
+</p>
+
+<ul>
+<li>il stocke des informations ;</li>
+<li>il conserve ces informations après l'arrêt du programme ;</li>
+<li>il permet de retrouver ces informations plus tard.</li>
+</ul>
+
+<hr>
+
+<h3>13.2 Qu'est-ce qu'un fichier ?</h3>
+
+<p>
+Un <strong>fichier</strong> est un ensemble d'informations enregistrées sur un support de stockage :
+</p>
+
+<ul>
+
+<li>disque dur ;</li>
+
+<li>SSD ;</li>
+
+<li>clé USB ;</li>
+
+<li>carte mémoire ;</li>
+
+<li>serveur distant.</li>
+
+</ul>
+
+<p>
+Les données restent disponibles même lorsque l'ordinateur est éteint.
+</p>
+
+<hr>
+
+<h3>13.3 Pourquoi utiliser des fichiers ?</h3>
+
+<p>
+Les fichiers permettent :
+</p>
+
+<ul>
+
+<li>de sauvegarder des informations ;</li>
+
+<li>de partager des données ;</li>
+
+<li>de conserver un historique ;</li>
+
+<li>de recharger les données lors d'une prochaine utilisation du programme.</li>
+
+</ul>
+
+<p>
+Sans fichiers, il serait impossible de créer :
+</p>
+
+<ul>
+
+<li>un logiciel de gestion scolaire ;</li>
+
+<li>un traitement de texte ;</li>
+
+<li>un tableur ;</li>
+
+<li>une application bancaire ;</li>
+
+<li>un système de gestion d'entreprise.</li>
+
+</ul>
+
+<hr>
+
+<h3>13.4 Types de fichiers</h3>
+
+<p>
+Il existe de nombreux types de fichiers :
+</p>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Type</th>
+<th>Exemple</th>
+</tr>
+
+<tr>
+<td>Texte</td>
+<td>.txt</td>
+</tr>
+
+<tr>
+<td>PDF</td>
+<td>.pdf</td>
+</tr>
+
+<tr>
+<td>Image</td>
+<td>.jpg, .png</td>
+</tr>
+
+<tr>
+<td>Tableur</td>
+<td>.xlsx</td>
+</tr>
+
+<tr>
+<td>Base de données</td>
+<td>.db, .mdb</td>
+</tr>
+
+</table>
+
+<p>
+Dans ce chapitre, nous nous concentrerons principalement sur les fichiers texte.
+</p>
+
+<hr>
+
+<h3>13.5 Les opérations fondamentales sur un fichier</h3>
+
+<p>
+Un programme réalise généralement quatre opérations principales :
+</p>
+
+<ol>
+
+<li>Créer un fichier.</li>
+
+<li>Ouvrir un fichier.</li>
+
+<li>Lire un fichier.</li>
+
+<li>Écrire dans un fichier.</li>
+
+<li>Fermer un fichier.</li>
+
+</ol>
+
+<p>
+Ces opérations constituent la base de la gestion des fichiers.
+</p>
+
+<hr>
+
+<h2>Partie I : Écriture dans un fichier</h2>
+
+<h3>13.6 Principe</h3>
+
+<p>
+L'écriture consiste à enregistrer des données dans un fichier.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Nom : Rakoto
+
+Moyenne : 14.5
+</pre>
+
+<p>
+Ces informations seront conservées même après l'arrêt du programme.
+</p>
+
+<hr>
+
+<h3>13.7 Pseudo-code général</h3>
+
+<pre>
+Ouvrir fichier en écriture
+
+Écrire données
+
+Fermer fichier
+</pre>
+
+<hr>
+
+<h3>13.8 Exemple : enregistrer un nom</h3>
+
+<pre>
+Début
+
+    Lire nom
+
+    Ouvrir "etudiant.txt" en écriture
+
+    Écrire nom
+
+    Fermer fichier
+
+Fin
+</pre>
+
+<hr>
+
+<h2>Partie II : Lecture d'un fichier</h2>
+
+<h3>13.9 Principe</h3>
+
+<p>
+La lecture permet de récupérer les informations enregistrées précédemment.
+</p>
+
+<hr>
+
+<h3>13.10 Pseudo-code général</h3>
+
+<pre>
+Ouvrir fichier en lecture
+
+Lire données
+
+Fermer fichier
+</pre>
+
+<hr>
+
+<h3>13.11 Exemple : lire un nom</h3>
+
+<pre>
+Début
+
+    Ouvrir "etudiant.txt" en lecture
+
+    Lire nom
+
+    Afficher nom
+
+    Fermer fichier
+
+Fin
+</pre>
+
+<hr>
+
+<h3>13.12 Cycle complet</h3>
+
+<p>
+Le cycle classique est :
+</p>
+
+<pre>
+Saisie
+
+↓
+
+Enregistrement
+
+↓
+
+Fermeture
+
+↓
+
+Réouverture
+
+↓
+
+Lecture
+
+↓
+
+Affichage
+</pre>
+
+<hr>
+
+<h2>Partie III : Fichiers contenant plusieurs lignes</h2>
+
+<h3>13.13 Exemple</h3>
+
+<pre>
+ETU001 ; Rakoto ; 15
+
+ETU002 ; Rabe ; 13
+
+ETU003 ; Rasoa ; 17
+</pre>
+
+<p>
+Chaque ligne représente un étudiant.
+</p>
+
+<hr>
+
+<h3>13.14 Lecture de toutes les lignes</h3>
+
+<pre>
+Ouvrir fichier
+
+TantQue non fin du fichier
+
+    Lire ligne
+
+    Afficher ligne
+
+FinTantQue
+
+Fermer fichier
+</pre>
+
+<hr>
+
+<h3>13.15 Fin de fichier</h3>
+
+<p>
+Un programme doit savoir quand arrêter la lecture.
+</p>
+
+<p>
+On utilise généralement la notion :
+</p>
+
+<pre>
+FinDeFichier
+</pre>
+
+<p>
+ou
+</p>
+
+<pre>
+EOF (End Of File)
+</pre>
+
+<hr>
+
+<h2>Partie IV : Fichiers et tableaux</h2>
+
+<h3>13.16 Chargement d'un tableau depuis un fichier</h3>
+
+<p>
+Les données d'un fichier peuvent être copiées dans un tableau.
+</p>
+
+<pre>
+Ouvrir fichier
+
+i ← 1
+
+TantQue non fin du fichier
+
+    Lire notes[i]
+
+    i ← i + 1
+
+FinTantQue
+
+Fermer fichier
+</pre>
+
+<hr>
+
+<h3>13.17 Sauvegarde d'un tableau</h3>
+
+<pre>
+Ouvrir fichier
+
+Pour i allant de 1 à n
+
+    Écrire notes[i]
+
+FinPour
+
+Fermer fichier
+</pre>
+
+<hr>
+
+<h2>Partie V : Fichiers et enregistrements</h2>
+
+<h3>13.18 Sauvegarde d'étudiants</h3>
+
+<p>
+Nous pouvons enregistrer les informations d'un étudiant :
+</p>
+
+<pre>
+ETU001 ; Rakoto ; Jean ; 15.5
+</pre>
+
+<p>
+Chaque ligne représente un enregistrement.
+</p>
+
+<hr>
+
+<h3>13.19 Exemple d'écriture</h3>
+
+<pre>
+Écrire etu.matricule
+
+Écrire etu.nom
+
+Écrire etu.prenom
+
+Écrire etu.moyenne
+</pre>
+
+<hr>
+
+<h3>13.20 Exemple de lecture</h3>
+
+<pre>
+Lire etu.matricule
+
+Lire etu.nom
+
+Lire etu.prenom
+
+Lire etu.moyenne
+</pre>
+
+<hr>
+
+<h2>Partie VI : Applications concrètes</h2>
+
+<h3>13.21 Gestion scolaire</h3>
+
+<p>
+Les fichiers permettent de stocker :
+</p>
+
+<ul>
+
+<li>les étudiants ;</li>
+
+<li>les notes ;</li>
+
+<li>les absences ;</li>
+
+<li>les résultats d'examens.</li>
+
+</ul>
+
+<hr>
+
+<h3>13.22 Gestion commerciale</h3>
+
+<p>
+Les fichiers permettent de stocker :
+</p>
+
+<ul>
+
+<li>les produits ;</li>
+
+<li>les clients ;</li>
+
+<li>les ventes ;</li>
+
+<li>les factures.</li>
+
+</ul>
+
+<hr>
+
+<h3>13.23 Historique d'activités</h3>
+
+<p>
+Les applications enregistrent souvent :
+</p>
+
+<ul>
+
+<li>les connexions ;</li>
+
+<li>les erreurs ;</li>
+
+<li>les opérations réalisées.</li>
+
+</ul>
+
+<p>
+Ces informations sont enregistrées dans des fichiers appelés :
+</p>
+
+<blockquote>
+Fichiers journaux (logs)
+</blockquote>
+
+<hr>
+
+<h2>Partie VII : Bonnes pratiques</h2>
+
+<h3>13.24 Toujours fermer un fichier</h3>
+
+<p>
+Après utilisation, un fichier doit être fermé.
+</p>
+
+<p>
+Cela évite :
+</p>
+
+<ul>
+
+<li>les pertes de données ;</li>
+
+<li>les blocages ;</li>
+
+<li>les problèmes d'accès.</li>
+
+</ul>
+
+<hr>
+
+<h3>13.25 Vérifier l'existence du fichier</h3>
+
+<p>
+Avant de lire un fichier, il est prudent de vérifier qu'il existe réellement.
+</p>
+
+<hr>
+
+<h3>13.26 Sauvegarder régulièrement</h3>
+
+<p>
+Dans les logiciels professionnels, les sauvegardes automatiques sont très importantes.
+</p>
+
+<p>
+Elles permettent de récupérer les données en cas de panne.
+</p>
+
+<hr>
+
+<h3>13.27 Fichiers ou bases de données ?</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Fichiers</th>
+<th>Bases de données</th>
+</tr>
+
+<tr>
+<td>Simples à utiliser</td>
+<td>Plus puissantes</td>
+</tr>
+
+<tr>
+<td>Adaptés aux petits projets</td>
+<td>Adaptées aux grands projets</td>
+</tr>
+
+<tr>
+<td>Peu de fonctionnalités</td>
+<td>Recherche et gestion avancées</td>
+</tr>
+
+</table>
+
+<p>
+Les bases de données peuvent être considérées comme une évolution des fichiers.
+</p>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>Les fichiers permettent de conserver les données après l'arrêt du programme.</li>
+
+<li>Les principales opérations sont : ouvrir, lire, écrire et fermer.</li>
+
+<li>Les fichiers texte sont les plus simples à manipuler.</li>
+
+<li>Les tableaux et les enregistrements peuvent être enregistrés dans des fichiers.</li>
+
+<li>Les fichiers sont utilisés dans pratiquement tous les logiciels.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+
+<h4>TD 1</h4>
+
+<p>
+Écrire un algorithme enregistrant le nom d'un étudiant dans un fichier texte.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 2</h4>
+
+<p>
+Écrire un algorithme lisant puis affichant le contenu d'un fichier texte.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<h4>TD 3</h4>
+
+<p>
+Écrire un algorithme enregistrant les notes de 10 étudiants dans un fichier.
+</p>
+<p> <a href="https://docs.google.com/forms/d/e/1FAIpQLScNcRv9TTcAt3iWMSFZjeIyaPyNoZM8COhV_cyBpMS_RnIlBA/viewform?usp=publish-editor"
+           target="_blank"
+           class="btn-exercice">
+           Soumettre mon travail
+        </a>
+    </p>
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Créer un système permettant :
+</p>
+
+<ol>
+
+<li>de saisir les informations de 5 étudiants ;</li>
+
+<li>de les enregistrer dans un fichier ;</li>
+
+<li>de relire le fichier ;</li>
+
+<li>d'afficher toutes les informations enregistrées.</li>
+
+</ol>
+
+<hr>
+
+<h3>Mini-projet</h3>
+
+<p>
+Développer un mini-carnet d'adresses :
+</p>
+
+<ul>
+
+<li>ajout d'un contact ;</li>
+
+<li>enregistrement dans un fichier ;</li>
+
+<li>consultation des contacts ;</li>
+
+<li>recherche d'un contact par nom.</li>
+
+</ul>
+
+<hr>
+
+<h3>Préparation du chapitre suivant</h3>
+
+<p>
+Nous savons maintenant conserver les données grâce aux fichiers.
+</p>
+
+<p>
+Cependant, lorsqu'un programme traite de grandes quantités d'informations, il devient important de réfléchir à son efficacité.
+</p>
+
+<p>
+Deux algorithmes peuvent produire exactement le même résultat tout en ayant des vitesses d'exécution très différentes.
+</p>
+
+<p>
+Le prochain chapitre introduira la notion de <strong>complexité algorithmique et d'optimisation</strong>, qui permet d'évaluer et d'améliorer les performances d'un algorithme.
+</p>
+
+    </section>
+
+    <section id="chap14" class="chapitre">
+<h2 id="chap14">Chapitre 14 : Introduction à la complexité algorithmique et à l'optimisation</h2>
+
+<p>
+Depuis le début de ce cours, nous avons appris à construire des algorithmes capables de résoudre différents problèmes.
+</p>
+
+<p>
+Jusqu'à présent, nous nous sommes surtout préoccupés de savoir si un algorithme produisait le bon résultat.
+</p>
+
+<p>
+Mais dans le monde réel, une autre question est tout aussi importante :
+</p>
+
+<blockquote>
+L'algorithme est-il suffisamment rapide ?
+</blockquote>
+
+<p>
+Deux algorithmes peuvent produire exactement le même résultat tout en utilisant des temps d'exécution très différents.
+</p>
+
+<p>
+Lorsqu'un programme traite quelques données seulement, cette différence est souvent invisible.
+</p>
+
+<p>
+Mais lorsque l'on manipule des milliers, des millions ou même des milliards de données, elle devient cruciale.
+</p>
+
+<hr>
+
+<h3>14.1 Une analogie avec la vie quotidienne</h3>
+
+<p>
+Imaginons que vous cherchiez un livre dans une bibliothèque contenant 10 000 ouvrages.
+</p>
+
+<p>
+Vous avez plusieurs possibilités :
+</p>
+
+<ul>
+<li>examiner chaque livre un par un ;</li>
+<li>utiliser un catalogue classé ;</li>
+<li>utiliser un système informatique de recherche.</li>
+</ul>
+
+<p>
+Les trois méthodes permettent de trouver le livre recherché.
+</p>
+
+<p>
+Cependant, elles ne demandent pas le même temps.
+</p>
+
+<p>
+L'objectif de l'optimisation est précisément de trouver les méthodes les plus efficaces.
+</p>
+
+<hr>
+
+<h3>14.2 Qu'est-ce que la complexité algorithmique ?</h3>
+
+<p>
+La <strong>complexité algorithmique</strong> mesure les ressources nécessaires à l'exécution d'un algorithme.
+</p>
+
+<p>
+Ces ressources sont principalement :
+</p>
+
+<ul>
+
+<li>le temps d'exécution ;</li>
+
+<li>la mémoire utilisée.</li>
+
+</ul>
+
+<p>
+On distingue donc :
+</p>
+
+<ul>
+
+<li>la complexité temporelle ;</li>
+
+<li>la complexité spatiale.</li>
+
+</ul>
+
+<hr>
+
+<h3>14.3 Pourquoi étudier la complexité ?</h3>
+
+<p>
+La complexité permet :
+</p>
+
+<ul>
+
+<li>de comparer plusieurs algorithmes ;</li>
+
+<li>de choisir la meilleure solution ;</li>
+
+<li>de prévoir les performances d'un programme ;</li>
+
+<li>de concevoir des logiciels plus efficaces.</li>
+
+</ul>
+
+<hr>
+
+<h2>Partie I : La complexité temporelle</h2>
+
+<h3>14.4 Principe</h3>
+
+<p>
+La complexité temporelle estime le nombre d'opérations effectuées par un algorithme.
+</p>
+
+<p>
+On ne mesure pas directement le temps en secondes.
+</p>
+
+<p>
+En effet :
+</p>
+
+<ul>
+
+<li>un ordinateur rapide exécutera un programme plus vite ;</li>
+
+<li>un ordinateur lent exécutera le même programme plus lentement.</li>
+
+</ul>
+
+<p>
+On préfère donc compter le nombre d'opérations réalisées.
+</p>
+
+<hr>
+
+<h3>14.5 Exemple simple</h3>
+
+<pre>
+Afficher "Bonjour"
+</pre>
+
+<p>
+Une seule opération est exécutée.
+</p>
+
+<p>
+La complexité est constante.
+</p>
+
+<hr>
+
+<h3>14.6 La notation O (Grand O)</h3>
+
+<p>
+Pour exprimer la complexité, les informaticiens utilisent généralement la notation :
+</p>
+
+<blockquote>
+O(...)
+</blockquote>
+
+<p>
+Cette notation indique comment évolue le nombre d'opérations lorsque la taille des données augmente.
+</p>
+
+<hr>
+
+<h3>14.7 Complexité constante : O(1)</h3>
+
+<p>
+Un algorithme possède une complexité constante lorsque le nombre d'opérations ne dépend pas de la taille des données.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Lire age
+
+Afficher age
+</pre>
+
+<p>
+Que l'on traite 10 données ou 10 millions de données, le nombre d'opérations reste identique.
+</p>
+
+<p>
+La complexité est :
+</p>
+
+<pre>
+O(1)
+</pre>
+
+<hr>
+
+<h3>14.8 Complexité linéaire : O(n)</h3>
+
+<p>
+Considérons un tableau contenant n notes.
+</p>
+
+<pre>
+Pour i allant de 1 à n
+
+    Afficher notes[i]
+
+FinPour
+</pre>
+
+<p>
+Si le nombre de notes double, le travail double également.
+</p>
+
+<p>
+La complexité est :
+</p>
+
+<pre>
+O(n)
+</pre>
+
+<hr>
+
+<h3>14.9 Exemple concret</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Nombre d'éléments</th>
+<th>Nombre d'opérations</th>
+</tr>
+
+<tr>
+<td>10</td>
+<td>10</td>
+</tr>
+
+<tr>
+<td>100</td>
+<td>100</td>
+</tr>
+
+<tr>
+<td>1000</td>
+<td>1000</td>
+</tr>
+
+</table>
+
+<p>
+La croissance est proportionnelle.
+</p>
+
+<hr>
+
+<h3>14.10 Complexité quadratique : O(n²)</h3>
+
+<p>
+Les boucles imbriquées produisent souvent une complexité quadratique.
+</p>
+
+<pre>
+Pour i allant de 1 à n
+
+    Pour j allant de 1 à n
+
+        Afficher i, j
+
+    FinPour
+
+FinPour
+</pre>
+
+<p>
+Le nombre total d'opérations devient :
+</p>
+
+<pre>
+n × n = n²
+</pre>
+
+<hr>
+
+<h3>14.11 Exemple chiffré</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>n</th>
+<th>n²</th>
+</tr>
+
+<tr>
+<td>10</td>
+<td>100</td>
+</tr>
+
+<tr>
+<td>100</td>
+<td>10 000</td>
+</tr>
+
+<tr>
+<td>1 000</td>
+<td>1 000 000</td>
+</tr>
+
+</table>
+
+<p>
+On constate que le coût augmente très rapidement.
+</p>
+
+<hr>
+
+<h3>14.12 Complexité logarithmique : O(log n)</h3>
+
+<p>
+Certains algorithmes éliminent une grande partie des données à chaque étape.
+</p>
+
+<p>
+Exemple :
+</p>
+
+<ul>
+
+<li>recherche dans un dictionnaire ;</li>
+
+<li>recherche dans un annuaire trié ;</li>
+
+<li>recherche binaire.</li>
+
+</ul>
+
+<p>
+Ces algorithmes sont particulièrement efficaces.
+</p>
+
+<hr>
+
+<h2>Partie II : La complexité spatiale</h2>
+
+<h3>14.13 Définition</h3>
+
+<p>
+La complexité spatiale mesure la quantité de mémoire utilisée par un algorithme.
+</p>
+
+<p>
+Par exemple :
+</p>
+
+<ul>
+
+<li>variables ;</li>
+
+<li>tableaux ;</li>
+
+<li>enregistrements ;</li>
+
+<li>fichiers temporaires.</li>
+
+</ul>
+
+<hr>
+
+<h3>14.14 Exemple</h3>
+
+<pre>
+Variables
+
+notes : Tableau[1000]
+</pre>
+
+<p>
+Ce programme utilise davantage de mémoire qu'un tableau de 10 éléments.
+</p>
+
+<hr>
+
+<h2>Partie III : Optimisation des algorithmes</h2>
+
+<h3>14.15 Pourquoi optimiser ?</h3>
+
+<p>
+L'optimisation permet :
+</p>
+
+<ul>
+
+<li>d'accélérer les traitements ;</li>
+
+<li>de réduire la mémoire utilisée ;</li>
+
+<li>d'améliorer l'expérience utilisateur ;</li>
+
+<li>de diminuer les coûts informatiques.</li>
+
+</ul>
+
+<hr>
+
+<h3>14.16 Exemple : recherche d'un étudiant</h3>
+
+<p>
+Supposons un tableau contenant 10 000 étudiants.
+</p>
+
+<p>
+Première méthode :
+</p>
+
+<pre>
+Parcourir tous les étudiants
+</pre>
+
+<p>
+Complexité :
+</p>
+
+<pre>
+O(n)
+</pre>
+
+<p>
+Deuxième méthode :
+</p>
+
+<pre>
+Utiliser une structure triée
+</pre>
+
+<p>
+Complexité :
+</p>
+
+<pre>
+O(log n)
+</pre>
+
+<p>
+La seconde méthode est beaucoup plus rapide.
+</p>
+
+<hr>
+
+<h3>14.17 Éviter les calculs inutiles</h3>
+
+<p>
+Exemple peu efficace :
+</p>
+
+<pre>
+Pour i allant de 1 à n
+
+    moyenne ← (note1 + note2 + note3) / 3
+
+FinPour
+</pre>
+
+<p>
+La moyenne est recalculée inutilement à chaque tour.
+</p>
+
+<p>
+Il est préférable de la calculer une seule fois.
+</p>
+
+<hr>
+
+<h3>14.18 Réutiliser les résultats</h3>
+
+<p>
+Lorsqu'un calcul est coûteux, il est souvent intéressant de conserver son résultat afin d'éviter de le refaire.
+</p>
+
+<p>
+Cette technique est très utilisée dans les logiciels modernes.
+</p>
+
+<hr>
+
+<h3>14.19 Lisibilité ou performance ?</h3>
+
+<p>
+L'algorithme le plus rapide n'est pas toujours le meilleur choix.
+</p>
+
+<p>
+Un programme doit rester :
+</p>
+
+<ul>
+
+<li>compréhensible ;</li>
+
+<li>maintenable ;</li>
+
+<li>évolutif.</li>
+
+</ul>
+
+<p>
+L'optimisation ne doit pas rendre le code illisible.
+</p>
+
+<hr>
+
+<h2>Partie IV : Étude de cas</h2>
+
+<h3>14.20 Recherche d'une note maximale</h3>
+
+<pre>
+max ← notes[1]
+
+Pour i allant de 2 à n
+
+    Si notes[i] > max Alors
+
+        max ← notes[i]
+
+    FinSi
+
+FinPour
+</pre>
+
+<p>
+Le tableau est parcouru une seule fois.
+</p>
+
+<p>
+Complexité :
+</p>
+
+<pre>
+O(n)
+</pre>
+
+<hr>
+
+<h3>14.21 Somme d'un tableau</h3>
+
+<pre>
+somme ← 0
+
+Pour i allant de 1 à n
+
+    somme ← somme + notes[i]
+
+FinPour
+</pre>
+
+<p>
+Complexité :
+</p>
+
+<pre>
+O(n)
+</pre>
+
+<hr>
+
+<h3>14.22 Comparaison de deux solutions</h3>
+
+<p>
+Solution 1 :
+</p>
+
+<pre>
+Une seule boucle
+</pre>
+
+<p>
+Complexité :
+</p>
+
+<pre>
+O(n)
+</pre>
+
+<p>
+Solution 2 :
+</p>
+
+<pre>
+Deux boucles imbriquées
+</pre>
+
+<p>
+Complexité :
+</p>
+
+<pre>
+O(n²)
+</pre>
+
+<p>
+Lorsque n devient très grand, la première solution est généralement préférable.
+</p>
+
+<hr>
+
+<h3>14.23 Applications réelles</h3>
+
+<p>
+La complexité algorithmique est essentielle dans :
+</p>
+
+<ul>
+
+<li>les moteurs de recherche ;</li>
+
+<li>les réseaux sociaux ;</li>
+
+<li>les banques ;</li>
+
+<li>les jeux vidéo ;</li>
+
+<li>l'intelligence artificielle ;</li>
+
+<li>les systèmes de réservation.</li>
+
+</ul>
+
+<p>
+Des milliards d'opérations sont exécutées chaque jour dans ces systèmes.
+</p>
+
+<hr>
+
+<h3>À retenir</h3>
+
+<ul>
+
+<li>La complexité mesure le coût d'un algorithme.</li>
+
+<li>La complexité temporelle concerne le temps d'exécution.</li>
+
+<li>La complexité spatiale concerne la mémoire utilisée.</li>
+
+<li>La notation O(...) permet de comparer les algorithmes.</li>
+
+<li>O(1) est plus efficace que O(n).</li>
+
+<li>O(n) est généralement plus efficace que O(n²).</li>
+
+<li>L'optimisation consiste à améliorer les performances d'un algorithme.</li>
+
+</ul>
+
+<hr>
+
+<h3>Travaux dirigés</h3>
+
+<h4>TD 1</h4>
+
+<p>
+Déterminer la complexité des algorithmes suivants :
+</p>
+
+<ul>
+<li>affichage d'un nombre ;</li>
+<li>parcours d'un tableau de n éléments ;</li>
+<li>double boucle parcourant un tableau.</li>
+</ul>
+
+<h4>TD 2</h4>
+
+<p>
+Comparer une recherche séquentielle dans un tableau de 1 000 éléments et de 100 000 éléments.
+</p>
+
+<h4>TD 3</h4>
+
+<p>
+Identifier les calculs inutiles dans un algorithme et proposer une version optimisée.
+</p>
+
+<hr>
+
+<h3>Exercice d'application</h3>
+
+<p>
+Un enseignant possède les notes de 500 étudiants dans un tableau.
+</p>
+
+<p>
+Analyser la complexité :
+</p>
+
+<ol>
+
+<li>du calcul de la moyenne ;</li>
+
+<li>de la recherche de la meilleure note ;</li>
+
+<li>d'un algorithme comparant chaque étudiant à tous les autres.</li>
+
+</ol>
+
+<hr>
+
+<h3>Projet de synthèse final</h3>
+
+<p>
+Reprendre le projet de gestion des étudiants développé dans les chapitres précédents et :
+</p>
+
+<ul>
+
+<li>analyser ses principales opérations ;</li>
+
+<li>identifier les traitements coûteux ;</li>
+
+<li>proposer des améliorations ;</li>
+
+<li>justifier les choix retenus.</li>
+
+</ul>
+
+<hr>
+
+<h3>Conclusion générale du cours</h3>
+
+<p>
+Avec ce chapitre, vous avez parcouru les principaux fondements de l'algorithmique :
+</p>
+
+<ul>
+
+<li>la notion d'algorithme ;</li>
+
+<li>les variables et types de données ;</li>
+
+<li>les structures conditionnelles ;</li>
+
+<li>les boucles ;</li>
+
+<li>les tableaux ;</li>
+
+<li>les fonctions et procédures ;</li>
+
+<li>les enregistrements ;</li>
+
+<li>les fichiers ;</li>
+
+<li>la résolution de problèmes ;</li>
+
+<li>l'optimisation des solutions.</li>
+
+</ul>
+
+<p>
+Vous disposez maintenant d'une base solide pour aborder sereinement l'apprentissage d'un langage de programmation comme Python, PHP, Java, C#, JavaScript ou C++.
+</p>
+
+
+    </section>
+    <script>
+
+function afficherSection(id){
+
+    let sections = document.querySelectorAll('.chapitre');
+
+    sections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+}
+
+function afficherCorrige(){
+    afficherSection("correctionExoChap2");
+}
+
+window.onload = function(){
+    afficherSection('intro');
+}
+
+</script>
+</div>
+</div>
+</body>
+</html>
