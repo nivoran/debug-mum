@@ -1,5 +1,0 @@
-CREATE TABLE textes(
-id INT AUTO_INCREMENT PRIMARY KEY,
-theme VARCHAR(100),
-contenu TEXT
-);
