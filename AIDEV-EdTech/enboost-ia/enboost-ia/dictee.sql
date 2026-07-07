@@ -1,0 +1,6 @@
+CREATE TABLE dictees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    theme VARCHAR(100),
+    texte TEXT,
+    date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
+);
