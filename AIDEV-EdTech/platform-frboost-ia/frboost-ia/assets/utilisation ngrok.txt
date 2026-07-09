@@ -1,0 +1,79 @@
+Oui, **avec la version gratuite de Ngrok, en pratique tu dois lancer le tunnel avant que les autres puissent accéder à ton application**.
+
+Mais il y a une nuance importante :
+
+1. Tu démarres XAMPP :
+
+* Apache ✅
+* MySQL si nécessaire ✅
+
+2. Tu lances Ngrok :
+
+```bash
+ngrok http 80
+```
+
+3. Ngrok te donne une adresse :
+
+```text
+https://xxxxx.ngrok-free.dev
+```
+
+4. C’est cette adresse qui devient l’adresse de ton application pour les utilisateurs.
+
+Tu n’as **pas besoin** de relancer ton application PHP ou de changer ton code.
+
+---
+
+### Par contre, attention :
+
+Avec le compte gratuit, l’adresse peut changer après chaque redémarrage de Ngrok.
+
+Aujourd’hui :
+
+```text
+https://spray-surgery-gloss.ngrok-free.dev
+```
+
+Demain ça peut devenir :
+
+```text
+https://autre-nom.ngrok-free.dev
+```
+
+Donc il faudra redonner le nouveau lien aux étudiants.
+
+---
+
+### Pour ton usage (cours, démonstrations, étudiants)
+
+Je te conseille de créer un petit fichier `demarrer.bat` sur le bureau :
+
+```bat
+cd C:\ngrok
+ngrok http 80
+```
+
+Comme ça :
+
+* double clic
+* Ngrok démarre
+* tu copies le lien affiché
+
+---
+
+### Une remarque pour ton cas Prof-IA :
+
+Si ton application utilise une base MySQL, **XAMPP doit rester ouvert pendant toute la session**.
+Ngrok ne remplace pas Apache, il ne fait que créer le passage sécurisé.
+
+Donc ton rituel devient :
+
+```
+1. Ouvrir XAMPP
+2. Start Apache + MySQL
+3. Lancer ngrok http 80
+4. Envoyer l’URL https aux étudiants
+```
+
+Et ton microphone devrait enfin fonctionner. 👍
