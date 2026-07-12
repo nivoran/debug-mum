@@ -1,0 +1,144 @@
+/* ==========================================================
+   FrBoost AI - Login (Version Popup Plein Écran Corrigée)
+   ========================================================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end; /* Pousse le popup à droite */
+    align-items: center;       /* Reste bien centré verticalement */
+    background: #0b3168;       /* Couleur bleu officiel en fond au cas où l'écran est géant */
+    color: #1e293b;
+    overflow: hidden;          /* Empêche les barres de défilement */
+}
+
+/* ==========================================================
+   IMAGE EN ARRIÈRE-PLAN (PLEIN ÉCRAN)
+   ========================================================== */
+.bg-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;      /* Affiche 100% de l'image sans AUCUN rognage */
+    object-position: left center; /* Aligne l'image à gauche pour laisser la place au popup à droite */
+    z-index: -1;              /* Place bien l'image derrière */
+}
+
+/* ==========================================================
+   BOITE DE CONNEXION POPUP
+   ========================================================== */
+.login-popup {
+    width: 380px;             /* Largeur réduite et compacte */
+    max-width: 90%;
+    background: rgba(255, 255, 255, 0.96); /* Blanc très légèrement transparent */
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    margin-right: 80px;       /* Marge de sécurité élégante par rapport au bord droit */
+}
+
+.login-popup h2 {
+    font-size: 28px;
+    color: #1e293b;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* ==========================================================
+   FORMULAIRE & CHAMPS
+   ========================================================== */
+.champ {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: .25s;
+    background: #f8fafc;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, .15);
+}
+
+/* ==========================================================
+   BOUTON ACTION
+   ========================================================== */
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+}
+
+button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================
+   MESSAGE ERREUR
+   ========================================================== */
+.erreur {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-left: 5px solid #ef4444;
+    padding: 14px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.footer-login {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+    body {
+        justify-content: center;
+    }
+    .login-popup {
+        margin-right: 0;
+    }
+}
