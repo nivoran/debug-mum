@@ -1,0 +1,442 @@
+/* ==========================================================================
+   1. STRUCTURE GÉNÉRALE & FOND
+   ========================================================================== */
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f1f5f9; /* Fond gris très clair moderne */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: #1e293b;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. HEADER CENTRÉ (LOGO + TITRE + NAV HORIZONTALE)
+   ========================================================================== */
+.app-header {
+    background: #1e293b; /* Bleu nuit pro */
+    color: white;
+    padding: 30px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre verticalement et horizontalement tout le contenu */
+    text-align: center;
+    border-bottom: 4px solid #2563eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    max-width: 130px;
+    height: auto;
+    margin-bottom: 15px;
+    background: white; /* Donne un fond blanc propre au logo si transparent */
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.titre-app {
+    font-size: 28px;
+    margin: 0 0 25px 0;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+/* Barre de navigation horizontale */
+.horizontal-menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/*.menu-item {
+    padding: 12px 24px;
+    background: #334155;
+    color: #f8fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+}*/
+
+.menu-item:hover {
+    background: #2563eb; /* Devient bleu au survol */
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/*.menu-item.actif{
+    background:#1e293b;
+    color:white;
+}*/
+.menu-item {
+    padding:12px 24px;
+    background:#334155;
+    color:#f8fafc;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:15px;
+    transition:all 0.2s ease-in-out;
+    border:1px solid transparent;
+}
+
+
+/* module sélectionné */
+.menu-item.actif {
+    background:#f8fafc;
+    color:#1e293b;
+    border:1px solid #f8fafc;
+}
+
+/* ==========================================================================
+   3. ZONE DE CONTENU PRINCIPAL
+   ========================================================================== */
+.main-content {
+    flex: 1;
+    max-width: 1000px; /* Aligne et centre le contenu de l'application */
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.top-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 20px 0;
+}
+
+/* ==========================================================================
+   4. BANDEAU DES NIVEAUX (CECRL)
+   ========================================================================== */
+.bande-niveau {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.choix-niveau{
+    text-align:center;
+}
+
+.niveau-link{
+    display:inline-block;
+    margin:0 8px;
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:bold;
+    padding:4px 8px;
+    border-radius:5px;
+}
+
+.niveau-link:hover{
+    background:#dbeafe;
+}
+
+.niveau-link.actif{
+    background:#2563eb;
+    color:white;
+}
+/* ==========================================================================
+   5. GESTION DES TEXTES (ALIGNEMENT COTE A COTE)
+   ========================================================================== */
+.text-management {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 5px;
+}
+
+.bloc-texte {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bloc-texte p {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    color: #475569;
+    font-weight: 500;
+}
+
+.action-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.action-link:hover {
+    text-decoration: underline;
+}
+
+/* Inputs & Formulaires */
+input[type="text"], select, textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #f8fafc;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    background-color: white;
+}
+
+#listeDictees {
+    margin-top: 0; /* Aligne proprement avec l'input text */
+    height: 46px;
+}
+#listeDictees{
+    background:#1e293b;
+    color:white;
+    border:1px solid #334155;
+    border-radius:6px;
+    padding:8px;
+    font-size:14px;
+}
+
+#listeDictees option{
+    background:white;
+    color:black;
+}
+
+#listeDictees option:checked{
+    background:#1e293b;
+    color:white;
+}
+/* Zone d'affichage du texte généré */
+#texte {
+    margin: 20px 0;
+    padding: 5px;
+    background: #eff6ff;
+   /* border-left: 5px solid #2563eb;*/
+    border-radius: 4px 8px 8px 4px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #1e293b;
+    text-align:center;
+    margin-top:10px;
+}
+
+
+/* ==========================================================================
+   6. MODULES DE JEUX & BOUTONS
+   ========================================================================== */
+.bottom-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    min-height: 200px;
+}
+
+.bottom-section h2 {
+    color: #0f172a;
+    margin-top: 0;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+/* Boutons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    background: #2563eb;
+    color: white;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.dictation-controls button:hover {
+    background: #e2e8f0;
+}
+
+/* Effets interactifs sur les mots cliquables */
+.mot {
+    cursor: help;
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+.mot:hover {
+    background: #fef08a;
+    color: #854d0e;
+}
+
+.dictation-controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin:20px 0;
+}
+.dictation-controls button{
+
+    padding:10px 15px;
+
+    font-size:14px;
+}
+
+.instruction-dictee{
+    text-align:center;
+    color:#64748b;
+    font-size:14px;
+    font-style:italic;
+    margin:15px 0;
+}
+.centre-bouton{
+    text-align:center;
+    margin:20px 0;
+}
+#result{
+    color:#dc2626;      /* rouge */
+    font-size:14px;     /* plus petit */
+    font-weight:normal; /* plus de gras */
+    margin-top:10px;
+    text-align:center;
+}
+
+.actions-comprehension{
+    text-align:center;
+    margin:15px 0;
+}
+
+.actions-comprehension .action-link{
+    margin:0 15px;
+}
+.actions-lecture{
+    text-align:center;
+    margin:20px 0;
+}
+
+.actions-lecture .action-link{
+    margin:0 5px;
+}
+
+.actions-lecture{
+    color:#94a3b8;
+}
+#phraseLecture{
+    font-size:13px;
+    font-weight:normal;
+    color:#334155;
+    text-align:center;
+    padding:8px;
+    margin:10px 0;
+}
+
+.carteHistorique{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:12px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+.stats-dashboard{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin:25px 0;
+
+}
+
+
+.stat-card{
+
+    flex:1;
+
+    min-width:150px;
+
+    background:#ffffff;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+
+.stat-valeur{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#007bff;
+
+}
+
+.stat-titre{
+
+    margin-top:8px;
+
+    color:#666;
+
+}
+
+.stat-card.exercices{
+    border-top:5px solid #3b82f6;
+}
+
+.stat-card.moyenne{
+    border-top:5px solid #10b981;
+}
+
+.stat-card.record{
+    border-top:5px solid #f59e0b;
+}
+
+.stat-card.modules{
+    border-top:5px solid #8b5cf6;
+}
