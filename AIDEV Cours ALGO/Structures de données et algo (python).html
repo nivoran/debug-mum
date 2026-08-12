@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Structures de Données et Algorithmes en Python</title>
+<style>
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100vh;
+    background: #003366;
+    padding: 20px 15px;
+    color: white;
+    overflow-y: auto;
+    box-shadow: 3px 0 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    color: #ffffff;
+    font-size: 14pt;
+    border-bottom: 2px solid #005599;
+    padding-bottom: 8px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 3px;
+}
+
+.sidebar a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 9.5pt;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar a:hover, .sidebar a.active-link {
+    background: #005599;
+    color: #ffffff;
+}
+
+.sidebar .lvl-1 > a { font-size: 10pt; font-weight: bold; color: #ffffff; margin-top: 8px; }
+.sidebar .lvl-2 > a { padding-left: 18px; font-weight: bold; color: #b0d4ff; }
+.sidebar .lvl-3 > a { padding-left: 32px; font-weight: normal; color: #e0e0e0; font-size: 9pt; }
+
+.main-content {
+    margin-left: 320px;
+    padding: 40px;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #003366;
+    border-bottom: 3px solid #003366;
+    font-size: 20pt;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 8px;
+}
+
+h2 {
+    color: #006699;
+    margin-top: 10px;
+    margin-bottom: 12px;
+    font-size: 15pt;
+    border-bottom: 1px solid #006699;
+    padding-bottom: 5px;
+}
+
+h3 {
+    color: #008080;
+    font-size: 13pt;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+.intro-box {
+    background: #f4f7f9;
+    border-left: 4px solid #006699;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.code-box {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.5pt;
+    overflow-x: auto;
+    white-space: pre;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="sidebar">
+    <h2>Sommaire</h2>
+    <ul>
+        <!-- CHAPITRE 1 -->
+        <li class="lvl-1"><a href="#" class="nav-btn active-link" onclick="afficherSection(event, 'sec-1')">1. Structures linéaires : Introduction</a></li>
+        
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-1')">1.1 Liste : Définition</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-1-1')">1.1.1 Créer une liste</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-1-2')">1.1.2 Ajouter un élément à une liste</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-1-3')">1.1.3 Supprimer un élément d’une liste</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-1-4')">1.1.4 Concaténer deux listes</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-1-5')">1.1.5 Implémentation en Python</a></li>
+        
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-2')">1.2 Pile : Définition</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-2-1')">1.2.1 Empiler</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-2-2')">1.2.2 Dépiler</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-2-3')">1.2.3 Vider</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-2-4')">1.2.4 Top</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-2-5')">1.2.5 Implémentation en Python</a></li>
+        
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-3')">1.3 File : Définition</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-3-1')">1.3.1 Défiler</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-3-2')">1.3.2 Enfiler</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-3-3')">1.3.3 Vider</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-3-4')">1.3.4 Tail/Queue</a></li>
+        <li class="lvl-3"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-1-3-5')">1.3.5 Implémentation en Python</a></li>
+
+        <!-- CHAPITRE 2 -->
+        <li class="lvl-1"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-2')">2. Algorithmes de recherche et de tri</a></li>
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-2-1')">2.1 Recherche séquentielle</a></li>
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-2-2')">2.2 Recherche dichotomique</a></li>
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-2-3')">2.3 Tri sélection</a></li>
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-2-4')">2.4 Tri rapide</a></li>
+
+        <!-- CHAPITRE 3 -->
+        <li class="lvl-1"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-3')">3. Langage Python</a></li>
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-3-1')">3.1 Installation et Environnement</a></li>
+        <li class="lvl-2"><a href="#" class="nav-btn" onclick="afficherSection(event, 'sec-3-2')">3.2 Ressources et Ouvrages</a></li>
+    </ul>
+</nav>
+
+<div class="main-content">
+
+    <h1>Structures de Données et Algorithmes en Python</h1>
+
+    <!-- 1 -->
+    <div id="sec-1" class="content-section active">
+        <h2>1. Structures linéaires : Introduction</h2>
+        <div class="intro-box">
+            <p>
+                Une <strong>structure de données linéaire</strong> organise les données de manière séquentielle. En Python, le type primitif <code>list</code> sert de base pour la plupart de ces structures linéaires grâce à sa gestion dynamique de la mémoire.
+            </p>
+
+            <h3>Caractéristiques principales en Python :</h3>
+            <ul>
+                <li><strong>Dynamicité native :</strong> Les tableaux dynamiques de Python (<code>list</code>) redimensionnent leur capacité automatiquement.</li>
+                <li><strong>Indexation directe :</strong> Accès direct aux éléments par leur indice en $O(1)$ (ex. <code>tableau[i]</code>).</li>
+                <li><strong>Gestion simplifiée :</strong> L'allocation et la libération mémoire sont prises en charge par le ramasse-miettes (Garbage Collector).</li>
+            </ul>
+
+            <h3>Vue d'ensemble des structures étudiées :</h3>
+            <ol>
+                <li><strong>Les Listes :</strong> Manipulation dynamique avec insertion et suppression flexibles.</li>
+                <li><strong>Les Piles (LIFO) :</strong> Implémentées nativement avec les méthodes <code>append()</code> et <code>pop()</code>.</li>
+                <li><strong>Les Files (FIFO) :</strong> Optimisées grâce au module <code>collections.deque</code>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 1.1 -->
+    <div id="sec-1-1" class="content-section">
+        <h2>1.1 Liste : Définition</h2>
+        <div class="intro-box">
+            <p>En Python, une <strong>liste</strong> est un tableau dynamique ordonné et modifiable pouvant contenir des éléments de types hétérogènes.</p>
+
+            <h3>Composition et Propriétés :</h3>
+            <ul>
+                <li><strong>Indexation de 0 à N-1 :</strong> Accès en $O(1)$ via l'indice.</li>
+                <li><strong>Taille variable :</strong> La fonction <code>len(ma_liste)</code> renvoie le nombre d'éléments présents.</li>
+                <li><strong>Coût des opérations :</strong> Ajouter ou supprimer au milieu d'une liste nécessite un décalage interne des éléments ($O(N)$).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 1.1.1 -->
+    <div id="sec-1-1-1" class="content-section">
+        <h3>1.1.1 Créer une liste</h3>
+        <div class="intro-box">
+            <p>La création d'une liste vide s'effectue simplement avec des crochets <code>[]</code> ou via le constructeur <code>list()</code>.</p>
+
+            <h3>Algorithme général :</h3>
+            <div class="code-box">
+Algorithme InitialiserListe()
+Sortie : Une liste vide
+
+Début
+    ma_liste <- []
+    Retourner ma_liste
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.1.2 -->
+    <div id="sec-1-1-2" class="content-section">
+        <h3>1.1.2 Ajouter un élément à une liste</h3>
+        <div class="intro-box">
+            <p>Python fournit des méthodes intégrées pour insérer des éléments :</p>
+            <ul>
+                <li><code>append(element)</code> : Ajoute à la fin de la liste ($O(1)$ amorti).</li>
+                <li><code>insert(index, element)</code> : Insère un élément à un indice donné en décalant les éléments suivants ($O(N)$).</li>
+            </ul>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Inserer(liste, element, pos)
+Entrée / Sortie : liste
+Entrée : element, pos (Entier)
+
+Début
+    Insérer element à l'indice pos dans liste
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.1.3 -->
+    <div id="sec-1-1-3" class="content-section">
+        <h3>1.1.3 Supprimer un élément d’une liste</h3>
+        <div class="intro-box">
+            <p>Plusieurs approches existent pour la suppression :</p>
+            <ul>
+                <li><code>pop(index)</code> : Supprime et retourne l'élément situé à l'indice donné.</li>
+                <li><code>remove(valeur)</code> : Supprime la première occurrence d'une valeur.</li>
+                <li><code>del liste[index]</code> : Supprime l'élément à l'indice spécifié.</li>
+            </ul>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Supprimer(liste, pos)
+Entrée / Sortie : liste
+Entrée : pos (Entier)
+
+Début
+    Supprimer l'élément situé à l'indice pos dans liste
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.1.4 -->
+    <div id="sec-1-1-4" class="content-section">
+        <h3>1.1.4 Concaténer deux listes</h3>
+        <div class="intro-box">
+            <p>La concaténation s'effectue via l'opérateur <code>+</code> ou la méthode <code>extend()</code>.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Concatener(liste1, liste2)
+Entrée : liste1, liste2
+Sortie : Une nouvelle liste contenant les éléments des deux listes
+
+Début
+    Retourner liste1 + liste2
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.1.5 -->
+    <div id="sec-1-1-5" class="content-section">
+        <h3>1.1.5 Implémentation en Python</h3>
+        <div class="intro-box">
+            <p>Exemple de manipulations de listes en Python :</p>
+            <div class="code-box">
+# Initialisation
+L1 = []
+L2 = [40, 50]
+
+# Ajout d'éléments
+L1.append(10)          # [10]
+L1.append(30)          # [10, 30]
+L1.insert(1, 20)       # [10, 20, 30]
+print("L1 :", L1)
+
+# Suppression
+element_supprime = L1.pop(0) # Supprime 10 -> L1 devient [20, 30]
+print("Après suppression du premier élément :", L1)
+
+# Concaténation
+L1.extend(L2)          # [20, 30, 40, 50]
+print("Après concaténation :", L1)
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.2 -->
+    <div id="sec-1-2" class="content-section">
+        <h2>1.2 Pile : Définition</h2>
+        <div class="intro-box">
+            <p>Une <strong>pile</strong> (<em>Stack</em>) est une structure linéaire régie par le principe <strong>LIFO</strong> (<em>Last In, First Out</em>). En Python, une simple liste répond parfaitement à ce besoin en utilisant <code>append()</code> et <code>pop()</code>.</p>
+        </div>
+    </div>
+
+    <!-- 1.2.1 -->
+    <div id="sec-1-2-1" class="content-section">
+        <h3>1.2.1 Empiler</h3>
+        <div class="intro-box">
+            <p>Ajouter un élément au sommet de la pile s'effectue via la méthode <code>append()</code> en $O(1)$.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Empiler(pile, element)
+Début
+    pile.append(element)
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.2.2 -->
+    <div id="sec-1-2-2" class="content-section">
+        <h3>1.2.2 Dépiler</h3>
+        <div class="intro-box">
+            <p>Retirer l'élément du sommet de la pile s'effectue via <code>pop()</code> (sans argument) en $O(1)$.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Depiler(pile)
+Début
+    Si pile n'est pas vide Alors
+        Retourner pile.pop()
+    Sinon
+        Afficher "Erreur : Pile vide"
+    FinSi
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.2.3 -->
+    <div id="sec-1-2-3" class="content-section">
+        <h3>1.2.3 Vider</h3>
+        <div class="intro-box">
+            <p>Réinitialiser la pile se fait en appelant la méthode <code>clear()</code>.</p>
+            <div class="code-box">
+Algorithme Vider(pile)
+Début
+    pile.clear()
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.2.4 -->
+    <div id="sec-1-2-4" class="content-section">
+        <h3>1.2.4 Top</h3>
+        <div class="intro-box">
+            <p>Lire l'élément au sommet sans le retirer s'effectue avec l'indexation négative <code>pile[-1]</code>.</p>
+            <div class="code-box">
+Algorithme ObtenirSommet(pile)
+Début
+    Si pile n'est pas vide Alors
+        Retourner pile[-1]
+    FinSi
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.2.5 -->
+    <div id="sec-1-2-5" class="content-section">
+        <h3>1.2.5 Implémentation en Python</h3>
+        <div class="intro-box">
+            <div class="code-box">
+class Pile:
+    def __init__(self):
+        self._items = []
+
+    def est_vide(self):
+        return len(self._items) == 0
+
+    def empiler(self, element):
+        self._items.append(element)
+
+    def depiler(self):
+        if not self.est_vide():
+            return self._items.pop()
+        raise IndexError("Dépiler depuis une pile vide")
+
+    def top(self):
+        if not self.est_vide():
+            return self._items[-1]
+        raise IndexError("Consultation d'une pile vide")
+
+    def vider(self):
+        self._items.clear()
+
+# Exemple d'utilisation
+p = Pile()
+p.empiler(5)
+p.empiler(15)
+p.empiler(25)
+print("Sommet :", p.top())       # 25
+print("Dépilé :", p.depiler())   # 25
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.3 -->
+    <div id="sec-1-3" class="content-section">
+        <h2>1.3 File : Définition</h2>
+        <div class="intro-box">
+            <p>Une <strong>file</strong> (<em>Queue</em>) suit le principe <strong>FIFO</strong> (<em>First In, First Out</em> : Premier entré, premier sorti). Bien qu'une liste Python puisse servir de file, l'opération <code>pop(0)</code> a un coût en $O(N)$. Pour garantir des opérations d'enfilage et de défilage en $O(1)$, on privilégie la structure de liste doublement chaînée fournie par le module standard <code>collections.deque</code>.</p>
+        </div>
+    </div>
+
+    <!-- 1.3.1 -->
+    <div id="sec-1-3-1" class="content-section">
+        <h3>1.3.1 Défiler</h3>
+        <div class="intro-box">
+            <p>L'opération <strong>Défiler</strong> consiste à retirer et retourner l'élément le plus ancien situé en tête de la file.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Defiler(file)
+Entrée / Sortie : file
+Sortie : valSortie
+
+Début
+    Si Taille(file) > 0 Alors
+        valSortie <- Retirer l'élément en tête de file (ex: file.popleft())
+        Retourner valSortie
+    Sinon
+        Afficher "Erreur : File vide"
+    FinSi
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.3.2 -->
+    <div id="sec-1-3-2" class="content-section">
+        <h3>1.3.2 Enfiler</h3>
+        <div class="intro-box">
+            <p>L'opération <strong>Enfiler</strong> ajoute un nouvel élément à la fin (la queue) de la file.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Enfiler(file, element)
+Entrée / Sortie : file
+Entrée : element
+
+Début
+    Ajouter element à la fin de file (ex: file.append(element))
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.3.3 -->
+    <div id="sec-1-3-3" class="content-section">
+        <h3>1.3.3 Vider</h3>
+        <div class="intro-box">
+            <p>Réinitialiser la file se fait en supprimant la totalité de ses éléments.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme Vider(file)
+Entrée / Sortie : file
+
+Début
+    Supprimer tous les éléments de file (ex: file.clear())
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.3.4 -->
+    <div id="sec-1-3-4" class="content-section">
+        <h3>1.3.4 Tail/Queue</h3>
+        <div class="intro-box">
+            <p>L'opération <strong>Tail</strong> (ou consultation de la queue) permet d'accéder au dernier élément inséré sans le supprimer.</p>
+
+            <h3>Algorithme :</h3>
+            <div class="code-box">
+Algorithme ObtenirTail(file)
+Entrée : file
+Sortie : valSortie
+
+Début
+    Si Taille(file) > 0 Alors
+        valSortie <- Dernier élément de file (ex: file[-1])
+        Retourner valSortie
+    Sinon
+        Afficher "Erreur : File vide"
+    FinSi
+Fin
+            </div>
+        </div>
+    </div>
+
+    <!-- 1.3.5 -->
+    <div id="sec-1-3-5" class="content-section">
+        <h3>1.3.5 Implémentation en Python</h3>
+        <div class="intro-box">
+            <div class="code-box">
+from collections import deque
+
+class File:
+    def __init__(self):
+        self._elements = deque()
+
+    def est_vide(self):
+        return len(self._elements) == 0
+
+    def enfiler(self, element):
+        self._elements.append(element)
+
+    def defiler(self):
+        if not self.est_vide():
+            return self._elements.popleft()
+        raise IndexError("Défiler depuis une file vide")
+
+    def tail(self):
+        if not self.est_vide():
+            return self._elements[-1]
+        raise IndexError("File vide")
+
+    def vider(self):
+        self._elements.clear()
+
+# Exemple d'utilisation
+f = File()
+f.enfiler(10)
+f.enfiler(20)
+f.enfiler(30)
+print("Défilé :", f.defiler()) # 10
+print("Dernier élément (Tail) :", f.tail()) # 30
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 -->
+    <div id="sec-2" class="content-section">
+        <h2>2. Algorithmes de recherche et de tri</h2>
+        <div class="intro-box">
+            <p>Ce chapitre traite des algorithmes fondamentaux de recherche et de tri appliqués aux listes Python.</p>
+        </div>
+    </div>
+
+    <!-- 2.1 -->
+    <div id="sec-2-1" class="content-section">
+        <h2>2.1 Recherche séquentielle</h2>
+        <div class="intro-box">
+            <h3>Définition</h3>
+            <p>Parcours élément par élément du début à la fin. Complexité $O(N)$.</p>
+
+            <h3>Pseudocode</h3>
+            <div class="code-box">
+Algorithme RechercheSequentielle(liste, valeur)
+Début
+    Pour i de 0 à Taille(liste) - 1 Faire
+        Si liste[i] == valeur Alors
+            Retourner i
+        FinSi
+    FinPour
+    Retourner -1
+Fin
+            </div>
+
+            <h3>Implémentation en Python</h3>
+            <div class="code-box">
+def recherche_sequentielle(liste, valeur):
+    for i, elem in enumerate(liste):
+        if elem == valeur:
+            return i
+    return -1
+
+T = [12, 4, 8, 25, 1]
+print("Indice :", recherche_sequentielle(T, 25)) # 3
+            </div>
+        </div>
+    </div>
+
+    <!-- 2.2 -->
+    <div id="sec-2-2" class="content-section">
+        <h2>2.2 Recherche dichotomique</h2>
+        <div class="intro-box">
+            <h3>Définition</h3>
+            <p>Recherche par division successive du domaine de recherche. Nécessite une liste **triée**. Complexité $O(\log_2 N)$.</p>
+
+            <h3>Pseudocode</h3>
+            <div class="code-box">
+Algorithme RechercheDichotomique(liste, valeur)
+Début
+    debut <- 0
+    fin <- Taille(liste) - 1
+    Tant que debut <= fin Faire
+        milieu <- (debut + fin) // 2
+        Si liste[milieu] == valeur Alors
+            Retourner milieu
+        Sinon Si liste[milieu] < valeur Alors
+            debut <- milieu + 1
+        Sinon
+            fin <- milieu - 1
+        FinSi
+    FinTantQue
+    Retourner -1
+Fin
+            </div>
+
+            <h3>Implémentation en Python</h3>
+            <div class="code-box">
+def recherche_dichotomique(liste, valeur):
+    debut, fin = 0, len(liste) - 1
+    while debut <= fin:
+        milieu = (debut + fin) // 2
+        if liste[milieu] == valeur:
+            return milieu
+        elif liste[milieu] < valeur:
+            debut = milieu + 1
+        else:
+            fin = milieu - 1
+    return -1
+
+T = [2, 5, 8, 12, 16, 23, 38]
+print("Indice :", recherche_dichotomique(T, 23)) # 5
+            </div>
+        </div>
+    </div>
+
+    <!-- 2.3 -->
+    <div id="sec-2-3" class="content-section">
+        <h2>2.3 Tri sélection</h2>
+        <div class="intro-box">
+            <h3>Définition</h3>
+            <p>Recherche le plus petit élément du reste non trié et l'échange avec l'élément courant. Complexité $O(N^2)$.</p>
+
+            <h3>Pseudocode</h3>
+            <div class="code-box">
+Algorithme TriSelection(liste)
+Début
+    n <- Taille(liste)
+    Pour i de 0 à n - 2 Faire
+        min_idx <- i
+        Pour j de i + 1 à n - 1 Faire
+            Si liste[j] < liste[min_idx] Alors
+                min_idx <- j
+            FinSi
+        FinPour
+        Échanger liste[i] et liste[min_idx]
+    FinPour
+Fin
+            </div>
+
+            <h3>Implémentation en Python</h3>
+            <div class="code-box">
+def tri_selection(liste):
+    n = len(liste)
+    for i in range(n - 1):
+        min_idx = i
+        for j in range(i + 1, n):
+            if liste[j] < liste[min_idx]:
+                min_idx = j
+        liste[i], liste[min_idx] = liste[min_idx], liste[i]
+
+T = [64, 25, 12, 22, 11]
+tri_selection(T)
+print("Trié :", T)
+            </div>
+        </div>
+    </div>
+
+    <!-- 2.4 -->
+    <div id="sec-2-4" class="content-section">
+        <h2>2.4 Tri rapide</h2>
+        <div class="intro-box">
+            <h3>Définition</h3>
+            <p>Tri récursif basé sur le choix d'un pivot. Complexité moyenne $O(N \log_2 N)$. En Python, ce tri peut être écrit très élégamment avec les compréhensions de listes.</p>
+
+            <h3>Pseudocode</h3>
+            <div class="code-box">
+Algorithme TriRapide(liste)
+Début
+    Si Taille(liste) <= 1 Alors
+        Retourner liste
+    pivot <- Premier élément
+    Moindres <- Éléments < pivot
+    Egaux <- Éléments == pivot
+    Grands <- Éléments > pivot
+    Retourner TriRapide(Moindres) + Egaux + TriRapide(Grands)
+Fin
+            </div>
+
+            <h3>Implémentation en Python</h3>
+            <div class="code-box">
+def tri_rapide(liste):
+    if len(liste) <= 1:
+        return liste
+    pivot = liste[len(liste) // 2]
+    moindres = [x for x in liste if x < pivot]
+    egaux = [x for x in liste if x == pivot]
+    grands = [x for x in liste if x > pivot]
+    return tri_rapide(moindres) + egaux + tri_rapide(grands)
+
+T = [10, 7, 8, 9, 1, 5]
+print("Trié :", tri_rapide(T))
+            </div>
+        </div>
+    </div>
+
+    <!-- 3 -->
+    <div id="sec-3" class="content-section">
+        <h2>3. Langage Python</h2>
+        <div class="intro-box">
+            <p><strong>Python</strong> est un langage de programmation interprété, haut niveau, multi-paradigme et à typage dynamique, créé par Guido van Rossum et publié en 1991. Conçu avec une philosophie axée sur la lisibilité du code et la simplicité syntaxique, il résume sa vision dans le célèbre Manifeste <em>The Zen of Python</em> : <em>« Simple is better than complex »</em>.</p>
+
+            <h3>1. Philosophie et Principes de Conception</h3>
+            <p>Contrairement à d'autres langages imposant une lourdeur syntaxique, Python cherche à rendre le code compréhensible comme de l'anglais structuré :</p>
+            <ul>
+                <li><strong>Lisibilité avant tout :</strong> L'indentation (les espaces en début de ligne) est obligatoire et remplace les accolades <code>{}</code> ou les mots-clés <code>begin/end</code>. Cela élimine les débats de style et garantit une structure visuelle uniforme.</li>
+                <li><strong>Expressivité :</strong> Une tâche nécessitant des dizaines de lignes en C ou en Java s'écrit souvent en quelques lignes en Python grâce aux constructions de haut niveau (comme les compréhensions de listes, le slicing ou les générateurs).</li>
+                <li><strong>"Batteries Included" :</strong> Python est livré avec une bibliothèque standard d'une richesse exceptionnelle, offrant des modules natifs pour la manipulation de structures complexes (<code>collections</code>, <code>heapq</code>), les calculs mathématiques, le traitement de fichiers, et le réseau sans installer d'outils tiers.</li>
+            </ul>
+
+            <h3>2. Fonctionnement de l'Interpréteur et Exécution</h3>
+            <p>Comprendre comment Python exécute un programme est essentiel pour analyser la performance des algorithmes :</p>
+            <ul>
+                <li><strong>Compilation en Bytecode :</strong> Lorsque vous lancez un script (<code>.py</code>), l'interpréteur (généralement CPython, écrit en C) le compile d'abord en un code intermédiaire appelé <em>bytecode</em> (fichiers <code>.pyc</code> dans le dossier <code>__pycache__</code>).</li>
+                <li><strong>Machine Virtuelle Python (PVM) :</strong> La PVM lit ensuite ce bytecode instruction par instruction pour le traduire en commandes compréhensibles par le processeur. Ce fonctionnement par interprétation offre une excellente portabilité (le même code tourne sur Windows, macOS, Linux) au prix d'une vitesse d'exécution inférieure à un langage purement compilé comme C ou Rust.</li>
+            </ul>
+
+            <h3>3. Typage Dynamique et Gestion Automatique de la Mémoire</h3>
+            <p>En Python, <strong>tout est objet</strong> (les entiers, les chaînes, les fonctions, et même les classes) :</p>
+            <ul>
+                <li><strong>Typage Dynamique Fort :</strong> Les variables ne sont pas des conteneurs typés, mais des <em>étiquettes (références)</em> pointant vers des objets en mémoire. Il n'y a pas besoin de déclarer <code>int x</code>. Cependant, le typage reste fort : Python n'autorise pas l'addition implicite d'une chaîne et d'un entier sans conversion explicite.</li>
+                <li><strong>Gestion de la Mémoire & Ramasse-miettes (Garbage Collector) :</strong> Python gère automatiquement la réservation et la libération des espaces mémoire :
+                    <ul>
+                        <li><strong>Comptage de Références :</strong> Chaque objet garde en mémoire le nombre de variables qui pointent vers lui. Dès que ce compteur tombe à zéro, l'espace mémoire est libéré immédiatement.</li>
+                        <li><strong>Garbage Collector (GC) :</strong> Un mécanisme complémentaire détecte et détruit les références cycliques (deux objets qui se pointent l'un l'autre sans être accessibles par le reste du programme).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>4. Rôle de Python en Algorithmique et Data Science</h3>
+            <p>Dans ce cours, Python est utilisé comme un formidable outil d'apprentissage algorithmique :</p>
+            <ul>
+                <li><strong>Prototypage Rapide :</strong> Il permet de se concentrer sur la logique, la complexité spatio-temporelle et la structure des données sans se faire piéger par des erreurs d'allocation mémoire (<em>segmentation faults</em>) ou de fuites mémoires (<em>memory leaks</em>).</li>
+                <li><strong>Polyvalence Professionnelle :</strong> Maîtriser les structures de données en Python prépare directement aux domaines de l'Intelligence Artificielle, du Traitement Automatique du Langage Naturel (TALN), de la Data Science (NumPy, Pandas, PyTorch) et du Développement Web (Django, FastAPI).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 3.1 -->
+    <div id="sec-3-1" class="content-section">
+        <h2>3.1 Installation et Environnement de Développement</h2>
+        <div class="intro-box">
+            <h3>1. Téléchargement et Installation de Python</h3>
+            <p>Pour pouvoir exécuter des scripts Python sur votre ordinateur :</p>
+            <ul>
+                <li><strong>Téléchargement :</strong> Rendez-vous sur le site officiel <a href="https://www.python.org/downloads/" target="_blank" style="color: #006699; font-weight: bold;">python.org/downloads</a> et téléchargez la dernière version stable de Python 3.</li>
+                <li><strong>Point critique lors de l'installation (Windows) :</strong> Veillez impérativement à cocher la case <code>Add python.exe to PATH</code> sur le premier écran de l'installeur avant de cliquer sur <em>Install Now</em>. Cela vous permettra de lancer Python directement depuis n'importe quel terminal.</li>
+                <li><strong>Vérification :</strong> Ouvrez une invite de commandes (ou terminal) et tapez :
+                    <div class="code-box">python --version</div>
+                </li>
+            </ul>
+
+            <h3>2. Choix de l'Éditeur de Code (IDE)</h3>
+            <p>Plusieurs outils permettent d'écrire et d'exécuter du code Python :</p>
+            <ul>
+                <li><strong>Visual Studio Code (VS Code) — Recommandé :</strong> Éditeur gratuit, léger et extrêmement complet.</li>
+                <li><strong>PyCharm :</strong> Environnement de développement (IDE) dédié à Python développé par JetBrains (version Community gratuite).</li>
+                <li><strong>IDLE :</strong> L'environnement basique directement fourni lors de l'installation de Python, pratique pour démarrer sans configuration.</li>
+            </ul>
+
+            <h3>3. Configuration de Visual Studio Code pour Python</h3>
+            <p>Si vous optez pour <strong>VS Code</strong>, voici les étapes pour une configuration optimale :</p>
+            <ol>
+                <li><strong>Télécharger VS Code :</strong> Depuis <a href="https://code.visualstudio.com/" target="_blank" style="color: #006699; font-weight: bold;">code.visualstudio.com</a>.</li>
+                <li><strong>Installer l'extension Python :</strong>
+                    <ul>
+                        <li>Ouvrez VS Code et cliquez sur l'icône <em>Extensions</em> dans la barre latérale gauche (ou utilisez le raccourci <code>Ctrl+Shift+X</code>).</li>
+                        <li>Dans la barre de recherche, tapez <code>Python</code>.</li>
+                        <li>Sélectionnez l'extension officielle éditée par <strong>Microsoft</strong> et cliquez sur <strong>Install</strong>.</li>
+                    </ul>
+                </li>
+                <li><strong>Sélectionner l'interpréteur :</strong> Ouvrez la palette de commandes (<code>Ctrl+Shift+P</code>), tapez <code>Python: Select Interpreter</code> et choisissez la version de Python que vous avez installée.</li>
+                <li><strong>Exécuter un fichier :</strong> Créez un fichier avec l'extension <code>.py</code> (ex: <code>main.py</code>), écrivez votre code, puis cliquez sur le bouton <strong>Run / Play</strong> (▶) en haut à droite pour l'exécuter dans le terminal intégré.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 3.2 -->
+    <div id="sec-3-2" class="content-section">
+        <h2>3.2 Ressources et Ouvrages de Référence</h2>
+        <div class="intro-box">
+            <h3>Ouvrage Recommandé</h3>
+            <p>Pour approfondir l'algorithmique et les structures de données spécifiquement en Python :</p>
+            
+            <p style="margin-top: 15px;">
+                📖 <strong>Problem Solving with Algorithms and Data Structures Using Python</strong> — Bradley N. Miller et David L. Ranum<br>
+                <em>Un livre complet de référence sur les structures de données en Python.</em>
+            </p>
+
+            <p style="margin-top: 20px;">
+                👉 <a href="https://runestone.academy/ns/books/published/pythonds3/index.html" target="_blank" style="color: #006699; font-weight: bold; text-decoration: underline;">Consulter l'ouvrage en ligne (Runestone Academy)</a>
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function afficherSection(event, idSection) {
+    event.preventDefault();
+    
+    var sections = document.querySelectorAll('.content-section');
+    sections.forEach(function(sec) {
+        sec.classList.remove('active');
+    });
+
+    var links = document.querySelectorAll('.nav-btn');
+    links.forEach(function(link) {
+        link.classList.remove('active-link');
+    });
+
+    var target = document.getElementById(idSection);
+    if (target) {
+        target.classList.add('active');
+    }
+
+    event.currentTarget.classList.add('active-link');
+}
+</script>
+
+</body>
+</html>
